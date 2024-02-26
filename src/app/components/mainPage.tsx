@@ -2,7 +2,7 @@
 import axios from "axios";
 import { Box, } from "@chakra-ui/react";
 import React, { ReactNode, useEffect, useState } from "react";
-import { JsonData } from "../../types";
+import { JsonData } from "../../../types";
 
 
 export default function MainPage() {
