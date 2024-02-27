@@ -1,21 +1,18 @@
 "use client"
 import axios from "axios";
-import { Box, Center, Flex, useDisclosure, } from "@chakra-ui/react";
-import React, { ReactNode, useEffect, useState } from "react";
+import { Box, Center, useDisclosure, } from "@chakra-ui/react";
+import React, { useContext, useEffect, useState } from "react";
 import Navigation from "./navigation";
 import ContentBody from "./body";
+import { AppContext } from "../../../context/appContext";
 
 
 export default function MainPage() {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [isSwitched, onSwitch] = useState(true);
     const { isOpen, onToggle} = useDisclosure();
-
-    function toggleSwitch() {
-        onSwitch(!isSwitched);
-    }
+    const {darkTheme, } = useContext(AppContext) || {};
 
     // api calls
     useEffect(() => {
@@ -33,19 +30,16 @@ export default function MainPage() {
     }, []);
 
   return (
-    <Box bg= {isSwitched ? "brand.pageDark" : "brand.pageLight"}>
-
+    <Box bg={darkTheme ? "brand.pageDark" : "brand.pageLight"}>
             {/* this box is rightpart of screen */}
             <Center>
-                <Navigation toggleFade= {onToggle} darkMode = {isSwitched} onSwitch={toggleSwitch} />
+                <Navigation toggleFade={onToggle} />
             </Center>
             <Center>
                 <Box className="body">
-                    <ContentBody fade = {isOpen} darkMode = {isSwitched} />
+                    <ContentBody fade={isOpen} />
                 </Box>
-
             </Center>
-
     </Box>
   );
 }
