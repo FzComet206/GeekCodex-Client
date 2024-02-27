@@ -11,38 +11,42 @@ export const theme = extendTheme({
             },
 
             ".body": {
-                h: "100vh",
-                w: "80vw",
-            },
-            ".menu": {
-                h: "100vh",
-                w: "20vw"
+                h: "92vh",
+                w: "70vw",
             },
             ".navbar": {
-                padding: "10px",
+                borderBottom: "1px solid",
                 h: "8vh",
-                w: "80vw"
+                w: "70vw",
             },
             ".content": {
                 h: "92vh",
-                w: "80vw"
+                w: "70vw"
             }, 
             ".preview": {
-                h: "26vh",
-                w: "14vw"
+                h: "40vh",
+                w: "15vw"
+            },
+            ".Card": {
+                maxW: "18vw",
+                h: "39vh"
             }
+
         }),
     },
 
     colors: {
     // color palette
         brand: {
-            900: "#2B2D42",
-            800: "#F2DDA4",
-            700: "#6E698E",
-            600: "#A7ADC6",
-            500: "#2D3142",
-            400: "#f8fafc",
+            bodyLight: "#8C8A93",
+            navLight: "FBFBF2",
+            pageLight: "#E7E7E7",
+            cardLight: "#F6F0ED",
+            navDark: "#171D1C",
+            cardDark: "#343434",
+            bodyDark: "#151718",
+            pageDark: "#1F1F1F",
+            400: "#FEEFDD",
             300: "#2E294E",
             200: "#ffffff",
             100: "#ffffff",

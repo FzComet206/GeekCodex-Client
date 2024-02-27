@@ -10,7 +10,12 @@ export default function MainPage() {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isSwitched, onSwitch] = useState(true);
     const { isOpen, onToggle} = useDisclosure();
+
+    function toggleSwitch() {
+        onSwitch(!isSwitched);
+    }
 
     // api calls
     useEffect(() => {
@@ -28,22 +33,19 @@ export default function MainPage() {
     }, []);
 
   return (
-    <Box bg="brand.800">
-        <Flex>
-            {/* this box is left part of screen */}
-            <Box bg="brand.800" className="menu" fontSize="40px">
-                <Center>
-                    Recommendations
-                </Center>
-            </Box>
+    <Box bg= {isSwitched ? "brand.pageDark" : "brand.pageLight"}>
 
             {/* this box is rightpart of screen */}
-            <Box className="body">
-                <Navigation toggleFade= {onToggle}/>
-                <ContentBody fade = {isOpen} />
-            </Box>
+            <Center>
+                <Navigation toggleFade= {onToggle} darkMode = {isSwitched} onSwitch={toggleSwitch} />
+            </Center>
+            <Center>
+                <Box className="body">
+                    <ContentBody fade = {isOpen} darkMode = {isSwitched} />
+                </Box>
 
-        </Flex>
+            </Center>
+
     </Box>
   );
 }
