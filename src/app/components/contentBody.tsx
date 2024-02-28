@@ -28,7 +28,3 @@ export default function ContentBody({ fade}: any){
         </Box>
     )
 }
-function useAppContext(): { darkTheme: any; } {
-    throw new Error("Function not implemented.");
-}
-

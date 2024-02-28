@@ -3,7 +3,7 @@ import axios from "axios";
 import { Box, Center, useDisclosure, } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import Navigation from "./navigation";
-import ContentBody from "./body";
+import ContentBody from "./contentBody";
 import { AppContext } from "../../../context/appContext";
 
 
@@ -33,7 +33,7 @@ export default function MainPage() {
     <Box bg={darkTheme ? "brand.pageDark" : "brand.pageLight"}>
             {/* this box is rightpart of screen */}
             <Center>
-                <Navigation toggleFade={onToggle} />
+                <Navigation toggleFade={onToggle}/>
             </Center>
             <Center>
                 <Box className="body">

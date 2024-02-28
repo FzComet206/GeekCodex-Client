@@ -27,11 +27,14 @@ export const theme = extendTheme({
                 h: "40vh",
                 w: "15vw"
             },
-            ".Card": {
+            ".card": {
                 maxW: "18vw",
                 h: "39vh"
-            }
-
+            },
+            ".form": {
+                h: "92vh",
+                w: "30vw"
+            },
         }),
     },
 
