@@ -41,7 +41,7 @@ export const theme = extendTheme({
     colors: {
     // color palette
         brand: {
-            bodyLight: "#8C8A93",
+            bodyLight: "#55505C",
             navLight: "FBFBF2",
             pageLight: "#E7E7E7",
             cardLight: "#F6F0ED",

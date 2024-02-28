@@ -1,20 +1,20 @@
 // lib/api.ts
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
-interface RegisterResponse {
+export interface RegisterResponse {
   userId: number;
   userName: string;
   token: string; 
 }
 
-const API_BASE_URL = process.env.NEXT_PULIC_SERVER_API;
+const register = async (name: string, email: string, password: string): Promise<RegisterResponse> => {
 
-const register = async (email: string, password: string): Promise<RegisterResponse> => {
-  console.log("Registering")
+  console.log("start register call");
+
   try {
     const response: AxiosResponse<RegisterResponse> = await axios.post(
-      `${API_BASE_URL}/register`,
-      { email, password }, 
+      process.env.API_URL + "/auth/register",
+      { name, email, password }, 
       { headers: { 'Content-Type': 'application/json' } } 
     );
 

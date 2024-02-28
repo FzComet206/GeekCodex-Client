@@ -32,20 +32,26 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     }
   }, []);
 
-const login = (email: string, password: string) => {
-    // ... your authentication logic (API call, etc.)
-    // On Success:
-    console.log("Logging in");
-    setIsLoggedIn(true);
-    setUser({ name: '', email }); // Assume only storing email for simplicity
-    localStorage.setItem('user', JSON.stringify({ email })); 
-};
 
-const logout = () => {
-    setIsLoggedIn(false);
-    setUser(null);
-    localStorage.removeItem('user');
-};
+  const register = (name: string, email: string, password: string) => {
+
+  }
+
+
+  const login = (email: string, password: string) => {
+      // ... your authentication logic (API call, etc.)
+      // On Success:
+      console.log("Logging in");
+      setIsLoggedIn(true);
+      setUser({ name: '', email }); // Assume only storing email for simplicity
+      localStorage.setItem('user', JSON.stringify({ email })); 
+  };
+
+  const logout = () => {
+      setIsLoggedIn(false);
+      setUser(null);
+      localStorage.removeItem('user');
+  };
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>

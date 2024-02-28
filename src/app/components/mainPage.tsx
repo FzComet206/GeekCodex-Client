@@ -14,7 +14,10 @@ export default function MainPage() {
     const { isOpen, onToggle} = useDisclosure();
     const {darkTheme, } = useContext(AppContext) || {};
 
+    const serverApi = process.env.NEXT_PUBLIC_SERVER_API;
+
     // api calls
+    /*
     useEffect(() => {
         const serverApi = process.env.NEXT_PUBLIC_SERVER_API;
 
@@ -28,6 +31,7 @@ export default function MainPage() {
             console.error("SERVER_API environment variable is not defined.");
         }
     }, []);
+    */
 
   return (
     <Box bg={darkTheme ? "brand.pageDark" : "brand.pageLight"}>
