@@ -7,6 +7,8 @@ import { AppContext } from "../../../context/appContext";
 export default function Navigation({ toggleFade }: any) {
 
     const {darkTheme, setTheme } = useContext(AppContext) || {};
+    const width = window.screen.width * 0.7;
+    const minWidth = window.screen.width * 0.5;
     
     const router = useRouter();
     const goToRegister = () => {
@@ -17,7 +19,7 @@ export default function Navigation({ toggleFade }: any) {
     }
 
     return (
-        <Box className="navbar" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= {darkTheme ? "black" : "white"}>
+        <Box w={`${width}px`} minWidth={`${minWidth}px`} className="navbar" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= "white">
             <Flex alignContent="center">
 
                 <Box padding="20px" position="relative" left="2.5%">
@@ -33,7 +35,7 @@ export default function Navigation({ toggleFade }: any) {
                     </Button>
                 </Box>
 
-                <Box padding="5px" fontSize="50px" textColor="white" position="relative" left="10%">
+                <Box padding="5px" fontSize="50px" textColor="white" position="relative" left="8%">
                     <Input placeholder='Search' size="lg" width="35vw"/>
                 </Box>
 

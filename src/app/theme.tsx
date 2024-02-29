@@ -5,31 +5,35 @@ export const theme = extendTheme({
     styles: {
         global: () => ({
             ".fullsize": {
-                padding: "10px",
-                h:"100vh",
-                w:"100vw",
+                h:"100%",
+                w:"100%",
             },
 
             ".body": {
+                overflow: "hidden",
                 h: "92vh",
                 w: "70vw",
             },
             ".navbar": {
+                overflow: "hidden",
                 borderBottom: "1px solid",
                 h: "8vh",
                 w: "70vw",
             },
             ".content": {
+                overflow: "hidden",
                 h: "92vh",
-                w: "70vw"
+                w: "70vw",
             }, 
             ".preview": {
+                minW: "200px",
                 h: "40vh",
-                w: "15vw"
+                w: "15.3vw"
             },
             ".card": {
-                maxW: "18vw",
-                h: "39vh"
+                minW: "500px",
+                h: "39vh",
+                w: "14.5vw"
             },
             ".form": {
                 h: "92vh",
@@ -41,10 +45,10 @@ export const theme = extendTheme({
     colors: {
     // color palette
         brand: {
-            bodyLight: "#55505C",
+            bodyLight: "#55555C",
             navLight: "FBFBF2",
-            pageLight: "#E7E7E7",
-            cardLight: "#F6F0ED",
+            pageLight: "#D7D7D7",
+            cardLight: "#E6E0ED",
             navDark: "#171D1C",
             cardDark: "#343434",
             bodyDark: "#151718",

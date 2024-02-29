@@ -9,9 +9,11 @@ export default function Navigation({ toggleFade }: any) {
 
     const {darkTheme, setTheme } = useContext(AppContext) || {};
     const router = useRouter();
+    const width = window.screen.width * 0.7;
+    const minWidth = window.screen.width * 0.5;
     
     return (
-        <Box className="navbar" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= {darkTheme ? "black" : "white"}>
+        <Box minW={`${minWidth}px`} w={`${width}px`} className="navbar" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= {darkTheme ? "black" : "white"}>
             <Flex alignContent="center">
 
                 <Box padding="20px" position="relative" left="2.5%">

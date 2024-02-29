@@ -11,6 +11,8 @@ export const Preview: FC<PreviewProps> = ({fade}) => {
 
     const {darkTheme} = useContext(AppContext) || {};
     const txtColor = darkTheme? "white" : "black";
+    const minWidth = window.screen.width * 0.14;
+
 
     return (
         <Box padding="19px">
@@ -22,26 +24,28 @@ export const Preview: FC<PreviewProps> = ({fade}) => {
                 mt='4'
                 rounded='md'
                 shadow='md'
+                minW={`${minWidth}px`}
                 >
-                    <Card className="card" bg={darkTheme? "brand.cardDark" : "brand.cardLight"}>
+                    <Card className="card" bg={darkTheme? "brand.cardDark" : "brand.cardLight"} minW={`${minWidth}px`}>
                         <CardBody>
-                            <Image
-                            src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-                            alt='Green double couch with wooden legs'
-                            borderRadius='lg'
-                            />
+                            <Box
+                            h="300px"
+                            >
+                                <Image
+                                src = 'img/Planet.png'
+                                alt='World'
+                                borderRadius='lg'
+                                />
+                            </Box>
                             <Stack mt='6' spacing='3'>
-                            <Heading color={txtColor} size='md'>Living room Sofa</Heading>
+                                <Heading color={txtColor} size='md'>
+                                    Procedurally Generated Planet
+                                </Heading>
                                 <Flex>
-                                <Text color={txtColor} fontSize='2xl'>
-                                    $450
-                                </Text>
-                                    <Box w = '120px'>
-                                        <Center>
-                                            <Button>
-                                                Purchase
+                                    <Box w = '150px'>
+                                            <Button bg={darkTheme? "white" : "#8383B1"}>
+                                                View Details
                                             </Button>
-                                        </Center>
                                     </Box>
                                 </Flex>
                             </Stack>

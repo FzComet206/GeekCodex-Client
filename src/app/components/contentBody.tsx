@@ -1,4 +1,4 @@
-import { Box, Center, Flex, useConst } from "@chakra-ui/react";
+import { Box, Center, Flex, Grid, GridItem, useConst } from "@chakra-ui/react";
 import { Preview } from "./preview";
 import { useContext } from "react";
 import { AppContext } from "../../../context/appContext";
@@ -6,19 +6,21 @@ import { AppContext } from "../../../context/appContext";
 export default function ContentBody({ fade}: any){
 
     const {darkTheme } = useContext(AppContext) || {};
+    const width = window.screen.width * 0.7;
+    const minWidth = window.screen.width * 0.5;
 
     return (
-        <Box bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"} className="content">
+        <Box bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"} className="content" minWidth={`${minWidth}px`} w={`${width}px`}>
             <Box>
-                <Flex justifyContent="center">
+                <Flex alignContent="center" justifyContent="center">
                     <Preview fade = {fade} />
                     <Preview fade = {fade} />
                     <Preview fade = {fade} />
                     <Preview fade = {fade} />
                 </Flex>
             </Box>
-            <Box>
-                <Flex justifyContent="center">
+            <Box >
+                <Flex alignContent="center" justifyContent="center">
                     <Preview fade = {fade} />
                     <Preview fade = {fade} />
                     <Preview fade = {fade} />
