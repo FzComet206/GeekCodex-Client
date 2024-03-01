@@ -44,7 +44,7 @@ export const theme = extendTheme({
             },
             ".form": {
                 h: "92vh",
-                w: "30vw"
+                minW: "400px",
             },
         }),
     },

@@ -95,18 +95,18 @@ export default function RegisterPage() {
                             </Box>
 
                             <Box>
-                                <Input placeholder="Enter Nickname" size="lg" w="20vw" value={name} onChange={handleNameChange} />
+                                <Input placeholder="Enter Nickname" size="lg" value={name} onChange={handleNameChange} />
                             </Box>
                             <Box>
-                                <Input type="email" placeholder="Enter Email Address" size="lg" w="20vw" value={email} onChange={handleEmailChange}/>
-                            </Box>
-
-                            <Box>
-                                <Input pr="4.5rem" placeholder="Enter Password" size="lg" w="20vw" type="password" value={password} onChange={handlePasswordChange}/>
+                                <Input type="email" placeholder="Enter Email Address" size="lg" value={email} onChange={handleEmailChange}/>
                             </Box>
 
                             <Box>
-                                <Input pr="4.5rem" placeholder="Confirm Password" size="lg" w="20vw" type="password" value={confirm} onChange={handleConfirmChange}/>
+                                <Input pr="4.5rem" placeholder="Enter Password" size="lg" type="password" value={password} onChange={handlePasswordChange}/>
+                            </Box>
+
+                            <Box>
+                                <Input pr="4.5rem" placeholder="Confirm Password" size="lg" type="password" value={confirm} onChange={handleConfirmChange}/>
 
                             </Box>
 
