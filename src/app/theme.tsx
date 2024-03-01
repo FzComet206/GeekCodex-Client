@@ -14,7 +14,7 @@ export const theme = extendTheme({
                 h: "92vh",
                 w: "70vw",
             },
-            ".navbar": {
+            ".nav": {
                 overflow: "hidden",
                 borderBottom: "1px solid",
                 h: "8vh",

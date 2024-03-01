@@ -1,5 +1,4 @@
 "use client"
-import axios from "axios";
 import { Box, Center, Flex, useDisclosure, } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import Navigation from "./navigation";
@@ -12,8 +11,10 @@ export default function MainPage() {
     const { isOpen, onToggle} = useDisclosure();
     const {darkTheme, } = useContext(AppContext) || {};
 
-    const width = window.screen.width * 0.7;
-    const minWidth = window.screen.width * 0.5;
+    var minWidth = 700;
+    if (typeof window !== "undefined") {
+        minWidth = window.screen.width * 0.5;
+    }
 
     return (
             <Box bg={darkTheme ? "brand.pageDark" : "brand.pageLight"} className="fullsize">
