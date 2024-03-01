@@ -11,29 +11,36 @@ export const theme = extendTheme({
 
             ".body": {
                 overflow: "hidden",
-                h: "92vh",
-                w: "70vw",
+                h: "91vh",
+                w: "1800px",
+                minW: "700px",
             },
             ".nav": {
                 overflow: "hidden",
                 borderBottom: "1px solid",
-                h: "8vh",
-                w: "70vw",
+                h: "9vh",
+                w: "1800px",
+                minW: "700px",
+                minH: "100px"
             },
             ".content": {
                 overflow: "hidden",
-                h: "92vh",
-                w: "70vw",
+                h: "91vh",
+                w: "1800px",
+                minH: "1000px",
+                minW: "700px",
             }, 
             ".preview": {
-                minW: "200px",
+                minW: "320px",
+                maxW: "400px",
+                minH: "500px",
                 h: "40vh",
-                w: "15.3vw"
             },
             ".card": {
-                minW: "500px",
+                minW: "320px",
+                maxW: "400px",
+                minH: "500px",
                 h: "39vh",
-                w: "14.5vw"
             },
             ".form": {
                 h: "92vh",

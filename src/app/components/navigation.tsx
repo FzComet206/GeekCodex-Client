@@ -8,13 +8,6 @@ export default function Navigation({ toggleFade }: any) {
 
     const {darkTheme, setTheme } = useContext(AppContext) || {};
 
-    var width = 1000;
-    var minWidth = 700;
-    if (typeof window !== "undefined") {
-        width = window.screen.width * 0.7;
-        minWidth = window.screen.width * 0.5;
-    }
-    
     const router = useRouter();
     const goToRegister = () => {
         router.push("/auth/register");
@@ -24,7 +17,7 @@ export default function Navigation({ toggleFade }: any) {
     }
 
     return (
-        <Box w={`${width}px`} minWidth={`${minWidth}px`} className="nav" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= "white">
+        <Box className="nav" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= "white">
             <Flex alignContent="center">
 
                 <Box padding="20px" position="relative" left="2.5%">

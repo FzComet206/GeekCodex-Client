@@ -11,15 +11,10 @@ export default function MainPage() {
     const { isOpen, onToggle} = useDisclosure();
     const {darkTheme, } = useContext(AppContext) || {};
 
-    var minWidth = 700;
-    if (typeof window !== "undefined") {
-        minWidth = window.screen.width * 0.5;
-    }
-
     return (
             <Box bg={darkTheme ? "brand.pageDark" : "brand.pageLight"} className="fullsize">
 
-                <Box minWidth={`${minWidth}px`}>
+                <Box>
                     {/* this box is rightpart of screen */}
                     <Center>
                         <Navigation toggleFade={onToggle}/>

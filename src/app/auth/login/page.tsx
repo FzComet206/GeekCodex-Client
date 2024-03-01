@@ -7,11 +7,7 @@ import { register, RegisterResponse } from "@/lib/api/register";
 
 export default function RegisterPage() {
 
-    const width = window.screen.width * 0.7;
-    const minWidth = window.screen.width * 0.5;
-
     const { darkTheme } = useContext(AppContext) || {};
-
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -44,7 +40,7 @@ export default function RegisterPage() {
                 <NavigationPlain/>
             </Center>
             <Center>
-                <Box className="body" bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"} w={`${width}px`} minWidth={`${minWidth}px`}>
+                <Box className="body" bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"}>
 
                     <Center>
                         <Box className="form" fontSize="60px" textColor="white" textAlign="center">

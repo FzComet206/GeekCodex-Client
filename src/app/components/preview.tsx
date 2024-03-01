@@ -12,14 +12,6 @@ export const Preview: FC<PreviewProps> = ({fade}) => {
     const {darkTheme} = useContext(AppContext) || {};
     const txtColor = darkTheme? "white" : "black";
 
-    // somehow if i remove the line below, the classname not match runtime error will occur
-    let minWidth = (window || null).screen.width * 0.14;
-
-    let w = 200;
-    if (typeof window !== "undefined") {
-        w = window.screen.width * 0.14;
-    }
-
     return (
         <Box padding="19px">
             <ScaleFade initialScale={0.9} in={fade}>
@@ -30,9 +22,8 @@ export const Preview: FC<PreviewProps> = ({fade}) => {
                 mt='4'
                 rounded='md'
                 shadow='md'
-                minW={`${w}px`}
                 >
-                    <Card className="card" bg={darkTheme? "brand.cardDark" : "brand.cardLight"} minW={`${w}px`}>
+                    <Card className="card" bg={darkTheme? "brand.cardDark" : "brand.cardLight"}>
                         <CardBody>
                             <Box
                             h="300px"
