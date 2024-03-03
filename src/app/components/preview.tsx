@@ -25,27 +25,52 @@ export const Preview: FC<PreviewProps> = ({fade}) => {
                 >
                     <Card className="card" bg={darkTheme? "brand.cardDark" : "brand.cardLight"}>
                         <CardBody>
-                            <Box
-                            h="300px"
-                            >
-                                <Image
-                                src = 'img/Planet.png'
-                                alt='World'
-                                borderRadius='lg'
-                                />
-                            </Box>
+                            
+
+                            <Flex justifyContent="center">
+                                <Box maxH="220px" maxW="350px" overflow="hidden">
+                                        <Image
+                                        src = 'img/Planet.png'
+                                        borderRadius='lg'
+                                        />
+                                </Box>
+                            </Flex>
+
                             <Stack mt='6' spacing='3'>
-                                <Heading color={txtColor} size='md'>
+
+                                <Heading color={txtColor} size='md' h="20px" isTruncated={true}>
                                     Procedurally Generated Planet
                                 </Heading>
+
+                                <Box
+                                    h="120px"
+                                    sx={{
+                                            display: '-webkit-box',
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            WebkitBoxOrient: 'vertical',
+                                            WebkitLineClamp: 5,
+                                        }}
+                                >
+                                    <Text color={txtColor}>
+                                        A procedurally generated planet with a variety of biomes and ecosystems.
+                                        A procedurally generated planet with a variety of biomes and ecosystems.
+                                        A procedurally generated planet with a variety of biomes and ecosystems.
+                                        A procedurally generated planet with a variety of biomes and ecosystems.
+                                    </Text>
+                                </Box>
+
                                 <Flex>
-                                    <Box w = '150px'>
+                                    <Box w='150px' paddingTop="10px">
                                             <Button bg={darkTheme? "white" : "#8383B1"}>
                                                 View Details
                                             </Button>
                                     </Box>
                                 </Flex>
+
                             </Stack>
+
+
                         </CardBody>
                         <Divider />
                     </Card>

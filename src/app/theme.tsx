@@ -13,7 +13,6 @@ export const theme = extendTheme({
                 overflow: "hidden",
                 h: "91vh",
                 w: "1800px",
-                minW: "700px",
             },
             ".nav": {
                 overflow: "hidden",
@@ -28,10 +27,9 @@ export const theme = extendTheme({
                 h: "91vh",
                 w: "1800px",
                 minH: "1000px",
-                minW: "700px",
             }, 
             ".preview": {
-                minW: "320px",
+                minW: "350px",
                 maxW: "400px",
                 minH: "500px",
                 h: "40vh",
