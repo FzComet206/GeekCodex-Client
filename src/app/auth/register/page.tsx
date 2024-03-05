@@ -4,10 +4,11 @@ import { useContext, useState } from "react";
 import { AppContext } from "../../../../context/appContext";
 import NavigationPlain from "@/app/components/navigationPlain";
 import { register, RegisterResponse } from "@/lib/api/register";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
 
-    const { darkTheme } = useContext(AppContext) || {};
+    const { darkTheme, setUser, setIsLoggedIn } = useContext(AppContext) || {};
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,52 +22,38 @@ export default function RegisterPage() {
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => { setPassword(e.target.value); }
     const handleConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => { setConfirm(e.target.value); }
 
-    const _register = async () => {
-        // valudate inputs
-        // setName("");
-        // setEmail("");
-        // setPassword("");
-        // setConfirm("");
 
-        await register(name, email, password).then((response: RegisterResponse) => {
-            setIsLoading(false);
-            console.log(response)
-        }).catch((error) => {
-            setIsLoading(false);
-            setAlert(true);
-            setMsg("An connection error occured")
-            console.log(error);
-        })
-    } 
-
+    const router = useRouter();
     const validate = () : string => {
-        if (name.length < 3 || name.length > 12) return "name must be within 3 and 12 characters";
-        if (email.length < 4 || email.length > 50 || email.indexOf('@') === -1 || email.indexOf('.') === -1) return "Invalid email address";
-        if (password.length < 8 || password.length > 20) return "Password must be within 8 and 20 characters"; 
-        if (password !== confirm) return "Passwords do not match";
+        // if (name.length < 3 || name.length > 12) return "name must be within 3 and 12 characters";
+        // if (email.length < 4 || email.length > 50 || email.indexOf('@') === -1 || email.indexOf('.') === -1) return "Invalid email address";
+        // if (password.length < 8 || password.length > 20) return "Password must be within 8 and 20 characters"; 
+        // if (password !== confirm) return "Passwords do not match";
         return "valid";
     }
 
+    const handleSubmit = async () => {
 
-    const submit = async (): Promise<string> => {
         const msg = validate();
         if (msg !== "valid") {
-            return msg;
-        }
-        _register();
-        return "ok";
-    }
-
-    const handleSubmit = async () => {
-        const msg = await submit();
-        if (msg !== "ok"){
             setAlert(true);
             setMsg(msg);
-        } else {
-            setIsLoading(true);
-            setAlert(false);
-            setMsg("");
         }
+
+        setIsLoading(true);
+        setAlert(false);
+        setMsg("");
+
+        await register(name, email, password).then((response: RegisterResponse) => {
+            setIsLoading(false);
+            setIsLoggedIn?.(true);
+            setUser?.(response.username);
+            router.push("/");
+        }).catch((error) => {
+            setIsLoading(false);
+            setAlert(true);
+            setMsg(error.message);
+        })
     }
 
     return (

@@ -10,7 +10,6 @@ export const theme = extendTheme({
             },
 
             ".body": {
-                overflow: "hidden",
                 h: "91vh",
                 w: "1800px",
             },
@@ -23,7 +22,6 @@ export const theme = extendTheme({
                 minH: "100px"
             },
             ".content": {
-                overflow: "hidden",
                 h: "91vh",
                 w: "1800px",
                 minH: "1000px",
@@ -50,10 +48,10 @@ export const theme = extendTheme({
     colors: {
     // color palette
         brand: {
-            bodyLight: "#55555C",
-            navLight: "FBFBF2",
-            pageLight: "#D7D7D7",
-            cardLight: "#E6E0ED",
+            bodyLight: "#FF5966",
+            navLight: "#DBDBD2",
+            pageLight: "#F8F4E3",
+            cardLight: "#C6E7FF",
             navDark: "#171D1C",
             cardDark: "#343434",
             bodyDark: "#151718",

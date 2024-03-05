@@ -5,7 +5,8 @@ const nextConfig = {
     },
     compiler: {
         styledComponents: {ssr: true},
-    }
+    },
+    reactStrictMode: false,
 };
 
 export default nextConfig;
