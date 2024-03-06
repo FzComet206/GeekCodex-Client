@@ -17,7 +17,15 @@ export const Preview = () => {
             rounded='md'
             shadow='md'
             >
-                <Card className="card" bg={darkTheme? "brand.cardDark" : "brand.cardLight"}>
+                <Card 
+                    className="card" 
+                    bg={darkTheme? "brand.cardDark" : "brand.cardLight"}
+                    transition="transform 0.2s"
+                    _hover={{
+                        transform: 'scale(1.05)', 
+                        bg: darkTheme? "brand.cardDarkT" : "brand.cardLightT"
+                    }}
+                    >
                     <CardBody>
                         
 
@@ -54,11 +62,21 @@ export const Preview = () => {
                                 </Text>
                             </Box>
 
+                            <Flex marginTop="10px">
+                                <Box mr="auto">
+                                    <Text h="15px" fontSize="20px" color={txtColor}>Posted by: Antares</Text>
+                                </Box>
+                                <Box>
+                                    <Button w="65px" h="25px" bg="rgba(255,255,255,0.7)">Follow</Button>
+                                </Box>
+
+                            </Flex>
                             <Flex>
-                                <Box w='150px' paddingTop="10px">
-                                        <Button bg={darkTheme? "white" : "#8383B1"}>
-                                            View Details
-                                        </Button>
+                                <Box mr="auto">
+                                    <Text h="15px" fontSize="17px" color={txtColor}>--- 03/05/2024</Text>
+                                </Box>
+                                <Box ml="auto" >
+                                    <Text fontSize="17px" color={txtColor}>Likes: 10</Text>
                                 </Box>
                             </Flex>
 

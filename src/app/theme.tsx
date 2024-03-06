@@ -12,6 +12,7 @@ export const theme = extendTheme({
             ".body": {
                 h: "91vh",
                 w: "1800px",
+                minW: "1800px",
             },
             ".nav": {
                 overflow: "hidden",
@@ -22,6 +23,7 @@ export const theme = extendTheme({
                 minH: "100px"
             },
             ".content": {
+                overflowY: "auto",
                 h: "91vh",
                 w: "1800px",
                 minH: "1000px",
@@ -29,37 +31,40 @@ export const theme = extendTheme({
             ".preview": {
                 minW: "350px",
                 maxW: "400px",
-                minH: "500px",
+                minH: "520px",
+                maxH: "520px",
                 h: "40vh",
             },
             ".card": {
                 minW: "320px",
                 maxW: "400px",
-                minH: "500px",
+                minH: "520px",
+                maxH: "520px",
                 h: "39vh",
             },
             ".form": {
                 h: "92vh",
                 minW: "400px",
             },
+            ".button": {
+                bg: "#FF2C55"
+            }
         }),
     },
 
     colors: {
     // color palette
         brand: {
-            bodyLight: "#FF5966",
+            bodyLight: "#767BA1",
             navLight: "#DBDBD2",
-            pageLight: "#F8F4E3",
-            cardLight: "#C6E7FF",
+            pageLight: "#C7CCDB",
+            cardLight: "#E5EAFA",
+            cardLightT: "#FFFFFF",
             navDark: "#171D1C",
             cardDark: "#343434",
             bodyDark: "#151718",
             pageDark: "#1F1F1F",
-            400: "#FEEFDD",
-            300: "#2E294E",
-            200: "#ffffff",
-            100: "#ffffff",
+            cardDarkT: "#4D4D4D",
         },
     },
 

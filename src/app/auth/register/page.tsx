@@ -82,18 +82,18 @@ export default function RegisterPage() {
                             </Box>
 
                             <Box>
-                                <Input placeholder="Enter Nickname" size="lg" value={name} onChange={handleNameChange} />
+                                <Input _placeholder={{color:"white"}} placeholder="Enter Nickname" size="lg" value={name} onChange={handleNameChange} />
                             </Box>
                             <Box>
-                                <Input type="email" placeholder="Enter Email Address" size="lg" value={email} onChange={handleEmailChange}/>
-                            </Box>
-
-                            <Box>
-                                <Input pr="4.5rem" placeholder="Enter Password" size="lg" type="password" value={password} onChange={handlePasswordChange}/>
+                                <Input _placeholder={{color:"white"}} type="email" placeholder="Enter Email Address" size="lg" value={email} onChange={handleEmailChange}/>
                             </Box>
 
                             <Box>
-                                <Input pr="4.5rem" placeholder="Confirm Password" size="lg" type="password" value={confirm} onChange={handleConfirmChange}/>
+                                <Input _placeholder={{color:"white"}} pr="4.5rem" placeholder="Enter Password" size="lg" type="password" value={password} onChange={handlePasswordChange}/>
+                            </Box>
+
+                            <Box>
+                                <Input _placeholder={{color:"white"}} pr="4.5rem" placeholder="Confirm Password" size="lg" type="password" value={confirm} onChange={handleConfirmChange}/>
 
                             </Box>
 

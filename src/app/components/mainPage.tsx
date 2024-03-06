@@ -31,12 +31,11 @@ export default function MainPage() {
             <Box bg={darkTheme ? "brand.pageDark" : "brand.pageLight"} className="fullsize">
 
                     {/* this box is rightpart of screen */}
-                    <Center>
+                    <Box margin="auto" width="1800px">
                         <Navigation />
-                    </Center>
-                    <Center>
                         <ContentBody />
-                    </Center>
+                    </Box>
+
             </Box>
   );
 }
