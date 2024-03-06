@@ -2,9 +2,7 @@
 import axios, { AxiosResponse } from 'axios';
 
 export interface RegisterResponse {
-  userid: number;
   username: string;
-  token: string; 
 }
 
 const register = async (name: string, email: string, password: string): Promise<RegisterResponse> => {
@@ -17,8 +15,6 @@ const register = async (name: string, email: string, password: string): Promise<
       { name, email, password }, 
       { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
     );
-
-    console.log(response.data)
 
     return response.data; 
   } catch (error) {

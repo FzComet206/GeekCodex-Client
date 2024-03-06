@@ -25,10 +25,10 @@ export default function RegisterPage() {
 
     const router = useRouter();
     const validate = () : string => {
-        // if (name.length < 3 || name.length > 12) return "name must be within 3 and 12 characters";
-        // if (email.length < 4 || email.length > 50 || email.indexOf('@') === -1 || email.indexOf('.') === -1) return "Invalid email address";
-        // if (password.length < 8 || password.length > 20) return "Password must be within 8 and 20 characters"; 
-        // if (password !== confirm) return "Passwords do not match";
+        if (name.length < 3 || name.length > 12) return "name must be within 3 and 12 characters";
+        if (email.length < 4 || email.length > 50 || email.indexOf('@') === -1 || email.indexOf('.') === -1) return "Invalid email address";
+        if (password.length < 8 || password.length > 20) return "Password must be within 8 and 20 characters"; 
+        if (password !== confirm) return "Passwords do not match";
         return "valid";
     }
 
@@ -38,6 +38,7 @@ export default function RegisterPage() {
         if (msg !== "valid") {
             setAlert(true);
             setMsg(msg);
+            return;
         }
 
         setIsLoading(true);
