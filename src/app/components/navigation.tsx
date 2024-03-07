@@ -36,7 +36,7 @@ export default function Navigation({ onOpen, setOverlay, Overlay}: any) {
                 </Box>
 
                 <Box marginTop="30px" textColor="white" position="relative" left="4%">
-                    <Button size="lg" fontSize="25px" onClick={()=>{onOpen(); setOverlay(Overlay)}}>Post</Button>
+                    <Button colorScheme="pink" h="50px" w="80px" fontSize="30px" onClick={()=>{onOpen(); setOverlay(Overlay)}}>Post</Button>
                 </Box>
 
                 <Box marginTop="30px" textColor="white" position="relative" left="8%" width="700px" minWidth="300px">

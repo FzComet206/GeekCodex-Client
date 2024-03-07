@@ -1,6 +1,4 @@
 import { Box, Input, Image } from "@chakra-ui/react";
-import { useState } from "react";
-
 
 export const ImgaeUploader = ({setError, image, setImage} : any) => {
 
@@ -34,7 +32,7 @@ export const ImgaeUploader = ({setError, image, setImage} : any) => {
     return (
         <Box margin="auto">
             <Input outlineColor="white" h="50px" paddingTop="10px" paddingBottom="10px" type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleImageChange} />
-            {image && <Image marginTop="10px" maxW="1100px"src={image.toString()} alt="preview" />}
+            {image && <Image marginTop="10px" maxW="1100px" maxH="1100px" src={image.toString()} alt="preview" />}
         </Box>
     )
 }

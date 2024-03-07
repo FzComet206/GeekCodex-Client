@@ -1,6 +1,7 @@
 import { Box, Button, Text, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, Textarea, Input, Flex } from "@chakra-ui/react";
 import { ImgaeUploader } from "./imageUploader";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../../../context/appContext";
 
 export default function WritePost({isOpen, onClose, overlay} : any){
 
@@ -12,6 +13,7 @@ export default function WritePost({isOpen, onClose, overlay} : any){
     const [summary, setSummary] = useState('')
     const [link, setLink] = useState('')
 
+    const { darkTheme } = useContext(AppContext) || {};
     const handleTitleChange = (e: any) => { let inputValue = e.target.value; setTitle(inputValue)}
     const handleSummaryChange = (e: any) => { let inputValue = e.target.value; setSummary(inputValue)}
     const handleLinkChange = (e: any) => { let inputValue = e.target.value; setLink(inputValue)}
@@ -20,7 +22,7 @@ export default function WritePost({isOpen, onClose, overlay} : any){
         // submit post to backend with data
         if (!image) {setError('Please upload an image'); return;}
         if (title.length < 1 || title.length > 30) {setError('Title should be between 1 and 30 characters'); return;}
-        if (summary.length < 1 || summary.length > 2000) {setError('Summary should be between 1 and 2000 characters'); return;}
+        if (summary.length < 1 || summary.length > 5000) {setError('Summary should be between 1 and 5000 characters'); return;}
         if (link.length > 200) {setError('Link should be less than 200 characters'); return;}
 
         // await send request to backend
@@ -40,12 +42,12 @@ export default function WritePost({isOpen, onClose, overlay} : any){
 
     return (
             <>
-            <Modal  closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+            <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
                 {overlay}
                 <ModalOverlay />
-                    <ModalContent minW="1200px" minH="85vh" bg="#AFC1D6">
+                    <ModalContent minW="1200px" minH="85vh" bg={darkTheme? "#171A21": "#344055"} textColor={darkTheme? "white" : "white"}> 
                         <ModalHeader fontSize="40px" alignSelf="center">Create your Post</ModalHeader>
-                        <ModalCloseButton />
+                        <ModalCloseButton size="lg"/>
 
                         <Box h="30px"/>
                         <ImgaeUploader setError={setError} image={image} setImage={setImage}/>
@@ -66,7 +68,8 @@ export default function WritePost({isOpen, onClose, overlay} : any){
                                     marginTop="10px" 
                                     outlineColor="white" 
                                     fontSize="20px" 
-                                    placeholder="Write your title here">
+                                    placeholder="Write your title here"
+                                    >
                                 </Input>
 
                                 <Flex>
@@ -74,7 +77,7 @@ export default function WritePost({isOpen, onClose, overlay} : any){
                                         Summary: 
                                     </Text>
                                     <Text position="absolute" left="90%" marginTop="20px" fontSize="20px">
-                                        {summary.length}/2000
+                                        {summary.length}/5000
                                     </Text>
                                 </Flex>
                                 <Textarea
@@ -85,7 +88,6 @@ export default function WritePost({isOpen, onClose, overlay} : any){
                                     minH="300px"
                                     fontSize="20px"
                                     placeholder='Here is a sample placeholder'
-                                    size='sm'
                                 />
                                 <Flex>
                                     <Text marginTop="10px" fontSize="30px">
@@ -110,7 +112,7 @@ export default function WritePost({isOpen, onClose, overlay} : any){
                             </Box>
                         </ModalBody>
 
-                        {error? <Box h="50px" color="red" fontSize="20px" textAlign="center">{error}</Box> : null}
+                        {error? <Box h="50px" color="orange" fontSize="20px" textAlign="center">{error}</Box> : null}
 
                         <ModalFooter margin="auto">
                             <Button h="50px" w="100px" fontSize="25px" colorScheme="pink" onClick={onSubmit}>
