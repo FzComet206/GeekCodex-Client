@@ -4,9 +4,6 @@ import { AppContext } from '../../context/appContext';
 import { me } from '@/lib/api/me';
 
 export default function Home() {
-
-
-
   return (
       <MainPage/>
   );

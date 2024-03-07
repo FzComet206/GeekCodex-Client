@@ -1,10 +1,11 @@
 "use client"
-import { Box, Center, Flex, PinInput, useDisclosure, useStatStyles, } from "@chakra-ui/react";
+import { Box, Center, Flex, ModalOverlay, PinInput, useDisclosure, useStatStyles, } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import Navigation from "./navigation";
 import ContentBody from "./contentBody";
 import { AppContext } from "../../../context/appContext";
 import { me } from "@/lib/api/me";
+import WritePost from "./writePost";
 
 
 export default function MainPage() {
@@ -28,14 +29,27 @@ export default function MainPage() {
 
     const {darkTheme, } = useContext(AppContext) || {};
 
+    // open post forum
+    const Overlay = () => (
+        <ModalOverlay
+        bg='none'
+        backdropFilter='auto'
+        backdropBlur='6px'
+        />
+    )
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [ overlay, setOverlay ] = useState(<Overlay />);
+
     return (
             <Box bg={darkTheme ? "brand.pageDark" : "brand.pageLight"} className="fullsize">
 
                     {/* this box is rightpart of screen */}
                     <Box margin="auto" width="1800px">
-                        <Navigation />
+                        <Navigation onOpen={onOpen} setOverlay={setOverlay} Overlay={<Overlay/>}/>
                         <ContentBody />
                     </Box>
+                    <WritePost isOpen={isOpen} onClose={onClose} overlay={overlay}></WritePost>
 
             </Box>
   );

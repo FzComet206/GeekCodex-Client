@@ -1,12 +1,11 @@
-import { Box, Button, Flex, Input, Switch, } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, ModalOverlay, Switch, useDisclosure, } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { AppContext } from "../../../context/appContext";
 import { logout } from "@/lib/api/logout";
-import { me } from "@/lib/api/me";
 
 
-export default function Navigation() {
+export default function Navigation({ onOpen, setOverlay, Overlay}: any) {
 
     const {darkTheme, setTheme, isLoggedIn, user} = useContext(AppContext) || {};
     const {setUser, setIsLoggedIn} = useContext(AppContext) || {};
@@ -27,6 +26,7 @@ export default function Navigation() {
         router.push("/auth/login");
     }
 
+    // post forum
     return (
         <Box className="nav" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= "white">
             <Flex alignContent="center">
@@ -36,7 +36,7 @@ export default function Navigation() {
                 </Box>
 
                 <Box marginTop="30px" textColor="white" position="relative" left="4%">
-                    <Button size="lg" fontSize="25px" onClick={()=>{}}>Post</Button>
+                    <Button size="lg" fontSize="25px" onClick={()=>{onOpen(); setOverlay(Overlay)}}>Post</Button>
                 </Box>
 
                 <Box marginTop="30px" textColor="white" position="relative" left="8%" width="700px" minWidth="300px">

@@ -21,6 +21,7 @@ export const Preview = () => {
                     className="card" 
                     bg={darkTheme? "brand.cardDark" : "brand.cardLight"}
                     transition="transform 0.2s"
+                    cursor="pointer"
                     _hover={{
                         transform: 'scale(1.05)', 
                         bg: darkTheme? "brand.cardDarkT" : "brand.cardLightT"
