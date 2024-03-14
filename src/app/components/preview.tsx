@@ -74,7 +74,7 @@ export const Preview = () => {
                             </Flex>
                             <Flex>
                                 <Box mr="auto">
-                                    <Text h="15px" fontSize="17px" color={txtColor}>--- 03/05/2024</Text>
+                                    <Text h="15px" fontSize="17px" color={txtColor}> 03/05/2024</Text>
                                 </Box>
                                 <Box ml="auto" >
                                     <Text fontSize="17px" color={txtColor}>Likes: 10</Text>

@@ -1,9 +1,7 @@
 import axios, { AxiosResponse} from 'axios';
 
 export interface Me{
-    userid: number;
     username: string;
-    token: string; 
 }
 
 const me = async (): Promise<Me> => {
@@ -19,7 +17,7 @@ const me = async (): Promise<Me> => {
         return response.data;
 
     } catch (error) {
-        return {userid: 0, username: "", token: ""}
+        return {username: ""}
     };
 }
 

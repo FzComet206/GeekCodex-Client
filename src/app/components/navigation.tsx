@@ -1,11 +1,12 @@
 import { Box, Button, Flex, Input, ModalOverlay, Switch, useDisclosure, } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { AppContext } from "../../../context/appContext";
 import { logout } from "@/lib/api/logout";
+import axios, { AxiosResponse } from "axios";
 
 
-export default function Navigation({ onOpen, setOverlay, Overlay}: any) {
+export default function Navigation({ onOpen, setOverlay, Overlay }: any) {
 
     const {darkTheme, setTheme, isLoggedIn, user} = useContext(AppContext) || {};
     const {setUser, setIsLoggedIn} = useContext(AppContext) || {};
@@ -14,9 +15,20 @@ export default function Navigation({ onOpen, setOverlay, Overlay}: any) {
 
     const logoutRedirect = async () => {
 
-        await logout();
-        setUser?.("");
-        setIsLoggedIn?.(false);
+        try {
+            await axios.post(
+                "../api/logout", "",
+                { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
+            );
+
+            // await logout()
+            setUser?.("");
+            setIsLoggedIn?.(false);
+
+            router.push("/auth/login");
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const goToRegister = () => {

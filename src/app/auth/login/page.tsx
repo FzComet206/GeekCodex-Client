@@ -6,6 +6,7 @@ import NavigationPlain from "@/app/components/navigationPlain";
 import { register, RegisterResponse } from "@/lib/api/register";
 import { login } from "@/lib/api/login";
 import { useRouter } from "next/navigation";
+import axios, { AxiosResponse } from "axios";
 
 export default function RegisterPage() {
 
@@ -26,16 +27,21 @@ export default function RegisterPage() {
         setAlert(false);
         setMsg("");
 
-        await login(email, password).then((response: RegisterResponse) => {
+        try {
+            const response: AxiosResponse = await axios.post(
+                "../api/login",
+                { email, password }, 
+                { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
+            );
             setIsLoading(false);
             setIsLoggedIn?.(true);
-            setUser?.(response.username);
-            router.push("/");
-        }).catch((error) => {
+            setUser?.(response.data.username);
+
+        router.push("/");
+        } catch (error) {
             setIsLoading(false);
-            setAlert(true);
-            setMsg(error.message);
-        })
+            console.log(error)
+        }
     }
 
     return (

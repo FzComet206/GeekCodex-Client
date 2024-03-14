@@ -2,21 +2,27 @@ import { Box, Button, Text, Modal, ModalBody, ModalCloseButton, ModalContent, Mo
 import { ImgaeUploader } from "./imageUploader";
 import { useContext, useState } from "react";
 import { AppContext } from "../../../context/appContext";
+import { post } from "@/lib/api/post";
 
 export default function WritePost({isOpen, onClose, overlay} : any){
 
+    const { darkTheme } = useContext(AppContext) || {};
+
     // message alert 
     const [error, setError] = useState<string | null>(null);
-    // states
+    // image preview state 
+    const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(null);
+
+    // handle input change
+    const handleTitleChange = (e: any) => { let inputValue = e.target.value; setTitle(inputValue)}
+    const handleSummaryChange = (e: any) => { let inputValue = e.target.value; setSummary(inputValue)}
+    const handleLinkChange = (e: any) => { let inputValue = e.target.value; setLink(inputValue)}
+
+    // four state date for storage
     const [image, setImage] = useState<string | ArrayBuffer | null>(null);
     const [title, setTitle] = useState('')
     const [summary, setSummary] = useState('')
     const [link, setLink] = useState('')
-
-    const { darkTheme } = useContext(AppContext) || {};
-    const handleTitleChange = (e: any) => { let inputValue = e.target.value; setTitle(inputValue)}
-    const handleSummaryChange = (e: any) => { let inputValue = e.target.value; setSummary(inputValue)}
-    const handleLinkChange = (e: any) => { let inputValue = e.target.value; setLink(inputValue)}
 
     const onSubmit = async () => {
         // submit post to backend with data
@@ -26,17 +32,20 @@ export default function WritePost({isOpen, onClose, overlay} : any){
         if (link.length > 200) {setError('Link should be less than 200 characters'); return;}
 
         // await send request to backend
-        console.log('Image: ', image);
-        console.log('Title: ', title);
-        console.log('Summary: ', summary);
-        console.log('Link: ', link);
+        const formData = new FormData();
+        formData.append('image', image as string | Blob); 
+        formData.append('title', title);
+        formData.append('summary', summary);
+        formData.append('link', link);
+
+        const data = await post(formData);
 
         setError(null);
         setImage(null);
+        setImagePreview(null);
         setTitle('');
         setSummary('');
         setLink('');
-
         onClose();
     }
 
@@ -50,7 +59,7 @@ export default function WritePost({isOpen, onClose, overlay} : any){
                         <ModalCloseButton size="lg"/>
 
                         <Box h="30px"/>
-                        <ImgaeUploader setError={setError} image={image} setImage={setImage}/>
+                        <ImgaeUploader setImage={setImage} setError={setError} imagePreview={imagePreview} setImagePreview={setImagePreview}/>
 
                         <ModalBody pb={6}>
                             <Box margin="auto" maxW="1100px">
@@ -85,7 +94,7 @@ export default function WritePost({isOpen, onClose, overlay} : any){
                                     onChange={handleSummaryChange}
                                     marginTop="10px"
                                     outlineColor= "white"
-                                    minH="300px"
+                                    minH="500px"
                                     fontSize="20px"
                                     placeholder='Here is a sample placeholder'
                                 />

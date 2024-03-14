@@ -5,6 +5,7 @@ import { AppContext } from "../../../../context/appContext";
 import NavigationPlain from "@/app/components/navigationPlain";
 import { register, RegisterResponse } from "@/lib/api/register";
 import { useRouter } from "next/navigation";
+import axios, { AxiosResponse } from "axios";
 
 export default function RegisterPage() {
 
@@ -45,16 +46,24 @@ export default function RegisterPage() {
         setAlert(false);
         setMsg("");
 
-        await register(name, email, password).then((response: RegisterResponse) => {
+        try {
+            const response: AxiosResponse = await axios.post(
+                "../api/register",
+                { name, email, password }, 
+                { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
+            );
             setIsLoading(false);
             setIsLoggedIn?.(true);
-            setUser?.(response.username);
-            router.push("/");
-        }).catch((error) => {
+            setUser?.(response.data.username);
+
+        router.push("/");
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                setAlert(true);
+                setMsg(error.response?.data || "Network Error. Please try again later.");
+            }
             setIsLoading(false);
-            setAlert(true);
-            setMsg(error.message);
-        })
+        }
     }
 
     return (
