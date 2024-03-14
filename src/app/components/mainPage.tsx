@@ -6,6 +6,7 @@ import ContentBody from "./contentBody";
 import { AppContext } from "../../../context/appContext";
 import { me } from "@/lib/api/me";
 import WritePost from "./writePost";
+import axios from "axios";
 
 
 export default function MainPage() {
@@ -15,10 +16,11 @@ export default function MainPage() {
     // ping backend with cookie to check if user is logged in
     useEffect(() => {
         async function ping() {
-            const data = await me();
-            if (data.username) {
+            const res = await axios.get('/api/me');
+            // const data = await me();
+            if (res.data.username) {
                 setIsLoggedIn?.(true);
-                setUser?.(data.username);
+                setUser?.(res.data.username);
             };
         }
         if (!pinged){

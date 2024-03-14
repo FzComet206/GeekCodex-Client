@@ -9,7 +9,6 @@ export async function POST(req: NextRequest) {
     try {
         // request/response prpagation
         const sessionCookie = req.headers.get('cookie')
-        console.log(sessionCookie)
         const _response = await axios.post(
             process.env.API_URL + "/auth/logout", 
             "",

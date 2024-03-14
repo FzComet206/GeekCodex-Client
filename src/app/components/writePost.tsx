@@ -3,6 +3,7 @@ import { ImgaeUploader } from "./imageUploader";
 import { useContext, useState } from "react";
 import { AppContext } from "../../../context/appContext";
 import { post } from "@/lib/api/post";
+import axios, { AxiosResponse } from "axios";
 
 export default function WritePost({isOpen, onClose, overlay} : any){
 
@@ -38,7 +39,11 @@ export default function WritePost({isOpen, onClose, overlay} : any){
         formData.append('summary', summary);
         formData.append('link', link);
 
-        const data = await post(formData);
+        const res: AxiosResponse = await axios.post('/api/post', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
 
         setError(null);
         setImage(null);

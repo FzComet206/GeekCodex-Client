@@ -3,25 +3,25 @@ import { type NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
 
-    const body = await req.json();
-    const {email, password} = body;
+    // upload image to S3 and retrieve url
+    // store title, summary, link, and image url in database
+    
+    const formData = await req.formData();
+    console.log(formData)
 
-    console.log("next server side login")
+    console.log("next server side post")
 
     try {
         const _response: AxiosResponse = await axios.post(
-        process.env.API_URL + "/auth/login",
-        { email, password }, 
+        process.env.API_URL + "/post",
+        { msg: "test"}, 
         { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
         );
 
         const cookie = _response.headers['set-cookie'];
         if (cookie){
-            const data = {
-                username: _response.data.username,
-            }
             const cookieHeader = Array.isArray(cookie) ? cookie.join('') : cookie;
-            return new Response(JSON.stringify(data), {
+            return new Response("post success", {
                 status: 200,
                 headers: { 'Set-Cookie': `${cookieHeader}` },
             })
@@ -35,10 +35,10 @@ export async function POST(req: NextRequest) {
         if (axios.isAxiosError(error)) {
             // Handle Axios-specific errors
             if (error.response?.status === 404) {
-            throw new Error('User not found, please register');
+            throw new Error('not found');
             } else {
             if (error.response?.status === 401) {
-                throw new Error('Invalid email or password');
+                throw new Error('unauthorized');
             }
             throw new Error('Network Error. Please try again later.');
             }

@@ -5,16 +5,30 @@ import { NextRequest } from 'next/server';
 export async function GET(req: NextRequest){
 
     console.log("server ping");
+
+    const sessionCookie = req.headers.get('cookie')
     
     try {
-        const response: AxiosResponse = await axios.get(
+        const _response = await axios.get(
         process.env.API_URL + "/auth/me",
-        { headers: { }, withCredentials: true} ,
+        { 
+            headers: { 
+                'Cookie' : sessionCookie || ''
+            },
+            withCredentials: true
+        } ,
         );
 
-        return response.data;
+        // get request dont return cookies
 
-    } catch (error) {
-        return {username: ""}
+        return new Response(JSON.stringify(_response.data), {
+            status: 200,
+        })
+        
+    } catch (error: any) {
+        console.log(error.response.data);
+        return new Response('Something went wrong', {
+            status: 400,
+        })
     };
 }
