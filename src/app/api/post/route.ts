@@ -30,9 +30,10 @@ export async function POST(req: NextRequest) {
     try {
         const s3Response = await s3.upload(params).promise();
         url = s3Response.Location;
-        console.log(url)
     } catch(err) {
-        console.log(err)
+        return new Response("s3 error", {
+            status: 500,
+        })
     }
 
     // post to nodejs
