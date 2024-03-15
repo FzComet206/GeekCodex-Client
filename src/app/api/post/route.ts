@@ -1,5 +1,13 @@
 import axios, { AxiosResponse } from "axios";
 import { type NextRequest } from "next/server";
+import AWS from 'aws-sdk'
+
+const s3 = new AWS.S3({
+    accessKeyId: process.env.S3_KEY,
+    secretAccessKey: process.env.S3_SECRET,
+    region: process.env.S3_REGION
+})
+
 
 export async function POST(req: NextRequest) {
 
@@ -7,29 +15,51 @@ export async function POST(req: NextRequest) {
     // store title, summary, link, and image url in database
     
     const formData = await req.formData();
-    console.log(formData)
+    const image: any = formData.get('image');
+    const buffer = Buffer.from(await image.arrayBuffer());
+    const params: any = {
+        Bucket: process.env.S3_BUCKET,
+        Key: image.name,
+        Body: buffer,
+        ContentType: image.type,
+        ACL: 'public-read'
+    }
 
+    // s3 upload
+    let url = '';
+    try {
+        const s3Response = await s3.upload(params).promise();
+        url = s3Response.Location;
+        console.log(url)
+    } catch(err) {
+        console.log(err)
+    }
+
+    // post to nodejs
     console.log("next server side post")
+    const sessionCookie = req.headers.get('cookie')
 
     try {
-        const _response: AxiosResponse = await axios.post(
+        await axios.post(
         process.env.API_URL + "/post",
-        { msg: "test"}, 
-        { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
+        { 
+            title: formData.get('title'),
+            summary: formData.get('summary'),
+            link: formData.get('link'),
+            image: url
+        }, 
+        { 
+            headers: {
+                'Cookie' : sessionCookie || ''
+            },
+            withCredentials: true
+        } 
         );
 
-        const cookie = _response.headers['set-cookie'];
-        if (cookie){
-            const cookieHeader = Array.isArray(cookie) ? cookie.join('') : cookie;
-            return new Response("post success", {
-                status: 200,
-                headers: { 'Set-Cookie': `${cookieHeader}` },
-            })
-        }
-
-        return new Response('Something went wrong', {
-            status: 400,
+        return new Response("post success", {
+            status: 200,
         })
+
 
     } catch (error) {
         if (axios.isAxiosError(error)) {
