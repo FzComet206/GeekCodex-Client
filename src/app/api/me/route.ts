@@ -18,7 +18,6 @@ export async function GET(req: NextRequest){
             withCredentials: true
         } ,
         );
-
         // get request dont return cookies
 
         return new Response(JSON.stringify(_response.data), {

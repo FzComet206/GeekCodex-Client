@@ -2,7 +2,6 @@ import { Box, Button, Flex, Input, ModalOverlay, Switch, useDisclosure, } from "
 import { redirect, useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { AppContext } from "../../../context/appContext";
-import { logout } from "@/lib/api/logout";
 import axios, { AxiosResponse } from "axios";
 
 
@@ -31,6 +30,14 @@ export default function Navigation({ onOpen, setOverlay, Overlay }: any) {
         }
     }
 
+    const goToPost = () => {
+        if (!isLoggedIn) {
+            router.push("/auth/login");
+        }
+        onOpen()
+        setOverlay(Overlay)
+    }
+
     const goToRegister = () => {
         router.push("/auth/register");
     }
@@ -48,7 +55,7 @@ export default function Navigation({ onOpen, setOverlay, Overlay }: any) {
                 </Box>
 
                 <Box marginTop="30px" textColor="white" position="relative" left="4%">
-                    <Button colorScheme="pink" h="50px" w="80px" fontSize="30px" onClick={()=>{onOpen(); setOverlay(Overlay)}}>Post</Button>
+                    <Button colorScheme="pink" h="50px" w="80px" fontSize="30px" onClick={goToPost}>Post</Button>
                 </Box>
 
                 <Box marginTop="30px" textColor="white" position="relative" left="8%" width="700px" minWidth="300px">

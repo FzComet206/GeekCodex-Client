@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { type NextRequest } from "next/server";
 import AWS from 'aws-sdk'
 
@@ -25,22 +25,23 @@ export async function POST(req: NextRequest) {
         ACL: 'public-read'
     }
 
-    // s3 upload
-    let url = '';
-    try {
-        const s3Response = await s3.upload(params).promise();
-        url = s3Response.Location;
-    } catch(err) {
-        return new Response("s3 error", {
-            status: 500,
-        })
-    }
-
     // post to nodejs
+    let url = '';
     console.log("next server side post")
     const sessionCookie = req.headers.get('cookie')
 
+    if (!sessionCookie) {
+        return new Response("Unauthorized", {
+            status: 401,
+        })
+    }
+
     try {
+        // s3 upload
+        const s3Response = await s3.upload(params).promise();
+        url = s3Response.Location;
+
+        // post
         await axios.post(
         process.env.API_URL + "/post",
         { 
@@ -61,18 +62,12 @@ export async function POST(req: NextRequest) {
             status: 200,
         })
 
-
     } catch (error) {
         if (axios.isAxiosError(error)) {
             // Handle Axios-specific errors
-            if (error.response?.status === 404) {
-            throw new Error('not found');
-            } else {
-            if (error.response?.status === 401) {
-                throw new Error('unauthorized');
-            }
-            throw new Error('Network Error. Please try again later.');
-            }
+            return new Response(error.response?.data, {
+                status: 500,
+            })
         } else {
             // Handle other types of errors
             console.error('Unexpected Error:', error); 

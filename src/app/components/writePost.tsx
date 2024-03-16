@@ -2,13 +2,14 @@ import { Box, Button, Text, Modal, ModalBody, ModalCloseButton, ModalContent, Mo
 import { ImgaeUploader } from "./imageUploader";
 import { useContext, useState } from "react";
 import { AppContext } from "../../../context/appContext";
-import { post } from "@/lib/api/post";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
-export default function WritePost({isOpen, onClose, overlay} : any){
+export default function WritePost({isOpen, onClose, overlay, showToast} : any){
 
     const { darkTheme } = useContext(AppContext) || {};
 
+    // button ui
+    const [loading, setLoading] = useState(false);
     // message alert 
     const [error, setError] = useState<string | null>(null);
     // image preview state 
@@ -33,25 +34,33 @@ export default function WritePost({isOpen, onClose, overlay} : any){
         if (link.length > 200) {setError('Link should be less than 200 characters'); return;}
 
         // await send request to backend
+        setLoading(true)
         const formData = new FormData();
         formData.append('image', image as string | Blob); 
         formData.append('title', title);
         formData.append('summary', summary);
         formData.append('link', link);
 
-        const res: AxiosResponse = await axios.post('/api/post', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
+        try {
+            await axios.post('/api/post', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
 
-        setError(null);
-        setImage(null);
-        setImagePreview(null);
-        setTitle('');
-        setSummary('');
-        setLink('');
-        onClose();
+            setError(null);
+            setImage(null);
+            setImagePreview(null);
+            setTitle('');
+            setSummary('');
+            setLink('');
+            onClose();
+            showToast();
+
+        } catch (error : any) {
+            setError(error.response.data)
+        }
+        setLoading(false)
     }
 
     return (
@@ -129,7 +138,7 @@ export default function WritePost({isOpen, onClose, overlay} : any){
                         {error? <Box h="50px" color="orange" fontSize="20px" textAlign="center">{error}</Box> : null}
 
                         <ModalFooter margin="auto">
-                            <Button h="50px" w="100px" fontSize="25px" colorScheme="pink" onClick={onSubmit}>
+                            <Button isLoading={loading} h="50px" w="100px" fontSize="25px" colorScheme="pink" onClick={onSubmit}>
                                 Submit
                             </Button>
                         </ModalFooter>
