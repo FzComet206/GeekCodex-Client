@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { PostData } from '../api/feed/route';
 import { AppContext } from '../../../context/appContext';
+import { time } from 'console';
 
 export const usePosts = (limit = 4) => {
 
@@ -18,9 +19,11 @@ export const usePosts = (limit = 4) => {
     axios.get(`/api/feed?page=${page}&limit=${limit}&seed=${seed}`)
          .then(res => {
           console.log(res.data)
-           setPosts(prevPosts => [...prevPosts, ...res.data]);
-           setHasMore(res.data.length > 0);
-           setLoading(false);
+
+          setPosts(prevPosts => [...prevPosts, ...res.data]);
+          setHasMore(res.data.length > 0);
+          setLoading(false);
+
          }).catch(e => console.error(e));
 
   }, [page, limit]);

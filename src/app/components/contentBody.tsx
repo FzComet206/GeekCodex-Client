@@ -32,28 +32,38 @@ export default function ContentBody(){
     `
 
     // get hooks and set limit
-    const { posts, loading, hasMore, setPage } = usePosts(8);
-    const [scrolled, setScrolled] = useState(false);
+    const { posts, loading, hasMore, setPage } = usePosts(4);
+    const [ scrolled, setScrolled ] = useState(false);
+    const [ initial, setInitial ] = useState(true);
+    const [ wait, setWait] = useState(false);
 
+    // append skeletons to the end of the posts
     let numSkeletons = 4 + (4 - posts.length % 4);
-
+    
     useEffect(() => {
         const scrollBox = document.getElementById("mainScroll");
+        
+        if (initial){
+            setPage(prevPage => prevPage + 1);
+            setInitial(false);
+        }
 
         if (scrollBox) {
             scrollBox.onscroll = () => {
                 if (
+                    // this condition triggers requests
                     scrollBox?.scrollTop >=
                         scrollBox?.scrollHeight -
                             scrollBox?.offsetHeight -
-                            400 && !scrolled && hasMore
+                            800 && hasMore && !scrolled && !loading 
                     ) {
+                    
                     setScrolled(true);
                     setPage(prevPage => prevPage + 1);
                     console.log("scrolling")
                 }
-                
-                if (loading) {
+                else
+                {
                     setScrolled(false);
                 }
             };
