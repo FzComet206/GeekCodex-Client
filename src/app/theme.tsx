@@ -33,7 +33,6 @@ export const theme = extendTheme({
                 maxW: "400px",
                 minH: "520px",
                 maxH: "520px",
-                h: "40vh",
             },
             ".card": {
                 minW: "320px",

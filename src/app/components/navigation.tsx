@@ -1,8 +1,8 @@
-import { Box, Button, Flex, Input, ModalOverlay, Switch, useDisclosure, } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Switch } from "@chakra-ui/react";
 import { redirect, useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { AppContext } from "../../../context/appContext";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 
 export default function Navigation({ onOpen, setOverlay, Overlay }: any) {

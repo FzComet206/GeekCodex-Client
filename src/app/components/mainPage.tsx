@@ -1,5 +1,5 @@
 "use client"
-import { Box, Center, Flex, ModalOverlay, PinInput, useDisclosure, useStatStyles, useToast, } from "@chakra-ui/react";
+import { Box, ModalOverlay, useDisclosure, useToast, } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import Navigation from "./navigation";
 import ContentBody from "./contentBody";

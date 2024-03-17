@@ -1,5 +1,4 @@
-import axios, { AxiosResponse, AxiosError } from 'axios';
-import { NextApiRequest, NextApiResponse } from 'next';
+import axios from 'axios';
 import { NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest) {

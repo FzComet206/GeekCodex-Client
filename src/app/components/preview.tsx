@@ -1,8 +1,8 @@
 import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, ScaleFade, Stack, Image, Text, Flex, Center, DarkMode} from "@chakra-ui/react";
-import { FC, useContext } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../../context/appContext";
 
-export const Preview = () => {
+export const Preview = ( {id, title, body, link, image, created_at, likes, author} : any ) => {
 
     const {darkTheme} = useContext(AppContext) || {};
     const txtColor = darkTheme? "white" : "black";
@@ -10,6 +10,7 @@ export const Preview = () => {
     return (
         <Box padding="19px">
             <Box
+            padding="19px"
             className="preview"
             p='5px'
             color='white'
@@ -28,12 +29,10 @@ export const Preview = () => {
                     }}
                     >
                     <CardBody>
-                        
-
                         <Flex justifyContent="center">
-                            <Box maxH="220px" maxW="350px" overflow="hidden">
+                            <Box h="240px" maxW="350px" minW="350px" overflow="hidden">
                                     <Image
-                                    src = 'img/Planet.png'
+                                    src = {image}
                                     borderRadius='lg'
                                     />
                             </Box>
@@ -42,11 +41,11 @@ export const Preview = () => {
                         <Stack mt='6' spacing='3'>
 
                             <Heading color={txtColor} size='md' h="20px" isTruncated={true}>
-                                Procedurally Generated Planet
+                                {title}
                             </Heading>
 
                             <Box
-                                h="120px"
+                                h="100px"
                                 sx={{
                                         display: '-webkit-box',
                                         overflow: 'hidden',
@@ -56,16 +55,13 @@ export const Preview = () => {
                                     }}
                             >
                                 <Text color={txtColor}>
-                                    A procedurally generated planet with a variety of biomes and ecosystems.
-                                    A procedurally generated planet with a variety of biomes and ecosystems.
-                                    A procedurally generated planet with a variety of biomes and ecosystems.
-                                    A procedurally generated planet with a variety of biomes and ecosystems.
+                                    {body}
                                 </Text>
                             </Box>
 
                             <Flex marginTop="10px">
                                 <Box mr="auto">
-                                    <Text h="15px" fontSize="20px" color={txtColor}>Posted by: Antares</Text>
+                                    <Text h="15px" fontSize="20px" color={txtColor}>Posted by: {author}</Text>
                                 </Box>
                                 <Box>
                                     <Button w="65px" h="25px" bg="rgba(255,255,255,0.7)">Follow</Button>
@@ -74,10 +70,10 @@ export const Preview = () => {
                             </Flex>
                             <Flex>
                                 <Box mr="auto">
-                                    <Text h="15px" fontSize="17px" color={txtColor}> 03/05/2024</Text>
+                                    <Text h="15px" fontSize="17px" color={txtColor}> {created_at}</Text>
                                 </Box>
                                 <Box ml="auto" >
-                                    <Text fontSize="17px" color={txtColor}>Likes: 10</Text>
+                                    <Text fontSize="17px" color={txtColor}>Likes: {likes}</Text>
                                 </Box>
                             </Flex>
 

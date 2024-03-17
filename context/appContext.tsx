@@ -9,6 +9,8 @@ interface AppContextType {
     setUser: (user: string) => void;
     pinged: boolean;
     setpinged: (pinged: true | false) => void;
+    seed: number;
+    setSeed: (seed: number) => void;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -20,6 +22,7 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [user, setUser] = useState<string>("");
     const [pinged, setpinged] = useState<boolean>(false);
+    const [seed, setSeed] = useState<number>(Math.random() * 2 - 1);
 
     return (
         <AppContext.Provider value={
@@ -27,7 +30,8 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
                 darkTheme, setTheme, 
                 isLoggedIn, setIsLoggedIn,
                 user, setUser,
-                pinged, setpinged
+                pinged, setpinged,
+                seed, setSeed
             }
         }
             >
