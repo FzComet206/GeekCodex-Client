@@ -35,10 +35,7 @@ export default function ContentBody(){
     const { posts, loading, hasMore, setPage } = usePosts(8);
     const [scrolled, setScrolled] = useState(false);
 
-    let numSkeletons = 4 - posts.length % 4;
-    if (posts.length < 4){
-        numSkeletons = numSkeletons + 4;
-    }
+    let numSkeletons = 4 + (4 - posts.length % 4);
 
     useEffect(() => {
         const scrollBox = document.getElementById("mainScroll");
@@ -49,7 +46,7 @@ export default function ContentBody(){
                     scrollBox?.scrollTop >=
                         scrollBox?.scrollHeight -
                             scrollBox?.offsetHeight -
-                            200 && !scrolled && hasMore
+                            400 && !scrolled && hasMore
                     ) {
                     setScrolled(true);
                     setPage(prevPage => prevPage + 1);
@@ -72,7 +69,7 @@ export default function ContentBody(){
                 id="mainScroll"
                 >
 
-                <Wrap>
+                <Wrap marginLeft="18px">
 
                 {
                     posts.map((post) => {

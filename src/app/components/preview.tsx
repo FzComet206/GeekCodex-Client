@@ -8,9 +8,8 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
     const txtColor = darkTheme? "white" : "black";
 
     return (
-        <Box padding="19px">
+        <Box padding="15px">
             <Box
-            padding="19px"
             className="preview"
             p='5px'
             color='white'

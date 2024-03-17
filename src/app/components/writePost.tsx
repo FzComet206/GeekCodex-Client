@@ -29,7 +29,7 @@ export default function WritePost({isOpen, onClose, overlay, showToast} : any){
     const onSubmit = async () => {
         // submit post to backend with data
         if (!image) {setError('Please upload an image'); return;}
-        if (title.length < 1 || title.length > 30) {setError('Title should be between 1 and 30 characters'); return;}
+        if (title.length < 1 || title.length > 80) {setError('Title should be between 1 and 80 characters'); return;}
         if (summary.length < 1 || summary.length > 5000) {setError('Summary should be between 1 and 5000 characters'); return;}
         if (link.length > 200) {setError('Link should be less than 200 characters'); return;}
 
@@ -82,7 +82,7 @@ export default function WritePost({isOpen, onClose, overlay, showToast} : any){
                                         Title: 
                                     </Text>
                                     <Text position="absolute" left="92%" marginTop="20px" fontSize="20px">
-                                        {title.length}/30
+                                        {title.length}/80
                                     </Text>
                                 </Flex>
                                 <Input 
