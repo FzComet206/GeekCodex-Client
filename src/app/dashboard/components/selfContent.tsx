@@ -1,13 +1,15 @@
 import { Box, Wrap, WrapItem} from "@chakra-ui/react";
-import { Preview } from "./preview";
-import { AppContext } from "../../../context/appContext";
+import { Preview } from "../../components/preview";
+import { AppContext } from "../../../../context/appContext";
 import { Global, css } from "@emotion/react";
 
-import React, { useContext, useState, useCallback, useRef, useEffect } from "react";
-import { usePosts } from "./postHook";
-import { BlankPreview } from "./skeleton";
+import React, { useContext, useState, useEffect } from "react";
 
-export default function ContentBody(){
+// using the dashboard post hook here
+import { usePosts } from "../../dashboard/components/postHook";
+import { BlankPreview } from "../../components/skeleton";
+
+export default function SelfContent(){
 
     // styles
     const {darkTheme } = useContext(AppContext) || {};

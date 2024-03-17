@@ -3,6 +3,7 @@ import { redirect, useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { AppContext } from "../../../context/appContext";
 import axios from "axios";
+import { UserNav } from "./userNav";
 
 
 export default function Navigation({ onOpen, setOverlay, Overlay }: any) {
@@ -58,7 +59,7 @@ export default function Navigation({ onOpen, setOverlay, Overlay }: any) {
                     <Button colorScheme="pink" h="50px" w="80px" fontSize="30px" onClick={goToPost}>Post</Button>
                 </Box>
 
-                <Box marginTop="30px" textColor="white" position="relative" left="8%" width="700px" minWidth="300px">
+                <Box marginTop="30px" textColor="white" position="relative" left="8%" width="800px" minWidth="300px">
                     <Input placeholder='Search' size="lg"/>
                 </Box>
 
@@ -66,7 +67,7 @@ export default function Navigation({ onOpen, setOverlay, Overlay }: any) {
                     <Button>Search</Button>
                 </Box>
 
-                <Box padding="20px" position="relative" left="13%">
+                <Box padding="20px" position="relative" left="12%">
                     <Box textAlign="center" textColor="white">Dark Mode</Box>
                     <Box textAlign="center" padding="15px">
                         <Switch size="lg" isChecked={darkTheme} onChange={() => setTheme?.(!darkTheme)}></Switch>
@@ -76,16 +77,9 @@ export default function Navigation({ onOpen, setOverlay, Overlay }: any) {
 
                 {
                     isLoggedIn?
-                    <Flex position="relative" left="15%">
-                        <Box marginTop="23px" fontSize="35px" textColor="white">{user}</Box>
-                        <Box marginTop="30px" textColor="white" position="relative" left="20%">
-                            <Button onClick={logoutRedirect}>Logout</Button>
-                        </Box>
-
-                    </Flex>
-                    
+                    <UserNav/>
                     :
-                    <Flex position="relative" left="18%">
+                    <Flex position="relative" left="13%">
                             <Box marginTop="30px" textColor="white">
                                 <Button onClick={goToLogin}>Login</Button>
                             </Box>

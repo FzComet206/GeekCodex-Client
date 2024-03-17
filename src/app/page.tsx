@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+"use client"
+import React from "react"
 import MainPage from './components/mainPage';
-import { AppContext } from '../../context/appContext';
+import ContentBody from './components/contentBody';
 
 export default function Home() {
   return (
-      <MainPage/>
+      <MainPage ContentBody={ContentBody}/>
   );
 }

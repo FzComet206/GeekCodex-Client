@@ -2,13 +2,12 @@
 import { Box, ModalOverlay, useDisclosure, useToast, } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import Navigation from "./navigation";
-import ContentBody from "./contentBody";
 import { AppContext } from "../../../context/appContext";
 import WritePost from "./writePost";
 import axios from "axios";
 
 
-export default function MainPage() {
+export default function MainPage({ ContentBody } : any) {
 
     const { setIsLoggedIn, setUser, pinged, setpinged} = useContext(AppContext) || {};
     const toast = useToast();
@@ -64,7 +63,7 @@ export default function MainPage() {
                     {/* this box is rightpart of screen */}
                     <Box margin="auto" width="1800px">
                         <Navigation onOpen={onOpen} setOverlay={setOverlay} Overlay={<Overlay/>}/>
-                        <ContentBody />
+                        <ContentBody/>
                     </Box>
                     <WritePost isOpen={isOpen} onClose={onClose} overlay={overlay} showToast={showToast}></WritePost>
 

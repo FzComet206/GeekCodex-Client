@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { PostData } from '../api/feed/route';
-import { AppContext } from '../../../context/appContext';
+import { PostData } from '../../api/feed/route';
+import { AppContext } from '../../../../context/appContext';
 
 export const usePosts = (limit = 4) => {
 
@@ -13,9 +13,9 @@ export const usePosts = (limit = 4) => {
 
   useEffect(() => {
     setLoading(true);
-    console.log("client side feed request")
+    console.log("client side self request")
 
-    axios.get(`/api/feed?page=${page}&limit=${limit}&seed=${seed}`)
+    axios.get(`/api/self?page=${page}&limit=${limit}}`)
          .then(res => {
           console.log(res.data)
 

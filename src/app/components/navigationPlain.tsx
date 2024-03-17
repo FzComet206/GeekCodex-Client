@@ -4,7 +4,7 @@ import { AppContext } from "../../../context/appContext";
 import { useRouter } from "next/navigation";
 
 
-export default function Navigation({ toggleFade }: any) {
+export default function Navigation() {
 
     const {darkTheme, setTheme } = useContext(AppContext) || {};
     const router = useRouter();
