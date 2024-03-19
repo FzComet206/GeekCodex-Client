@@ -1,11 +1,33 @@
-import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, ScaleFade, Stack, Image, Text, Flex, Center, DarkMode} from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, ScaleFade, Stack, Image, Text, Flex, Center, DarkMode, useDisclosure} from "@chakra-ui/react";
 import { useContext } from "react";
 import { AppContext } from "../../../context/appContext";
+import axios from "axios";
+import { on } from "events";
+import { Confirmation } from "./deleteConfirm";
 
 export const Preview = ( {id, title, body, link, image, created_at, likes, author} : any ) => {
 
-    const {darkTheme} = useContext(AppContext) || {};
+    const {darkTheme, user} = useContext(AppContext) || {};
     const txtColor = darkTheme? "white" : "black";
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const handleDelete = async () => {
+        console.log("client side delete call")
+        try {
+            const res = await axios.get(`/api/delete?id=${id}`)
+            console.log(res.data)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const handleFollow = async () => {
+        console.log("client side follow call")
+    }
+
+    const handleLike = async () => {
+        console.log("client side like call")
+    }
 
     return (
         <Box padding="15px">
@@ -17,6 +39,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
             rounded='md'
             shadow='md'
             >
+                <Confirmation onOpen={onOpen} onClose={onClose} isOpen={isOpen} handleDelete={handleDelete}></Confirmation>
                 <Card 
                     className="card" 
                     bg={darkTheme? "brand.cardDark" : "brand.cardLight"}
@@ -31,6 +54,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                         <Flex justifyContent="center">
                             <Box h="240px" maxW="350px" minW="350px" overflow="hidden">
                                     <Image
+                                    margin="auto"
                                     src = {image}
                                     borderRadius='lg'
                                     />
@@ -62,18 +86,40 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                 <Box mr="auto">
                                     <Text h="15px" fontSize="20px" color={txtColor}>Posted by: {author}</Text>
                                 </Box>
-                                <Box>
-                                    <Button w="65px" h="25px" bg="rgba(255,255,255,0.7)">Follow</Button>
-                                </Box>
+
+                                {
+                                    user === author?
+                                    <Box>
+                                        <Button 
+                                            onClick={onOpen}
+                                            w="65px" h="25px" bg="#F08080">Delete</Button>
+                                    </Box>
+                                    :
+                                    <Box>
+                                        <Button 
+                                            onClick={handleFollow}
+                                            w="65px" h="25px" bg="#EAC435">Follow</Button>
+                                    </Box>
+                                }
 
                             </Flex>
                             <Flex>
                                 <Box mr="auto">
                                     <Text h="15px" fontSize="17px" color={txtColor}> {created_at}</Text>
                                 </Box>
-                                <Box ml="auto" >
-                                    <Text fontSize="17px" color={txtColor}>Likes: {likes}</Text>
-                                </Box>
+
+                                {
+                                    user === author?
+                                    <Box>
+                                        <Text fontSize="17px" color={txtColor}>Likes: {likes}</Text>
+                                    </Box>
+                                    :
+                                    <Box>
+                                        <Button 
+                                            onClick={handleLike}
+                                            w="65px" h="25px" bg="#D3FFE9">Like: {likes}</Button>
+                                    </Box>
+                                }
                             </Flex>
 
                         </Stack>

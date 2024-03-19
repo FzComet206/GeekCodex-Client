@@ -6,8 +6,7 @@ import { AppContext } from '../../../context/appContext';
 export const usePosts = (limit = 4) => {
 
   const { seed } = useContext(AppContext) || {};
-  const [posts, setPosts] = useState<PostData[]>([]);
-  const [page, setPage] = useState(1);
+  const { setPosts, page } = useContext(AppContext) || {};
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
@@ -19,7 +18,7 @@ export const usePosts = (limit = 4) => {
          .then(res => {
           console.log(res.data)
 
-          setPosts(prevPosts => [...prevPosts, ...res.data]);
+          setPosts((prevPosts : any)  => [...prevPosts, ...res.data]);
           setHasMore(res.data.length > 0);
           setLoading(false);
 
@@ -27,5 +26,5 @@ export const usePosts = (limit = 4) => {
 
   }, [page, limit]);
 
-  return { posts, loading, hasMore, setPage };
+  return { loading, hasMore };
 };

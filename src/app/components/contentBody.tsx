@@ -3,14 +3,14 @@ import { Preview } from "./preview";
 import { AppContext } from "../../../context/appContext";
 import { Global, css } from "@emotion/react";
 
-import React, { useContext, useState, useCallback, useRef, useEffect } from "react";
+import React, { useContext, useState, useEffect} from "react";
 import { usePosts } from "./postHook";
 import { BlankPreview } from "./skeleton";
 
 export default function ContentBody(){
 
     // styles
-    const {darkTheme } = useContext(AppContext) || {};
+    const { darkTheme } = useContext(AppContext) || {};
     const styledScroll = css `
         ::-webkit-scrollbar {
         width: 15px;
@@ -32,19 +32,21 @@ export default function ContentBody(){
     `
 
     // get hooks and set limit
-    const { posts, loading, hasMore, setPage } = usePosts(4);
+    const { loading, hasMore } = usePosts(4);
+    // get posts and page state
+    const { posts, setPage, page } = useContext(AppContext);
     const [ scrolled, setScrolled ] = useState(false);
     const [ initial, setInitial ] = useState(true);
-    const [ wait, setWait] = useState(false);
 
     // append skeletons to the end of the posts
     let numSkeletons = 4 + (4 - posts.length % 4);
     
     useEffect(() => {
         const scrollBox = document.getElementById("mainScroll");
+        // set global 
         
         if (initial){
-            setPage(prevPage => prevPage + 1);
+            setPage(page + 1);
             setInitial(false);
         }
 
@@ -83,7 +85,7 @@ export default function ContentBody(){
 
 
                 {
-                    posts.map((post) => {
+                    posts.map((post : any) => {
                         return (
                             <WrapItem key={post.id}>
                                 <Preview key={post.id} {...post} />

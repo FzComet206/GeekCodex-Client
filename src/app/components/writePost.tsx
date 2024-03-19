@@ -1,12 +1,13 @@
 import { Box, Button, Text, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, Textarea, Input, Flex } from "@chakra-ui/react";
 import { ImgaeUploader } from "./imageUploader";
-import { useContext, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../context/appContext";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function WritePost({isOpen, onClose, overlay, showToast} : any){
 
-    const { darkTheme } = useContext(AppContext) || {};
+    const { darkTheme, setPosts, setPage, setSelfPage, setSelfPosts } = useContext(AppContext) || {};
 
     // button ui
     const [loading, setLoading] = useState(false);
@@ -25,6 +26,17 @@ export default function WritePost({isOpen, onClose, overlay, showToast} : any){
     const [title, setTitle] = useState('')
     const [summary, setSummary] = useState('')
     const [link, setLink] = useState('')
+    const router = useRouter();
+
+    const refresh = () => {
+        setPosts([])
+        setSelfPosts([])
+        // these two must be awaited
+        setPage(1)
+        setPage(2)
+        setSelfPage(1)
+        setSelfPage(2)
+    }
 
     const onSubmit = async () => {
         // submit post to backend with data
@@ -61,6 +73,7 @@ export default function WritePost({isOpen, onClose, overlay, showToast} : any){
             setError(error.response.data)
         }
         setLoading(false)
+        await refresh();
     }
 
     return (

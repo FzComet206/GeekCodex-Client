@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useContext } from "react";
 import { AppContext } from "../../../context/appContext";
-import { Avatar, AvatarBadge, Box, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList, useDisclosure} from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
+import { Avatar, AvatarBadge, Box, useDisclosure} from "@chakra-ui/react";
 import { Profile } from "./profile";
 
 export function UserNav() {

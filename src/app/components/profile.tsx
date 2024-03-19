@@ -6,8 +6,9 @@ import { useRouter } from "next/navigation";
 
 export function Profile({onClose, isOpen, onOpen} : any) {
 
-    const {darkTheme, user, setUser, setIsLoggedIn} = useContext(AppContext) || {};
+    const {darkTheme, user, setUser, setIsLoggedIn, setSelfPage} = useContext(AppContext) || {};
     const router = useRouter();
+    const { setPosts, setPage, setSelfPosts } = useContext(AppContext) || {};
 
     const logoutRedirect = async () => {
         try {
@@ -26,6 +27,18 @@ export function Profile({onClose, isOpen, onOpen} : any) {
         }
     }
 
+    const handleClickFeed = async () => {
+        setPosts([]);
+        setPage(1);
+        router.push("/")
+    }
+
+    const handleClickSelf = async () => {
+        setSelfPosts([]);
+        setSelfPage(1);
+        router.push("/dashboard")
+    }
+
     const txtColor = darkTheme? "white" : "black";
 
     return (
@@ -35,6 +48,7 @@ export function Profile({onClose, isOpen, onOpen} : any) {
             placement='right'
             onClose={onClose}
             size="xs"
+            blockScrollOnMount={false}
         >
             <DrawerContent textColor={txtColor} bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"}>
             <DrawerCloseButton />
@@ -50,12 +64,12 @@ export function Profile({onClose, isOpen, onOpen} : any) {
                 <DrawerBody>
                     <Box borderColor="white" borderWidth="1px" borderRadius="20px" w="100%" p="20px" >
                         <Button 
-                            onClick={() => router.push("/")}
+                            onClick={handleClickFeed}
                             width="100%" h="40px" marginTop="20px" fontSize="20px" bg="rgba(255,255,255,0.85)">
                             View Feed
                         </Button>
                         <Button 
-                            onClick={() => router.push("/dashboard")}
+                            onClick={handleClickSelf}
                             width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
                             Your Posts
                         </Button>
