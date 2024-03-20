@@ -12,7 +12,7 @@ import { BlankPreview } from "../../components/skeleton";
 export default function SelfContent(){
 
     // styles
-    const {darkTheme } = useContext(AppContext) || {};
+    const {darkTheme, flip, setFlip} = useContext(AppContext) || {};
     const styledScroll = css `
         ::-webkit-scrollbar {
         width: 15px;
@@ -40,8 +40,19 @@ export default function SelfContent(){
 
     // append skeletons to the end of the posts
     let numSkeletons = 4 + (4 - posts.length % 4);
+
+    const OnReset = () => {
+        setPosts([]);
+        setPage(1);
+        setInitial(true);
+    }
     
     useEffect(() => {
+        if (flip) {
+            OnReset();
+            setFlip(false);
+        }
+
         const scrollBox = document.getElementById("mainScroll");
         
         if (initial){

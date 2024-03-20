@@ -7,7 +7,7 @@ import { Confirmation } from "./deleteConfirm";
 
 export const Preview = ( {id, title, body, link, image, created_at, likes, author} : any ) => {
 
-    const {darkTheme, user} = useContext(AppContext) || {};
+    const {darkTheme, user, setFlip} = useContext(AppContext) || {};
     const txtColor = darkTheme? "white" : "black";
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -16,6 +16,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
         try {
             const res = await axios.get(`/api/delete?id=${id}`)
             console.log(res.data)
+            setFlip(true)
         } catch (error) {
             console.error(error)
         }

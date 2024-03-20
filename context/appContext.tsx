@@ -12,14 +12,8 @@ interface AppContextType {
     setpinged: (pinged: true | false) => void;
     seed: number;
     setSeed: (seed: number) => void;
-    posts: PostData[];
-    setPosts: React.Dispatch<React.SetStateAction<PostData[]>>;
-    page: number;
-    setPage: React.Dispatch<React.SetStateAction<number>>;
-    selfPosts: PostData[];
-    setSelfPosts: React.Dispatch<React.SetStateAction<PostData[]>>;
-    selfPage: number;
-    setSelfPage: React.Dispatch<React.SetStateAction<number>>;
+    flip: boolean;
+    setFlip: (flip: true | false) => void;
 }
 
 const AppContext = createContext<AppContextType>({
@@ -33,14 +27,8 @@ const AppContext = createContext<AppContextType>({
     setpinged: () => {},
     seed: 0,
     setSeed: () => {},
-    posts: [],
-    setPosts: () => {},
-    page: 1,
-    setPage: () => {},
-    selfPosts: [],
-    setSelfPosts: () => {},
-    selfPage: 1,
-    setSelfPage: () => {}
+    flip: false,
+    setFlip: () => {},
 });
 
 
@@ -53,11 +41,7 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
     const [pinged, setpinged] = useState<boolean>(false);
     const [seed, setSeed] = useState<number>(Math.random() * 2 - 1);
     // provide higher level function to change state
-    const [posts, setPosts] = useState<PostData[]>([]);
-    const [page, setPage] = useState(1);
-    const [selfPosts, setSelfPosts] = useState<PostData[]>([]);
-    const [selfPage, setSelfPage] = useState(1);
-
+    const [flip, setFlip] = useState<boolean>(false);
 
     return (
         <AppContext.Provider value={
@@ -67,10 +51,7 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
                 user, setUser,
                 pinged, setpinged,
                 seed, setSeed,
-                posts, setPosts,
-                page, setPage,
-                selfPosts, setSelfPosts,
-                selfPage, setSelfPage
+                flip, setFlip
             }
         }
             >

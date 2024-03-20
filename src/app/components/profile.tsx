@@ -6,9 +6,8 @@ import { useRouter } from "next/navigation";
 
 export function Profile({onClose, isOpen, onOpen} : any) {
 
-    const {darkTheme, user, setUser, setIsLoggedIn, setSelfPage} = useContext(AppContext) || {};
+    const {darkTheme, user, setUser, setIsLoggedIn } = useContext(AppContext) || {};
     const router = useRouter();
-    const { setPosts, setPage, setSelfPosts } = useContext(AppContext) || {};
 
     const logoutRedirect = async () => {
         try {
@@ -28,14 +27,10 @@ export function Profile({onClose, isOpen, onOpen} : any) {
     }
 
     const handleClickFeed = async () => {
-        setPosts([]);
-        setPage(1);
         router.push("/")
     }
 
     const handleClickSelf = async () => {
-        setSelfPosts([]);
-        setSelfPage(1);
         router.push("/dashboard")
     }
 

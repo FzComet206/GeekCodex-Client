@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function WritePost({isOpen, onClose, overlay, showToast} : any){
 
-    const { darkTheme, setPosts, setPage, setSelfPage, setSelfPosts } = useContext(AppContext) || {};
+    const { darkTheme, setFlip} = useContext(AppContext) || {};
 
     // button ui
     const [loading, setLoading] = useState(false);
@@ -27,16 +27,6 @@ export default function WritePost({isOpen, onClose, overlay, showToast} : any){
     const [summary, setSummary] = useState('')
     const [link, setLink] = useState('')
     const router = useRouter();
-
-    const refresh = () => {
-        setPosts([])
-        setSelfPosts([])
-        // these two must be awaited
-        setPage(1)
-        setPage(2)
-        setSelfPage(1)
-        setSelfPage(2)
-    }
 
     const onSubmit = async () => {
         // submit post to backend with data
@@ -68,12 +58,13 @@ export default function WritePost({isOpen, onClose, overlay, showToast} : any){
             setLink('');
             onClose();
             showToast();
+            setLoading(false)
 
         } catch (error : any) {
             setError(error.response.data)
+            setLoading(false)
         }
-        setLoading(false)
-        await refresh();
+        setFlip(true);
     }
 
     return (
