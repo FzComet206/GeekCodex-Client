@@ -6,9 +6,11 @@ import { AppContext } from '../../../context/appContext';
 export const usePosts = (limit = 4) => {
 
   const { seed } = useContext(AppContext) || {};
-  const { setPosts, page } = useContext(AppContext) || {};
+  // const { setPosts, page } = useContext(AppContext) || {};
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const [posts, setPosts] = useState<PostData[]>([]);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -26,5 +28,5 @@ export const usePosts = (limit = 4) => {
 
   }, [page, limit]);
 
-  return { loading, hasMore };
+  return { posts, setPosts, setPage, loading, hasMore };
 };

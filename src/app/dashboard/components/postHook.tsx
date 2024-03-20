@@ -6,25 +6,26 @@ import { AppContext } from '../../../../context/appContext';
 export const usePosts = (limit = 4) => {
 
   const { seed } = useContext(AppContext) || {};
-  const { selfPosts, setSelfPosts, setPage, selfPage} = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const [ posts, setPosts ] = useState<PostData[]>([]);
+  const [ page, setPage ] = useState(0);
 
   useEffect(() => {
     setLoading(true);
     console.log("client side self request")
 
-    axios.get(`/api/self?page=${selfPage}&limit=${limit}}`)
+    axios.get(`/api/self?page=${page}&limit=${limit}}`)
          .then(res => {
           console.log(res.data)
 
-          setSelfPosts(prevPosts => [...prevPosts, ...res.data]);
+          setPosts(prevPosts => [...prevPosts, ...res.data]);
           setHasMore(res.data.length > 0);
           setLoading(false);
 
          }).catch(e => console.error(e));
 
-  }, [selfPage, limit]);
+  }, [page, limit]);
 
-  return { loading, hasMore };
+  return { posts, setPosts, setPage, loading, hasMore };
 };

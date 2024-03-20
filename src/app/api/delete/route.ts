@@ -1,18 +1,22 @@
-import AWS, { S3 } from "aws-sdk";
+import { S3Client, PutObjectAclCommand, DeleteObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import axios from "axios";
 import { NextRequest } from "next/server";
 
+const s3Client = new S3Client({ 
+    region: process.env.S3_REGION,
+    credentials: {
+        accessKeyId: process.env.S3_KEY!,
+        secretAccessKey: process.env.S3_SECRET! 
+    }
+});
+
 export async function GET(req: NextRequest) {
 
-    console.log("next server side feed");
+    console.log("next server side delete");
     const id = req.nextUrl.searchParams.get('id')
-    console.log(id)
 
-    const s3 = new AWS.S3({
-        accessKeyId: process.env.S3_KEY,
-        secretAccessKey: process.env.S3_SECRET,
-        region: process.env.S3_REGION
-    })
+    // delete from postgres
+    // get url and delete from s3
 
     try {
         // request/response prpagation
@@ -30,6 +34,7 @@ export async function GET(req: NextRequest) {
         const url = new URL(_response.data.image);
         const bucket = url.host.split('.')[0];
         const key = url.pathname.slice(1);
+        console.log(bucket)
         console.log(key)
 
         const params: any = {
@@ -38,11 +43,14 @@ export async function GET(req: NextRequest) {
         }
 
         try {
-            await s3.deleteObject(params).promise();
+            const res = await s3Client.send(new DeleteObjectCommand(params));
+            console.log(res)
             console.log("Deleted")
         } 
         catch (error) {
-            console.error(error);
+            return new Response("Image deletion error", {
+                status: 400,
+            });
         }
 
         return new Response("Deleted", {

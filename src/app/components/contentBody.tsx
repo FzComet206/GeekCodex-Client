@@ -32,9 +32,8 @@ export default function ContentBody(){
     `
 
     // get hooks and set limit
-    const { loading, hasMore } = usePosts(4);
+    const { loading, hasMore, setPosts, setPage, posts } = usePosts(4);
     // get posts and page state
-    const { posts, setPage, page } = useContext(AppContext);
     const [ scrolled, setScrolled ] = useState(false);
     const [ initial, setInitial ] = useState(true);
 
@@ -46,7 +45,7 @@ export default function ContentBody(){
         // set global 
         
         if (initial){
-            setPage(page + 1);
+            setPage(2);
             setInitial(false);
         }
 

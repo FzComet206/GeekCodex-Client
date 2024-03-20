@@ -34,20 +34,18 @@ export default function SelfContent(){
     `
 
     // get hooks and set limit
-    const { loading, hasMore } = usePosts(4);
-    const { selfPosts, setSelfPage} = useContext(AppContext) || {};
+    const { loading, hasMore, posts, setPosts, setPage } = usePosts(4);
     const [ scrolled, setScrolled ] = useState(false);
     const [ initial, setInitial ] = useState(true);
-    const [ wait, setWait] = useState(false);
 
     // append skeletons to the end of the posts
-    let numSkeletons = 4 + (4 - selfPosts.length % 4);
+    let numSkeletons = 4 + (4 - posts.length % 4);
     
     useEffect(() => {
         const scrollBox = document.getElementById("mainScroll");
         
         if (initial){
-            setSelfPage(prevPage => prevPage + 1);
+            setPage(2)
             setInitial(false);
         }
 
@@ -62,7 +60,7 @@ export default function SelfContent(){
                     ) {
                     
                     setScrolled(true);
-                    setSelfPage(prevPage => prevPage + 1);
+                    setPage(prevPage => prevPage + 1);
                     console.log("scrolling")
                 }
                 else
@@ -86,7 +84,7 @@ export default function SelfContent(){
 
 
                 {
-                    selfPosts.map((post) => {
+                    posts.map((post) => {
                         return (
                             <WrapItem key={post.id}>
                                 <Preview key={post.id} {...post} />
