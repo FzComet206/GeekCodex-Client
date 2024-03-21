@@ -5,3 +5,33 @@ Introducing a dynamic web application designed to showcase and discover creative
 Demo Page
 
 ![Demo Page](/public/img/page.png)
+
+Website Functionalities:
+
+    - User login/logout/register
+    - Create/delete posts
+    - View posts
+    - View self posts
+    - View liked posts
+    - View followers and their posts
+    - View followed users and their posts
+    - Search for posts
+    - Like posts
+    - Follow users
+
+Tech stacks:
+
+    - Language: Typescript, SQL
+    - Frontend: NextJS 13, ChakraUI
+    - Backend: NodeJS, Express, Express-session, Redis, Postgresql, Drizzle-orm
+    - API: Restful
+    - Cloud: AWS EC2, AWS RDS, AWS S3
+
+Architecture:
+
+
+Entity Relationship Diagram:
+
+
+
+

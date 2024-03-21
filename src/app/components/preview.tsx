@@ -94,45 +94,48 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                     </Text>
                                 </Box>
 
-                                <Flex marginTop="10px">
-                                    <Box mr="auto">
-                                        <Text h="15px" fontSize="20px" color={txtColor}>Posted by: {author}</Text>
-                                    </Box>
+                                <Box>
+                                    <Flex marginTop="10px">
+                                        <Box mr="auto">
+                                            <Text h="15px" fontSize="20px" color={txtColor}>Posted by: {author}</Text>
+                                        </Box>
 
-                                    {
-                                        user === author?
-                                        <Box>
-                                            <Button 
-                                                onClick={onOpen_0}
-                                                w="65px" h="25px" bg="#F08080">Delete</Button>
-                                        </Box>
-                                        :
-                                        <Box>
-                                            <Button 
-                                                onClick={handleFollow}
-                                                w="65px" h="25px" bg="#EAC435">Follow</Button>
-                                        </Box>
-                                    }
+                                        {
+                                            user === author?
+                                            <Box>
+                                                <Button 
+                                                    onClick={onOpen_0}
+                                                    w="65px" h="25px" bg="#F08080">Delete</Button>
+                                            </Box>
+                                            :
+                                            <Box>
+                                                <Button 
+                                                    
+                                                    onClick={handleFollow}
+                                                    w="65px" h="25px" bg="#EAC435">Follow</Button>
+                                            </Box>
+                                        }
 
-                                </Flex>
-                                <Flex>
-                                    <Box mr="auto">
-                                        <Text h="15px" fontSize="17px" color={txtColor}> {created_at}</Text>
-                                    </Box>
+                                    </Flex>
+                                    <Flex paddingTop="10px">
+                                        <Box mr="auto">
+                                            <Text h="15px" fontSize="17px" color={txtColor}> {created_at}</Text>
+                                        </Box>
 
-                                    {
-                                        user === author?
-                                        <Box>
-                                            <Text fontSize="17px" color={txtColor}>Likes: {likes}</Text>
-                                        </Box>
-                                        :
-                                        <Box>
-                                            <Button 
-                                                onClick={handleLike}
-                                                w="65px" h="25px" bg="#D3FFE9">Like: {likes}</Button>
-                                        </Box>
-                                    }
-                                </Flex>
+                                        {
+                                            user === author?
+                                            <Box>
+                                                <Text fontSize="17px" color={txtColor}>Likes: {likes}</Text>
+                                            </Box>
+                                            :
+                                            <Box>
+                                                <Button 
+                                                    onClick={handleLike}
+                                                    w="65px" h="25px" bg="#D3FFE9">Like: {likes}</Button>
+                                            </Box>
+                                        }
+                                    </Flex>
+                                </Box>
                             </Stack>
                         </CardBody>
                         <Divider />
@@ -179,9 +182,50 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                 </Link>
                             </Box>
                         </ModalBody>
-                    <ModalFooter>
-                    <Button onClick={onClose_1}>Close</Button>
-                    </ModalFooter>
+                        <Box maxW="1000px" padding="60px">
+                            <Flex marginTop="10px" >
+                                <Box mr="auto">
+                                    <Text h="20px" fontSize="25px" color={txtColor}>Posted by: {author}</Text>
+                                </Box>
+
+                                {
+                                    user === author?
+                                    <Box>
+                                        <Button 
+                                            fontSize="20px"
+                                            onClick={onOpen_0}
+                                            w="85px" h="35px" bg="#F08080">Delete</Button>
+                                    </Box>
+                                    :
+                                    <Box>
+                                        <Button 
+                                            fontSize="20px"
+                                            onClick={handleFollow}
+                                            w="85px" h="35px" bg="#EAC435">Follow</Button>
+                                    </Box>
+                                }
+
+                            </Flex>
+                            <Flex paddingTop="10px">
+                                <Box mr="auto">
+                                    <Text h="18px" fontSize="20px" color={txtColor}> {created_at}</Text>
+                                </Box>
+
+                                {
+                                    user === author?
+                                    <Box>
+                                        <Text fontSize="20px" color={txtColor}>Likes: {likes}</Text>
+                                    </Box>
+                                    :
+                                    <Box>
+                                        <Button 
+                                            onClick={handleLike}
+                                            fontSize="20px"
+                                            w="85px" h="35px" bg="#D3FFE9">Like: {likes}</Button>
+                                    </Box>
+                                }
+                            </Flex>
+                        </Box>
                 </ModalContent>
             </Modal>
             </>
