@@ -45,27 +45,17 @@ export default function MainPage({ ContentBody } : any) {
 
     const {darkTheme, } = useContext(AppContext) || {};
 
-    // open post forum
-    const Overlay = () => (
-        <ModalOverlay
-        bg='none'
-        backdropFilter='auto'
-        backdropBlur='6px'
-        />
-    )
-
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [ overlay, setOverlay ] = useState(<Overlay />);
 
     return (
             <Box bg={darkTheme ? "brand.pageDark" : "brand.pageLight"} className="fullsize">
 
                     {/* this box is rightpart of screen */}
                     <Box margin="auto" width="1800px">
-                        <Navigation onOpen={onOpen} setOverlay={setOverlay} Overlay={<Overlay/>}/>
+                        <Navigation onOpen={onOpen} />
                         <ContentBody/>
                     </Box>
-                    <WritePost isOpen={isOpen} onClose={onClose} overlay={overlay} showToast={showToast}></WritePost>
+                    <WritePost isOpen={isOpen} onClose={onClose} showToast={showToast}></WritePost>
 
             </Box>
   );

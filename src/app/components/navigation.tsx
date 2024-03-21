@@ -6,37 +6,17 @@ import axios from "axios";
 import { UserNav } from "./userNav";
 
 
-export default function Navigation({ onOpen, setOverlay, Overlay }: any) {
+export default function Navigation({ onOpen }: any) {
 
     const {darkTheme, setTheme, isLoggedIn, user} = useContext(AppContext) || {};
-    const {setUser, setIsLoggedIn} = useContext(AppContext) || {};
 
     const router = useRouter();
-
-    const logoutRedirect = async () => {
-
-        try {
-            await axios.post(
-                "../api/logout", "",
-                { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
-            );
-
-            // await logout()
-            setUser?.("");
-            setIsLoggedIn?.(false);
-
-            router.push("/auth/login");
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     const goToPost = () => {
         if (!isLoggedIn) {
             router.push("/auth/login");
         }
         onOpen()
-        setOverlay(Overlay)
     }
 
     const goToRegister = () => {
