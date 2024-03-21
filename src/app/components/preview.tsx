@@ -14,7 +14,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
     // this one is for opening the full view
     const { isOpen: isOpen_1, onOpen: onOpen_1, onClose: onClose_1 } = useDisclosure()
 
-    const handleDelete = async () => {
+    const handleDeleteRequest = async () => {
         console.log("client side delete call")
         try {
             const res = await axios.get(`/api/delete?id=${id}`)
@@ -25,12 +25,18 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
         }
     }
 
+    const handleDelete = (e: any) => {
+        onOpen_0()
+        e.stopPropagation();
+    }
 
-    const handleFollow = async () => {
+    const handleFollow = async (e: any) => {
+        e.stopPropagation();
         console.log("client side follow call")
     }
 
-    const handleLike = async () => {
+    const handleLike = async (e: any) => {
+        e.stopPropagation();
         console.log("client side like call")
     }
 
@@ -51,7 +57,6 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                 rounded='md'
                 shadow='md'
                 >
-                    <Confirmation onOpen={onOpen_0} onClose={onClose_0} isOpen={isOpen_0} handleDelete={handleDelete}></Confirmation>
                     <Card 
                         onClick={handleOpen}
                         className="card" 
@@ -104,7 +109,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                             user === author?
                                             <Box>
                                                 <Button 
-                                                    onClick={onOpen_0}
+                                                    onClick={handleDelete}
                                                     w="65px" h="25px" bg="#F08080">Delete</Button>
                                             </Box>
                                             :
@@ -193,7 +198,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                     <Box>
                                         <Button 
                                             fontSize="20px"
-                                            onClick={onOpen_0}
+                                            onClick={handleDelete}
                                             w="85px" h="35px" bg="#F08080">Delete</Button>
                                     </Box>
                                     :
@@ -234,8 +239,9 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
 
     return (
         <>
-            <FullView></FullView>
             <Overview></Overview>
+            <FullView></FullView>
+            <Confirmation onOpen={onOpen_0} onClose={onClose_0} isOpen={isOpen_0} handleDelete={handleDeleteRequest}></Confirmation>
         </>
     )
 }

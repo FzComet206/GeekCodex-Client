@@ -34,7 +34,7 @@ export default function SelfContent(){
     `
 
     // get hooks and set limit
-    const { loading, hasMore, posts, setPosts, setPage } = usePosts(4);
+    const { loading, hasMore, posts, setPosts, setPage, page } = usePosts(4);
     const [ scrolled, setScrolled ] = useState(false);
     const [ initial, setInitial ] = useState(true);
 
@@ -56,7 +56,7 @@ export default function SelfContent(){
         const scrollBox = document.getElementById("mainScroll");
         
         if (initial){
-            setPage(2)
+            setPage(page + 1)
             setInitial(false);
         }
 
@@ -67,14 +67,15 @@ export default function SelfContent(){
                     scrollBox?.scrollTop >=
                         scrollBox?.scrollHeight -
                             scrollBox?.offsetHeight -
-                            800 && hasMore && !scrolled && !loading 
+                            1200 && hasMore && !scrolled && !loading 
                     ) {
                     
                     setScrolled(true);
-                    setPage(prevPage => prevPage + 1);
+                    setPage(page + 1);
+                    // scrolling is logged 3 times, but request is only sent 2 times
                     console.log("scrolling")
                 }
-                else
+                if (loading)
                 {
                     setScrolled(false);
                 }

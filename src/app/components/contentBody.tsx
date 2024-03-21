@@ -32,7 +32,7 @@ export default function ContentBody(){
     `
 
     // get hooks and set limit
-    const { loading, hasMore, setPosts, setPage, posts } = usePosts(4);
+    const { loading, hasMore, setPosts, setPage, posts, page } = usePosts(4);
     // get posts and page state
     const [ scrolled, setScrolled ] = useState(false);
     const [ initial, setInitial ] = useState(true);
@@ -56,8 +56,9 @@ export default function ContentBody(){
         const scrollBox = document.getElementById("mainScroll");
         // set global 
         
+        // problem, sometimes the scroll event triggers 3 times, but setpage only 2 times
         if (initial){
-            setPage(2);
+            setPage(page + 1);
             setInitial(false);
         }
 
@@ -72,10 +73,9 @@ export default function ContentBody(){
                     ) {
                     
                     setScrolled(true);
-                    setPage(prevPage => prevPage + 1);
-                    console.log("scrolling")
+                    setPage(page + 1);
                 }
-                else
+                if (loading)
                 {
                     setScrolled(false);
                 }

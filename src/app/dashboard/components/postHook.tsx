@@ -9,7 +9,7 @@ export const usePosts = (limit = 4) => {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [ posts, setPosts ] = useState<PostData[]>([]);
-  const [ page, setPage ] = useState(0);
+  const [ page, setPage ] = useState(1);
 
   useEffect(() => {
     setLoading(true);
@@ -27,5 +27,5 @@ export const usePosts = (limit = 4) => {
 
   }, [page, limit]);
 
-  return { posts, setPosts, setPage, loading, hasMore };
+  return { page, posts, setPosts, setPage, loading, hasMore };
 };
