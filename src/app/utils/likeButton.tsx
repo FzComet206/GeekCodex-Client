@@ -35,7 +35,7 @@ export function LikeButton({liked, setLiked, likesCount, setLikesCount, id, p}:a
                 <Box>
                     <Button 
                         onClick={handleLike}
-                        w={w} h={h} fontSize={fs} bg="#D3FFE9">Like: {likesCount}</Button>
+                        w={w} h={h} fontSize={fs} bg="rgba(255,255,255,0.5)">Like: {likesCount}</Button>
                 </Box>
             }
         </>

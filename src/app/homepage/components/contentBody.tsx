@@ -10,7 +10,7 @@ import { BlankPreview } from "../../utils/skeleton";
 export default function ContentBody(){
 
     // styles
-    const { darkTheme, flip, setFlip } = useContext(AppContext) || {};
+    const { darkTheme, flip, setFlip, followUpdate, setFollowUpdate } = useContext(AppContext) || {};
     const styledScroll = css `
         ::-webkit-scrollbar {
         width: 15px;

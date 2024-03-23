@@ -2,7 +2,6 @@ import { Box, Skeleton, WrapItem } from "@chakra-ui/react";
 
 export function BlankPreview() {
     return (
-        <WrapItem>
             <Box padding="15px">
                 <Box
                 className="preview"
@@ -15,7 +14,6 @@ export function BlankPreview() {
                     <Skeleton h="520px" w="400px" />
                 </Box>
             </Box>
-        </WrapItem>
     )
 }
     

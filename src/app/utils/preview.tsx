@@ -6,8 +6,10 @@ import { Confirmation } from "./deleteConfirm";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { LikeButton } from "./likeButton";
 import { BlankPreview } from "./skeleton";
+import { FollowButton } from "./followButton";
+import { PostData } from "../api/feed/route";
 
-export const Preview = ( {id, title, body, link, image, created_at, likes, author, isLiked} : any ) => {
+export const Preview = ( {id, title, body, link, image, created_at, likes, author, authorid, isLiked, authorFollowed} : PostData) => {
 
     const {darkTheme, user, setFlip} = useContext(AppContext) || {};
     const txtColor = darkTheme? "white" : "black";
@@ -16,7 +18,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
     // this one is for opening the full view
     const { isOpen: isOpen_1, onOpen: onOpen_1, onClose: onClose_1 } = useDisclosure()
 
-    const [followed, isFollowed] = useState(false)
+    const [followed, setFollowed] = useState(authorFollowed)
     const [liked, setLiked] = useState(isLiked)
     const [likesCount, setLikesCount] = useState(likes)
 
@@ -34,11 +36,6 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
     const handleDelete = (e: any) => {
         onOpen_0()
         e.stopPropagation();
-    }
-
-    const handleFollow = async (e: any) => {
-        e.stopPropagation();
-        console.log("client side follow call")
     }
 
     const handleOpen = () => {
@@ -113,12 +110,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                                     w="65px" h="25px" bg="#F08080">Delete</Button>
                                             </Box>
                                             :
-                                            <Box>
-                                                <Button 
-                                                    
-                                                    onClick={handleFollow}
-                                                    w="65px" h="25px" bg="#EAC435">Follow</Button>
-                                            </Box>
+                                            <FollowButton followed={followed} setFollowed={setFollowed} id={authorid} p={true}></FollowButton>
                                         }
 
                                     </Flex>
@@ -198,12 +190,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                             w="85px" h="35px" bg="#F08080">Delete</Button>
                                     </Box>
                                     :
-                                    <Box>
-                                        <Button 
-                                            fontSize="20px"
-                                            onClick={handleFollow}
-                                            w="85px" h="35px" bg="#EAC435">Follow</Button>
-                                    </Box>
+                                    <FollowButton followed={followed} setFollowed={setFollowed} id={authorid} p={false}></FollowButton>
                                 }
 
                             </Flex>

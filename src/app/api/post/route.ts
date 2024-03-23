@@ -2,11 +2,6 @@ import axios from "axios";
 import { type NextRequest } from "next/server";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
-// const s3 = new AWS.S3({
-    // accessKeyId: process.env.S3_KEY,
-    // secretAccessKey: process.env.S3_SECRET,
-    // region: process.env.S3_REGION
-// })
 const s3Client = new S3Client({ 
     region: process.env.S3_REGION,
     credentials: {

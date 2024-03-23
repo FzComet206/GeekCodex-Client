@@ -14,6 +14,9 @@ interface AppContextType {
     setSeed: (seed: number) => void;
     flip: boolean;
     setFlip: (flip: true | false) => void;
+
+    followUpdate: boolean;
+    setFollowUpdate: (flip1: true | false) => void;
 }
 
 const AppContext = createContext<AppContextType>({
@@ -29,6 +32,8 @@ const AppContext = createContext<AppContextType>({
     setSeed: () => {},
     flip: false,
     setFlip: () => {},
+    followUpdate: false,
+    setFollowUpdate: () => {}
 });
 
 
@@ -42,6 +47,7 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
     const [seed, setSeed] = useState<number>(Math.random() * 2 - 1);
     // provide higher level function to change state
     const [flip, setFlip] = useState<boolean>(false);
+    const [followUpdate, setFollowUpdate] = useState<boolean>(false);
 
     return (
         <AppContext.Provider value={
@@ -51,7 +57,8 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
                 user, setUser,
                 pinged, setpinged,
                 seed, setSeed,
-                flip, setFlip
+                flip, setFlip,
+                followUpdate, setFollowUpdate
             }
         }
             >
