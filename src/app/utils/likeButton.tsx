@@ -2,10 +2,8 @@ import { Button, Box } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
 
-export function LikeButton({likes, isLiked, id, p}:any){
+export function LikeButton({liked, setLiked, likesCount, setLikesCount, id, p}:any){
 
-    const [likesCount, setLikesCount] = useState(likes)
-    const [liked, setLiked] = useState(isLiked)
     const handleLike = async (e: any) => {
         e.stopPropagation();
         console.log("client side like call")

@@ -78,10 +78,7 @@ export function Profile({onClose, isOpen, onOpen} : any) {
                             Liked Posts
                         </Button>
                         <Button width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
-                            Activities
-                        </Button>
-                        <Button width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
-                            Follows/Followers
+                            Dashboard
                         </Button>
                         <Button 
                             onClick={logoutRedirect}

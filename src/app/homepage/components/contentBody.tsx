@@ -3,7 +3,7 @@ import { Preview } from "../../utils/preview";
 import { AppContext } from "../../../../context/appContext";
 import { Global, css } from "@emotion/react";
 
-import React, { useContext, useState, useEffect} from "react";
+import React, { useContext, useState, useEffect, useMemo} from "react";
 import { usePosts } from "./postHook";
 import { BlankPreview } from "../../utils/skeleton";
 

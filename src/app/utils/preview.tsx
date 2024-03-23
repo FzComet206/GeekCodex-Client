@@ -1,10 +1,11 @@
-import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, ScaleFade, Stack, Image, Text, Flex, Center, DarkMode, useDisclosure, useStatStyles, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Link} from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, ScaleFade, Stack, Image, Text, Flex, Center, DarkMode, useDisclosure, useStatStyles, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Link, Skeleton} from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { AppContext } from "../../../context/appContext";
 import axios from "axios";
 import { Confirmation } from "./deleteConfirm";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { LikeButton } from "./likeButton";
+import { BlankPreview } from "./skeleton";
 
 export const Preview = ( {id, title, body, link, image, created_at, likes, author, isLiked} : any ) => {
 
@@ -16,6 +17,8 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
     const { isOpen: isOpen_1, onOpen: onOpen_1, onClose: onClose_1 } = useDisclosure()
 
     const [followed, isFollowed] = useState(false)
+    const [liked, setLiked] = useState(isLiked)
+    const [likesCount, setLikesCount] = useState(likes)
 
     const handleDeleteRequest = async () => {
         console.log("client side delete call")
@@ -130,7 +133,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                                 <Text fontSize="17px" color={txtColor}>Likes: {likes}</Text>
                                             </Box>
                                             :
-                                            <LikeButton likes={likes} isLiked={isLiked} id={id} p={true}/>
+                                            <LikeButton likesCount={likesCount} setLikesCount={setLikesCount} liked={liked} setLiked={setLiked} id={id} p={true}/>
                                         }
                                     </Flex>
                                 </Box>
@@ -146,7 +149,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
     const FullView = () => {
         return (
             <>
-            <Modal onClose={onClose_1} size="xl" isOpen={isOpen_1} >
+            <Modal onClose={onClose_1} size="xl" isOpen={isOpen_1}>
                 <ModalOverlay
                 bg='none'
                 backdropFilter='auto'
@@ -215,7 +218,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                         <Text fontSize="20px" color={txtColor}>Likes: {likes}</Text>
                                     </Box>
                                     :
-                                    <LikeButton likes={likes} isLiked={isLiked} id={id} p={false}/>
+                                    <LikeButton likesCount={likesCount} setLikesCount={setLikesCount} liked={liked} setLiked={setLiked} id={id} p={false}/>
                                 }
                             </Flex>
                         </Box>
@@ -227,8 +230,16 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
 
     return (
         <>
-            <Overview></Overview>
-            <FullView></FullView>
+            {
+                isOpen_1?
+                <>
+                <FullView></FullView>
+                <BlankPreview></BlankPreview>
+                </>
+                :
+                <Overview></Overview>
+            }
+
             <Confirmation onOpen={onOpen_0} onClose={onClose_0} isOpen={isOpen_0} handleDelete={handleDeleteRequest}></Confirmation>
         </>
     )
