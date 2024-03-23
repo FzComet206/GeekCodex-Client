@@ -45,7 +45,7 @@ export default function ContentBody(){
         setPage(1);
         setInitial(true);
     }
-    
+
     useEffect(() => {
         // state change trigger reset re render
         if (flip) {
@@ -72,11 +72,10 @@ export default function ContentBody(){
                             1200 && hasMore && !scrolled && !loading 
                     ) {
                     
+                    console.log("scrolling: " + page)
                     setScrolled(true);
                     setPage(page + 1);
-                }
-                if (loading)
-                {
+                } else {
                     setScrolled(false);
                 }
             };

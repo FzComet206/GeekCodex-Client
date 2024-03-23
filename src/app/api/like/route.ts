@@ -3,13 +3,13 @@ import { NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest){
 
-    console.log("server ping");
-
+    console.log("server like");
     const sessionCookie = req.headers.get('cookie')
+    const postid = req.nextUrl.searchParams.get('postid')
     
     try {
         const _response = await axios.get(
-        process.env.API_URL + "/auth/me",
+        process.env.API_URL + "/like?postid=" + postid,
         { 
             headers: { 
                 'Cookie' : sessionCookie || ''
@@ -17,7 +17,6 @@ export async function GET(req: NextRequest){
             withCredentials: true
         } ,
         );
-        // get request dont return cookies
 
         return new Response(JSON.stringify(_response.data), {
             status: 200,

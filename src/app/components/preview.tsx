@@ -5,7 +5,7 @@ import axios from "axios";
 import { Confirmation } from "./deleteConfirm";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
-export const Preview = ( {id, title, body, link, image, created_at, likes, author} : any ) => {
+export const Preview = ( {id, title, body, link, image, created_at, likes, author, isLiked} : any ) => {
 
     const {darkTheme, user, setFlip} = useContext(AppContext) || {};
     const txtColor = darkTheme? "white" : "black";
@@ -13,6 +13,10 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
     const { isOpen: isOpen_0, onOpen: onOpen_0, onClose: onClose_0 } = useDisclosure()
     // this one is for opening the full view
     const { isOpen: isOpen_1, onOpen: onOpen_1, onClose: onClose_1 } = useDisclosure()
+
+    const [likesCount, setLikesCount] = useState(likes)
+    const [liked, setLiked] = useState(isLiked)
+    const [followed, isFollowed] = useState(false)
 
     const handleDeleteRequest = async () => {
         console.log("client side delete call")
@@ -38,6 +42,14 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
     const handleLike = async (e: any) => {
         e.stopPropagation();
         console.log("client side like call")
+        try
+        {
+            const res = await axios.get(`/api/like?postid=${id}`)
+            setLikesCount(res.data.likes)
+            setLiked(!liked)
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     const handleOpen = () => {
@@ -130,14 +142,23 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                         {
                                             user === author?
                                             <Box>
-                                                <Text fontSize="17px" color={txtColor}>Likes: {likes}</Text>
+                                                <Text fontSize="17px" color={txtColor}>Likes: {likesCount}</Text>
                                             </Box>
                                             :
-                                            <Box>
-                                                <Button 
-                                                    onClick={handleLike}
-                                                    w="65px" h="25px" bg="#D3FFE9">Like: {likes}</Button>
-                                            </Box>
+                                            (
+                                                liked?
+                                                <Box>
+                                                    <Button 
+                                                        onClick={handleLike}
+                                                        w="65px" h="25px" bg="#7EB2DD">Liked: {likesCount}</Button>
+                                                </Box>
+                                                :
+                                                <Box>
+                                                    <Button 
+                                                        onClick={handleLike}
+                                                        w="65px" h="25px" bg="#D3FFE9">Like: {likesCount}</Button>
+                                                </Box>
+                                            )
                                         }
                                     </Flex>
                                 </Box>
@@ -219,15 +240,25 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                 {
                                     user === author?
                                     <Box>
-                                        <Text fontSize="20px" color={txtColor}>Likes: {likes}</Text>
+                                        <Text fontSize="20px" color={txtColor}>Likes: {likesCount}</Text>
                                     </Box>
                                     :
-                                    <Box>
-                                        <Button 
-                                            onClick={handleLike}
-                                            fontSize="20px"
-                                            w="85px" h="35px" bg="#D3FFE9">Like: {likes}</Button>
-                                    </Box>
+                                    (
+                                        liked?
+                                        <Box>
+                                            <Button 
+                                                onClick={handleLike}
+                                                fontSize="20px"
+                                                w="85px" h="35px" bg="#0582CA">Liked: {likesCount}</Button>
+                                        </Box>
+                                        :
+                                        <Box>
+                                            <Button 
+                                                onClick={handleLike}
+                                                fontSize="20px"
+                                                w="85px" h="35px" bg="#D3FFE9">Like: {likesCount}</Button>
+                                        </Box>
+                                    )
                                 }
                             </Flex>
                         </Box>

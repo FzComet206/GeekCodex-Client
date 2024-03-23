@@ -70,13 +70,11 @@ export default function SelfContent(){
                             1200 && hasMore && !scrolled && !loading 
                     ) {
                     
+                    console.log("scrolling: " + page)
                     setScrolled(true);
                     setPage(page + 1);
                     // scrolling is logged 3 times, but request is only sent 2 times
-                    console.log("scrolling")
-                }
-                if (loading)
-                {
+                } else {
                     setScrolled(false);
                 }
             };

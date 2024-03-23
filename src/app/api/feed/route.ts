@@ -10,6 +10,7 @@ export interface PostData {
     created_at: string;
     likes: number;
     author: string;
+    isLiked: boolean;
 }
 
 export async function GET(req: NextRequest) {

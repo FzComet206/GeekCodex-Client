@@ -1,17 +1,6 @@
 import axios from "axios";
 import { NextRequest } from "next/server";
 
-export interface PostData {
-    id: number;
-    title: string;
-    body: string;
-    link: string;
-    image: string;
-    created_at: string;
-    likes: number;
-    author: string;
-}
-
 export async function GET(req: NextRequest) {
 
     console.log("next server side self");
