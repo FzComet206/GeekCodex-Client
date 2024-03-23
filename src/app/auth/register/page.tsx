@@ -2,7 +2,7 @@
 import { Box, Button, Center, Input} from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { AppContext } from "../../../../context/appContext";
-import NavigationPlain from "@/app/components/navigationPlain";
+import NavigationPlain from "../../utils/navigationPlain"
 import { useRouter } from "next/navigation";
 import axios, { AxiosResponse } from "axios";
 

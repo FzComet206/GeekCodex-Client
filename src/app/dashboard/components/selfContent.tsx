@@ -1,5 +1,5 @@
 import { Box, Wrap, WrapItem} from "@chakra-ui/react";
-import { Preview } from "../../components/preview";
+import { Preview } from "../../utils/preview";
 import { AppContext } from "../../../../context/appContext";
 import { Global, css } from "@emotion/react";
 
@@ -7,7 +7,7 @@ import React, { useContext, useState, useEffect } from "react";
 
 // using the dashboard post hook here
 import { usePosts } from "../../dashboard/components/postHook";
-import { BlankPreview } from "../../components/skeleton";
+import { BlankPreview } from "../../utils/skeleton";
 
 export default function SelfContent(){
 

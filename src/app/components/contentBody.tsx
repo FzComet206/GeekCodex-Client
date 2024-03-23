@@ -1,11 +1,11 @@
 import { Box, Wrap, WrapItem} from "@chakra-ui/react";
-import { Preview } from "./preview";
+import { Preview } from "../utils/preview";
 import { AppContext } from "../../../context/appContext";
 import { Global, css } from "@emotion/react";
 
 import React, { useContext, useState, useEffect} from "react";
 import { usePosts } from "./postHook";
-import { BlankPreview } from "./skeleton";
+import { BlankPreview } from "../utils/skeleton";
 
 export default function ContentBody(){
 

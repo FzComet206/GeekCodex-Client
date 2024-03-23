@@ -4,6 +4,7 @@ import { AppContext } from "../../../context/appContext";
 import axios from "axios";
 import { Confirmation } from "./deleteConfirm";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { LikeButton } from "./likeButton";
 
 export const Preview = ( {id, title, body, link, image, created_at, likes, author, isLiked} : any ) => {
 
@@ -14,8 +15,6 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
     // this one is for opening the full view
     const { isOpen: isOpen_1, onOpen: onOpen_1, onClose: onClose_1 } = useDisclosure()
 
-    const [likesCount, setLikesCount] = useState(likes)
-    const [liked, setLiked] = useState(isLiked)
     const [followed, isFollowed] = useState(false)
 
     const handleDeleteRequest = async () => {
@@ -39,24 +38,10 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
         console.log("client side follow call")
     }
 
-    const handleLike = async (e: any) => {
-        e.stopPropagation();
-        console.log("client side like call")
-        try
-        {
-            const res = await axios.get(`/api/like?postid=${id}`)
-            setLikesCount(res.data.likes)
-            setLiked(!liked)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
     const handleOpen = () => {
         console.log("client side open call")
         onOpen_1()
     }
-
 
     const Overview = () => {
         return (
@@ -142,23 +127,10 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                         {
                                             user === author?
                                             <Box>
-                                                <Text fontSize="17px" color={txtColor}>Likes: {likesCount}</Text>
+                                                <Text fontSize="17px" color={txtColor}>Likes: {likes}</Text>
                                             </Box>
                                             :
-                                            (
-                                                liked?
-                                                <Box>
-                                                    <Button 
-                                                        onClick={handleLike}
-                                                        w="65px" h="25px" bg="#7EB2DD">Liked: {likesCount}</Button>
-                                                </Box>
-                                                :
-                                                <Box>
-                                                    <Button 
-                                                        onClick={handleLike}
-                                                        w="65px" h="25px" bg="#D3FFE9">Like: {likesCount}</Button>
-                                                </Box>
-                                            )
+                                            <LikeButton likes={likes} isLiked={isLiked} id={id} p={true}/>
                                         }
                                     </Flex>
                                 </Box>
@@ -211,7 +183,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                         <Box maxW="1000px" padding="60px">
                             <Flex marginTop="10px" >
                                 <Box mr="auto">
-                                    <Text h="20px" fontSize="25px" color={txtColor}>Posted by: {author}</Text>
+                                    <Text h="20px" fontSize="25px">Posted by: {author}</Text>
                                 </Box>
 
                                 {
@@ -234,31 +206,16 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                             </Flex>
                             <Flex paddingTop="10px">
                                 <Box mr="auto">
-                                    <Text h="18px" fontSize="20px" color={txtColor}> {created_at}</Text>
+                                    <Text h="18px" fontSize="20px"> {created_at}</Text>
                                 </Box>
 
                                 {
                                     user === author?
                                     <Box>
-                                        <Text fontSize="20px" color={txtColor}>Likes: {likesCount}</Text>
+                                        <Text fontSize="20px" color={txtColor}>Likes: {likes}</Text>
                                     </Box>
                                     :
-                                    (
-                                        liked?
-                                        <Box>
-                                            <Button 
-                                                onClick={handleLike}
-                                                fontSize="20px"
-                                                w="85px" h="35px" bg="#0582CA">Liked: {likesCount}</Button>
-                                        </Box>
-                                        :
-                                        <Box>
-                                            <Button 
-                                                onClick={handleLike}
-                                                fontSize="20px"
-                                                w="85px" h="35px" bg="#D3FFE9">Like: {likesCount}</Button>
-                                        </Box>
-                                    )
+                                    <LikeButton likes={likes} isLiked={isLiked} id={id} p={false}/>
                                 }
                             </Flex>
                         </Box>
