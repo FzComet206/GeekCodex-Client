@@ -28,6 +28,12 @@ export const theme = extendTheme({
                 w: "1800px",
                 minH: "1000px",
             }, 
+            ".dash": {
+                w: "400px",
+            },
+            ".activities": {
+                w: "1000px",
+            }, 
             ".preview": {
                 minW: "350px",
                 maxW: "400px",

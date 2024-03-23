@@ -38,6 +38,10 @@ export function Profile({onClose, isOpen, onOpen} : any) {
         router.push("/likedpage")
     }
 
+    const handleClickDashboard = async () => {
+        router.push("/dashboard")
+    }
+
     const txtColor = darkTheme? "white" : "black";
 
     return (
@@ -77,7 +81,9 @@ export function Profile({onClose, isOpen, onOpen} : any) {
                             width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
                             Liked Posts
                         </Button>
-                        <Button width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
+                        <Button
+                            onClick={handleClickDashboard}
+                            width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
                             Dashboard
                         </Button>
                         <Button 
