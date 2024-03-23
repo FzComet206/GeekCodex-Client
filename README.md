@@ -18,6 +18,7 @@ Website Functionalities:
     - Search for posts
     - Like posts
     - Follow users
+    - View activities
 
 Tech stacks:
 
