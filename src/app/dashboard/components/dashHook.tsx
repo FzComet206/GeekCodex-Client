@@ -17,7 +17,7 @@ export const useDashboard = (limit = 4) => {
     setLoading(true);
     console.log("client side follower request")
 
-    axios.get(`/api/feed?page=${page}&limit=${limit}&seed=${seed}`)
+    axios.get(`/api/dashboardrow?page=${page}&limit=${limit}`)
          .then(res => {
           console.log(res.data)
 

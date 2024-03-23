@@ -85,9 +85,9 @@ export default function ContentBody(){
                     </Box>
                 </Flex>
                 {
-                    row.map((item: DashboardRow) => {
+                    row.map((item: DashboardRow, index) => {
                         return (
-                            <Flex>
+                            <Flex key={index}>
                                 <User name={item.follower} userid={item.followerid} ></User>
                                 <User name={item.following} userid={item.followingid} ></User>
                                 <Activity name={item.likeuser} userid={item.likeuserid} title={item.likeposttitle} timestamp={item.timestamp}></Activity>

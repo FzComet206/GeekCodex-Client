@@ -1,5 +1,5 @@
 import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, ScaleFade, Stack, Image, Text, Flex, Center, DarkMode, useDisclosure, useStatStyles, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Link, Skeleton} from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../context/appContext";
 import axios from "axios";
 import { Confirmation } from "./deleteConfirm";
@@ -11,7 +11,7 @@ import { PostData } from "../api/feed/route";
 
 export const Preview = ( {id, title, body, link, image, created_at, likes, author, authorid, isLiked, authorFollowed} : PostData) => {
 
-    const {darkTheme, user, setFlip} = useContext(AppContext) || {};
+    const {darkTheme, user, setFlip, followUpdate, setFollowUpdate, currFollowId} = useContext(AppContext) || {};
     const txtColor = darkTheme? "white" : "black";
     // this one is for delete confirmation
     const { isOpen: isOpen_0, onOpen: onOpen_0, onClose: onClose_0 } = useDisclosure()
@@ -42,6 +42,15 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
         console.log("client side open call")
         onOpen_1()
     }
+
+    useEffect(() => {
+        if (followUpdate){
+            if (currFollowId === authorid){
+                setFollowed(!followed)
+            }
+            setFollowUpdate(false)
+        }
+    })
 
     const Overview = () => {
         return (
@@ -110,7 +119,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                                     w="65px" h="25px" bg="#F08080">Delete</Button>
                                             </Box>
                                             :
-                                            <FollowButton followed={followed} setFollowed={setFollowed} id={authorid} p={true}></FollowButton>
+                                            <FollowButton followed={followed} id={authorid} p={true}></FollowButton>
                                         }
 
                                     </Flex>
@@ -190,7 +199,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                             w="85px" h="35px" bg="#F08080">Delete</Button>
                                     </Box>
                                     :
-                                    <FollowButton followed={followed} setFollowed={setFollowed} id={authorid} p={false}></FollowButton>
+                                    <FollowButton followed={followed} id={authorid} p={false}></FollowButton>
                                 }
 
                             </Flex>

@@ -3,9 +3,9 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { AppContext } from "../../../context/appContext";
 
-export function FollowButton({followed, setFollowed, id, p}:any){
+export function FollowButton({followed, id, p}:any){
 
-    const { setFlip } = useContext(AppContext) || {};
+    const { setFollowUpdate, setCurrFollowId } = useContext(AppContext) || {};
 
     const handleFollow = async (e: any) => {
         e.stopPropagation();
@@ -13,8 +13,9 @@ export function FollowButton({followed, setFollowed, id, p}:any){
         try
         {
             await axios.get(`/api/follow?authorid=${id}`)
-            setFlip(true)
-            setFollowed(!followed)
+            setFollowUpdate(true)
+            setCurrFollowId(id)
+
         } catch (error) {
             console.error(error)
         }

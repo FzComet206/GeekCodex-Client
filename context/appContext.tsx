@@ -12,11 +12,14 @@ interface AppContextType {
     setpinged: (pinged: true | false) => void;
     seed: number;
     setSeed: (seed: number) => void;
+
     flip: boolean;
     setFlip: (flip: true | false) => void;
 
     followUpdate: boolean;
     setFollowUpdate: (flip1: true | false) => void;
+    currFollowId: number;
+    setCurrFollowId: (id: number) => void;
 }
 
 const AppContext = createContext<AppContextType>({
@@ -33,7 +36,9 @@ const AppContext = createContext<AppContextType>({
     flip: false,
     setFlip: () => {},
     followUpdate: false,
-    setFollowUpdate: () => {}
+    setFollowUpdate: () => {},
+    currFollowId: 0,
+    setCurrFollowId: () => {}
 });
 
 
@@ -48,6 +53,7 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
     // provide higher level function to change state
     const [flip, setFlip] = useState<boolean>(false);
     const [followUpdate, setFollowUpdate] = useState<boolean>(false);
+    const [currFollowId, setCurrFollowId] = useState<number>(0);
 
     return (
         <AppContext.Provider value={
@@ -58,7 +64,8 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
                 pinged, setpinged,
                 seed, setSeed,
                 flip, setFlip,
-                followUpdate, setFollowUpdate
+                followUpdate, setFollowUpdate,
+                currFollowId, setCurrFollowId
             }
         }
             >

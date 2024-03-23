@@ -6,6 +6,7 @@ import { Global, css } from "@emotion/react";
 import React, { useContext, useState, useEffect, useMemo} from "react";
 import { usePosts } from "./postHook";
 import { BlankPreview } from "../../utils/skeleton";
+import { PostData } from "@/app/api/feed/route";
 
 export default function ContentBody(){
 
@@ -48,6 +49,7 @@ export default function ContentBody(){
 
     useEffect(() => {
         // state change trigger reset re render
+
         if (flip) {
             OnReset();
             setFlip(false);
