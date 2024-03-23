@@ -27,11 +27,15 @@ export function Profile({onClose, isOpen, onOpen} : any) {
     }
 
     const handleClickFeed = async () => {
-        router.push("/")
+        router.push("/homepage")
     }
 
     const handleClickSelf = async () => {
-        router.push("/dashboard")
+        router.push("/selfpage")
+    }
+
+    const handleClickLike = async () => {
+        router.push("/likedpage")
     }
 
     const txtColor = darkTheme? "white" : "black";
@@ -68,14 +72,16 @@ export function Profile({onClose, isOpen, onOpen} : any) {
                             width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
                             Your Posts
                         </Button>
-                        <Button width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
+                        <Button
+                            onClick={handleClickLike}
+                            width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
                             Liked Posts
                         </Button>
                         <Button width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
-                            Follows
+                            Activities
                         </Button>
                         <Button width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
-                            Followers
+                            Follows/Followers
                         </Button>
                         <Button 
                             onClick={logoutRedirect}

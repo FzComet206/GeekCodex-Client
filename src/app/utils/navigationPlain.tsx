@@ -21,7 +21,7 @@ export default function Navigation() {
                 </Box>
 
                 <Box padding="30px" position="relative" left="80%">
-                    <Button onClick={() => router.push("/")}>
+                    <Button onClick={() => router.push("/homepage")}>
                         Back
                     </Button>
                 </Box>

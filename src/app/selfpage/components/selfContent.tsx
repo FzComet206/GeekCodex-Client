@@ -6,7 +6,7 @@ import { Global, css } from "@emotion/react";
 import React, { useContext, useState, useEffect } from "react";
 
 // using the dashboard post hook here
-import { usePosts } from "../../dashboard/components/postHook";
+import { usePosts } from "./postHook"
 import { BlankPreview } from "../../utils/skeleton";
 
 export default function SelfContent(){

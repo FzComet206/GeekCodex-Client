@@ -35,7 +35,7 @@ export default function RegisterPage() {
             setIsLoggedIn?.(true);
             setUser?.(response.data.username);
 
-        router.push("/");
+        router.push("/homepage");
         } catch (error) {
             setIsLoading(false);
             console.log(error)

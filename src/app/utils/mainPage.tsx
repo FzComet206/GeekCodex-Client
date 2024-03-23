@@ -1,9 +1,9 @@
 "use client"
 import { Box, ModalOverlay, useDisclosure, useToast, } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
-import Navigation from "./utils/navigation";
-import { AppContext } from "../../context/appContext";
-import WritePost from "./utils/writePost";
+import Navigation from "./navigation";
+import { AppContext } from "../../../context/appContext";
+import WritePost from "./writePost";
 import axios from "axios";
 
 

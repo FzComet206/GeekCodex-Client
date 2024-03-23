@@ -1,8 +1,7 @@
 import { Box, Button, Flex, Input, Switch } from "@chakra-ui/react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { AppContext } from "../../../context/appContext";
-import axios from "axios";
 import { UserNav } from "./userNav";
 
 

@@ -1,16 +1,18 @@
 import { Box, Wrap, WrapItem} from "@chakra-ui/react";
-import { Preview } from "../utils/preview";
-import { AppContext } from "../../../context/appContext";
+import { Preview } from "../../utils/preview";
+import { AppContext } from "../../../../context/appContext";
 import { Global, css } from "@emotion/react";
 
-import React, { useContext, useState, useEffect} from "react";
-import { usePosts } from "./postHook";
-import { BlankPreview } from "../utils/skeleton";
+import React, { useContext, useState, useEffect } from "react";
 
-export default function ContentBody(){
+// using the dashboard post hook here
+import { usePosts } from "./postHook"
+import { BlankPreview } from "../../utils/skeleton";
+
+export default function LikeContent(){
 
     // styles
-    const { darkTheme, flip, setFlip } = useContext(AppContext) || {};
+    const {darkTheme, flip, setFlip} = useContext(AppContext) || {};
     const styledScroll = css `
         ::-webkit-scrollbar {
         width: 15px;
@@ -32,8 +34,7 @@ export default function ContentBody(){
     `
 
     // get hooks and set limit
-    const { loading, hasMore, setPosts, setPage, posts, page } = usePosts(4);
-    // get posts and page state
+    const { loading, hasMore, posts, setPosts, setPage, page } = usePosts(4);
     const [ scrolled, setScrolled ] = useState(false);
     const [ initial, setInitial ] = useState(true);
 
@@ -45,20 +46,17 @@ export default function ContentBody(){
         setPage(1);
         setInitial(true);
     }
-
+    
     useEffect(() => {
-        // state change trigger reset re render
         if (flip) {
             OnReset();
             setFlip(false);
         }
 
         const scrollBox = document.getElementById("mainScroll");
-        // set global 
         
-        // problem, sometimes the scroll event triggers 3 times, but setpage only 2 times
         if (initial){
-            setPage(page + 1);
+            setPage(page + 1)
             setInitial(false);
         }
 
@@ -75,6 +73,7 @@ export default function ContentBody(){
                     console.log("scrolling: " + page)
                     setScrolled(true);
                     setPage(page + 1);
+                    // scrolling is logged 3 times, but request is only sent 2 times
                 } else {
                     setScrolled(false);
                 }
@@ -95,7 +94,7 @@ export default function ContentBody(){
 
 
                 {
-                    posts.map((post : any) => {
+                    posts.map((post) => {
                         return (
                             <WrapItem key={post.id}>
                                 <Preview key={post.id} {...post} />
