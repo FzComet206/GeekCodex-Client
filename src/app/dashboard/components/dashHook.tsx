@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from '../../../../context/appContext';
-import { DashboardRow } from '../../api/dashboardrow/route';
+import { DashboardRow } from '../../api/dashboard/route';
 
 
 export const useDashboard = (limit = 4) => {
@@ -17,7 +17,7 @@ export const useDashboard = (limit = 4) => {
     setLoading(true);
     console.log("client side follower request")
 
-    axios.get(`/api/dashboardrow?page=${page}&limit=${limit}`)
+    axios.get(`/api/dashboard?page=${page}&limit=${limit}`)
          .then(res => {
           console.log(res.data)
 

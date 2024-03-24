@@ -35,10 +35,14 @@ export async function POST(req: NextRequest) {
         if (axios.isAxiosError(error)) {
             // Handle Axios-specific errors
             if (error.response?.status === 404) {
-            throw new Error('User not found, please register');
+                return new Response('User not found, please register', {
+                    status: 404,
+                });
             } else {
             if (error.response?.status === 401) {
-                throw new Error('Invalid email or password');
+                return new Response('Invalid email or password', {
+                    status: 401,
+                });
             }
             throw new Error('Network Error. Please try again later.');
             }

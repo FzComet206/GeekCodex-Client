@@ -38,6 +38,10 @@ export default function RegisterPage() {
         router.push("/homepage");
         } catch (error) {
             setIsLoading(false);
+            if (axios.isAxiosError(error)) {
+                setAlert(true);
+                setMsg(error.response?.data || "Network Error. Please try again later.");
+            }
             console.log(error)
         }
     }

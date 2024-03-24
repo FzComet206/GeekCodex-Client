@@ -5,7 +5,7 @@ import { Global, css } from "@emotion/react";
 import React, { useContext, useState, useEffect } from "react";
 import { useDashboard } from "./dashHook";
 import { User, Activity } from "./rowformat";
-import { DashboardRow } from "../../api/dashboardrow/route"
+import { DashboardRow } from "../../api/dashboard/route"
 
 export default function ContentBody(){
 
@@ -75,7 +75,7 @@ export default function ContentBody(){
                     </Box>
                     <Box h="10vh" className="dash" paddingTop="30px">
                         <Text textColor="cyan" fontSize="50px" textAlign="center">
-                            Followers
+                            Following
                         </Text>
                     </Box>
                     <Box h="10vh" className="activities" paddingTop="30px">
