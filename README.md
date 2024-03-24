@@ -28,10 +28,13 @@ Tech stacks:
     - API: Restful
     - Cloud: AWS EC2, AWS RDS, AWS S3
 
-Architecture:
+Architecture Diagram:
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/9b80421a-cef8-43ef-a735-42012912cc12)
+
 
 
 Entity Relationship Diagram:
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/8c68e28b-2401-48bc-9c69-0bf255aaa17f)
 
 
 
