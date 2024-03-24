@@ -20,7 +20,8 @@ Demo Page 4
 
 Demo Page 5
 
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/c9aa484e-b085-4281-bbe9-b588e41d6f2e)
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/6767707c-9f93-46c8-a373-86af8330263d)
+
 
 
 
