@@ -33,12 +33,10 @@ Website Functionalities:
     - View posts
     - View self posts
     - View liked posts
-    - View followers and their posts
-    - View followed users and their posts
     - Search for posts
     - Like posts
     - Follow users
-    - View activities
+    - View dashboard
 
 Tech stacks:
 
