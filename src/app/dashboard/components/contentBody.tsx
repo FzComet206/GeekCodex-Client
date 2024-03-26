@@ -6,11 +6,12 @@ import React, { useContext, useState, useEffect } from "react";
 import { useDashboard } from "./dashHook";
 import { User, Activity } from "./rowformat";
 import { DashboardRow } from "../../api/dashboard/route"
+import { useRouter } from "next/navigation"
 
 export default function ContentBody(){
 
     // styles
-    const { darkTheme, flip, setFlip } = useContext(AppContext) || {};
+    const { darkTheme, setCurrTitle, setCurrSearchId} = useContext(AppContext) || {};
     const styledScroll = css `
         ::-webkit-scrollbar {
         width: 15px;
@@ -35,7 +36,16 @@ export default function ContentBody(){
     // get posts and page state
     const [ scrolled, setScrolled ] = useState(false);
     // append skeletons to the end of the posts
+    const router = useRouter();
+
+    const handleView = (id: number, name: string) => {
+        // push to page with id, and fetch id
+        setCurrSearchId(id)
+        router.push("/user/" + name)
+    }
+
     useEffect(() => {
+        setCurrTitle("Dashboard")
         const scrollBox = document.getElementById("mainScroll");
 
         if (scrollBox) {
@@ -88,9 +98,23 @@ export default function ContentBody(){
                     row.map((item: DashboardRow, index) => {
                         return (
                             <Flex key={index}>
-                                <User name={item.follower} userid={item.followerid} ></User>
-                                <User name={item.following} userid={item.followingid} ></User>
-                                <Activity name={item.likeuser} userid={item.likeuserid} title={item.likeposttitle} timestamp={item.timestamp}></Activity>
+                                <User 
+                                    name={item.follower} 
+                                    userid={item.followerid} 
+                                    handle={handleView}
+                                    ></User>
+                                <User 
+                                    name={item.following} 
+                                    userid={item.followingid} 
+                                    handle={handleView}
+                                ></User>
+                                <Activity 
+                                    name={item.likeuser}
+                                    userid={item.likeuserid} 
+                                    title={item.likeposttitle} 
+                                    timestamp={item.timestamp}
+                                    handle={handleView}
+                                ></Activity>
                             </Flex>
                         )
                     })

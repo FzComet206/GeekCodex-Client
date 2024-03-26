@@ -7,7 +7,6 @@ import { Profile } from "./profile";
 export function UserNav() {
 
     const {user} = useContext(AppContext) || {};
-
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
@@ -15,7 +14,7 @@ export function UserNav() {
             <Avatar  
                 w="70px" 
                 h="70px" 
-                src="img/avatar.png" 
+                src="/img/avatar.png"
                 transition="transform 0.1s"
                 cursor="pointer"
                 _hover={{

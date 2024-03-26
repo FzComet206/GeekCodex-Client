@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input, Switch } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Switch, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { AppContext } from "../../../context/appContext";
@@ -7,7 +7,7 @@ import { UserNav } from "./userNav";
 
 export default function Navigation({ onOpen }: any) {
 
-    const {darkTheme, setTheme, isLoggedIn, user} = useContext(AppContext) || {};
+    const {darkTheme, setTheme, isLoggedIn, currTitle} = useContext(AppContext) || {};
 
     const router = useRouter();
 
@@ -25,13 +25,28 @@ export default function Navigation({ onOpen }: any) {
         router.push("/auth/login");
     }
 
+    let fs = "45px";
+    if (currTitle.length > 11) {
+        fs = "35px";
+    }
+
     // post forum
     return (
         <Box className="nav" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= "white">
             <Flex alignContent="center">
 
-                <Box padding="10px" fontSize="45px" textColor="white" position="relative" left="2%" paddingTop="20px" minWidth="250px">
-                    Geek Codex
+                <Box 
+                    fontSize={fs}
+                    textColor="white" 
+                    position="relative" 
+                    left="2%" 
+                    minWidth="250px"
+                    maxWidth="250px"
+                    alignContent="center"
+                    >
+                    <Text textAlign="center">
+                        {currTitle}
+                    </Text>
                 </Box>
 
                 <Box marginTop="30px" textColor="white" position="relative" left="4%">

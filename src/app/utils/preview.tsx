@@ -79,7 +79,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                 <Box h="240px" maxW="350px" minW="350px" overflow="hidden">
                                         <Image
                                         margin="auto"
-                                        src = {image}
+                                        src = {`https://picsum.photos/seed/${id}/1000/600`}
                                         borderRadius='lg'
                                         />
                                 </Box>
@@ -167,7 +167,10 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
 
                         <ModalBody pb={6} fontSize="20px">
                             <Box margin="auto" maxW="1000px" paddingX="30px">
-                                <Image margin="auto" src={image}></Image>
+                                <Image 
+                                    margin="auto" 
+                                    src = {`https://picsum.photos/seed/${id}/1000/600`}>
+                                </Image>
                             </Box>
                             <Box margin="auto" maxW="1000px" padding="30px">
                                 Description: {body}

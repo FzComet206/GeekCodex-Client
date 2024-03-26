@@ -1,18 +1,16 @@
 import { Box, Wrap, WrapItem} from "@chakra-ui/react";
-import { Preview } from "../../utils/preview";
-import { AppContext } from "../../../../context/appContext";
+import { Preview } from "../../../utils/preview";
+import { AppContext } from "../../../../../context/appContext";
 import { Global, css } from "@emotion/react";
-
 import React, { useContext, useState, useEffect } from "react";
+import { usePosts } from "./postHook";
+import { BlankPreview } from "../../../utils/skeleton";
+import { usePathname } from 'next/navigation';
 
-// using the dashboard post hook here
-import { usePosts } from "./postHook"
-import { BlankPreview } from "../../utils/skeleton";
-
-export default function SelfContent(){
+export default function ContentBody(){
 
     // styles
-    const {darkTheme, flip, setFlip, setCurrTitle} = useContext(AppContext) || {};
+    const { darkTheme, flip, setFlip, setCurrTitle } = useContext(AppContext) || {};
     const styledScroll = css `
         ::-webkit-scrollbar {
         width: 15px;
@@ -34,9 +32,12 @@ export default function SelfContent(){
     `
 
     // get hooks and set limit
-    const { loading, hasMore, posts, setPosts, setPage, page } = usePosts(4);
+    const { loading, hasMore, setPosts, setPage, posts, page } = usePosts(4);
+    // get posts and page state
     const [ scrolled, setScrolled ] = useState(false);
     const [ initial, setInitial ] = useState(true);
+    const path = usePathname()
+
 
     // append skeletons to the end of the posts
     let numSkeletons = 4 + (4 - posts.length % 4);
@@ -46,18 +47,24 @@ export default function SelfContent(){
         setPage(1);
         setInitial(true);
     }
-    
+
     useEffect(() => {
-        setCurrTitle("Your Posts")
+        const param = path.split("/").pop()?.replace(/%20/g, " ");
+        
+        // state change trigger reset re render
+        setCurrTitle(param || "")
+
         if (flip) {
             OnReset();
             setFlip(false);
         }
 
         const scrollBox = document.getElementById("mainScroll");
+        // set global 
         
+        // problem, sometimes the scroll event triggers 3 times, but setpage only 2 times
         if (initial){
-            setPage(page + 1)
+            setPage(page + 1);
             setInitial(false);
         }
 
@@ -74,7 +81,6 @@ export default function SelfContent(){
                     console.log("scrolling: " + page)
                     setScrolled(true);
                     setPage(page + 1);
-                    // scrolling is logged 3 times, but request is only sent 2 times
                 } else {
                     setScrolled(false);
                 }
@@ -95,7 +101,7 @@ export default function SelfContent(){
 
 
                 {
-                    posts.map((post) => {
+                    posts.map((post : any) => {
                         return (
                             <WrapItem key={post.id}>
                                 <Preview key={post.id} {...post} />

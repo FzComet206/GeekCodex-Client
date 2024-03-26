@@ -12,14 +12,16 @@ interface AppContextType {
     setpinged: (pinged: true | false) => void;
     seed: number;
     setSeed: (seed: number) => void;
-
     flip: boolean;
     setFlip: (flip: true | false) => void;
-
     followUpdate: boolean;
     setFollowUpdate: (flip1: true | false) => void;
     currFollowId: number;
     setCurrFollowId: (id: number) => void;
+    currTitle: string;
+    setCurrTitle: (title: string) => void;
+    currSearchId: number;
+    setCurrSearchId: (id: number) => void;
 }
 
 const AppContext = createContext<AppContextType>({
@@ -38,7 +40,11 @@ const AppContext = createContext<AppContextType>({
     followUpdate: false,
     setFollowUpdate: () => {},
     currFollowId: 0,
-    setCurrFollowId: () => {}
+    setCurrFollowId: () => {},
+    currTitle: "",
+    setCurrTitle: () => {},
+    currSearchId: 0,
+    setCurrSearchId: () => {},
 });
 
 
@@ -54,6 +60,8 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
     const [flip, setFlip] = useState<boolean>(false);
     const [followUpdate, setFollowUpdate] = useState<boolean>(false);
     const [currFollowId, setCurrFollowId] = useState<number>(0);
+    const [currTitle, setCurrTitle] = useState<string>("");
+    const [currSearchId, setCurrSearchId] = useState<number>(0);
 
     return (
         <AppContext.Provider value={
@@ -65,7 +73,9 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
                 seed, setSeed,
                 flip, setFlip,
                 followUpdate, setFollowUpdate,
-                currFollowId, setCurrFollowId
+                currFollowId, setCurrFollowId,
+                currTitle, setCurrTitle,
+                currSearchId, setCurrSearchId
             }
         }
             >

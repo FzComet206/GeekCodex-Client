@@ -11,7 +11,7 @@ import { PostData } from "@/app/api/feed/route";
 export default function ContentBody(){
 
     // styles
-    const { darkTheme, flip, setFlip, followUpdate, setFollowUpdate } = useContext(AppContext) || {};
+    const { darkTheme, flip, setFlip, followUpdate, setFollowUpdate, setCurrTitle } = useContext(AppContext) || {};
     const styledScroll = css `
         ::-webkit-scrollbar {
         width: 15px;
@@ -49,6 +49,7 @@ export default function ContentBody(){
 
     useEffect(() => {
         // state change trigger reset re render
+        setCurrTitle("Geek Codex")
 
         if (flip) {
             OnReset();

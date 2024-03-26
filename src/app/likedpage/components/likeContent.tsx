@@ -12,7 +12,7 @@ import { BlankPreview } from "../../utils/skeleton";
 export default function LikeContent(){
 
     // styles
-    const {darkTheme, flip, setFlip} = useContext(AppContext) || {};
+    const {darkTheme, flip, setFlip, setCurrTitle} = useContext(AppContext) || {};
     const styledScroll = css `
         ::-webkit-scrollbar {
         width: 15px;
@@ -48,6 +48,7 @@ export default function LikeContent(){
     }
     
     useEffect(() => {
+        setCurrTitle("Liked Posts")
         if (flip) {
             OnReset();
             setFlip(false);
