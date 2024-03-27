@@ -1,5 +1,5 @@
 "use client"
-import { Box, Button, Center, Input, Link} from "@chakra-ui/react";
+import { Box, Button, Center, Input} from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { AppContext } from "../../../../context/appContext";
 import NavigationPlain from "../../utils/navigationPlain"
@@ -8,41 +8,54 @@ import axios, { AxiosResponse } from "axios";
 
 export default function RegisterPage() {
 
-    const { darkTheme, setUser, setIsLoggedIn} = useContext(AppContext) || {};
-    const [email, setEmail] = useState("");
+    const { darkTheme, setUser, setIsLoggedIn } = useContext(AppContext) || {};
     const [password, setPassword] = useState("");
-    const [loading, setIsLoading] = useState(false);
+    const [confirm, setConfirm] = useState("");
     const [alert, setAlert] = useState(false);
     const [msg, setMsg] = useState("");
-    const router = useRouter();
+    const [loading, setIsLoading] = useState(false);
 
-    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value); }
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => { setPassword(e.target.value); }
+    const handleConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => { setConfirm(e.target.value); }
+
+
+    const router = useRouter();
+    const validate = () : string => {
+        if (password.length < 8 || password.length > 20) return "Password must be within 8 and 20 characters"; 
+        if (password !== confirm) return "Passwords do not match";
+        return "valid";
+    }
 
     const handleSubmit = async () => {
+
+        const msg = validate();
+        if (msg !== "valid") {
+            setAlert(true);
+            setMsg(msg);
+            return;
+        }
 
         setIsLoading(true);
         setAlert(false);
         setMsg("");
 
+        const token = ""
+
         try {
             const response: AxiosResponse = await axios.post(
-                "../api/login",
-                { email, password }, 
+                "../api/resetpassword",
+                { token, password }, 
                 { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
             );
             setIsLoading(false);
-            setIsLoggedIn?.(true);
-            setUser?.(response.data.username);
 
-        router.push("/homepage");
+        router.push("/login");
         } catch (error) {
-            setIsLoading(false);
             if (axios.isAxiosError(error)) {
                 setAlert(true);
                 setMsg(error.response?.data || "Network Error. Please try again later.");
             }
-            console.log(error)
+            setIsLoading(false);
         }
     }
 
@@ -56,8 +69,8 @@ export default function RegisterPage() {
 
                     <Center>
                         <Box className="form" fontSize="60px" textColor="white" textAlign="center">
-                            <Box padding="2vh" marginTop="10vh">
-                                Sign In
+                            <Box marginBottom="2vh" marginTop="10vh">
+                                Password Reset
                             </Box>
 
                             <Box>
@@ -72,19 +85,13 @@ export default function RegisterPage() {
                             </Box>
 
                             <Box>
-                                <Input _placeholder={{color:"white"}} type="email" placeholder="Enter Email Address" size="lg" value={email} onChange={handleEmailChange}/>
+                                <Input _placeholder={{color:"white"}} pr="4.5rem" placeholder="Enter New Password" size="lg" type="password" value={password} onChange={handlePasswordChange}/>
                             </Box>
 
                             <Box>
-                                <Input _placeholder={{color:"white"}} pr="4.5rem" placeholder="Enter Password" size="lg" type="password" value={password} onChange={handlePasswordChange}/>
-                            </Box>
+                                <Input _placeholder={{color:"white"}} pr="4.5rem" placeholder="Confirm New Password" size="lg" type="password" value={confirm} onChange={handleConfirmChange}/>
 
-                            <Box h="30px" fontSize="20px" paddingTop="20px">
-                                <Link position="relative" left="34%" href="./changepassword">
-                                    Reset Password
-                                </Link>
                             </Box>
-
 
                             <Button isLoading={loading} size="lg" marginTop="5vh" onClick={() => handleSubmit()}>
                                 Sumbit

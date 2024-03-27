@@ -12,7 +12,7 @@ export default function Page() {
                 </Text>
             </Box>
             <Box 
-                h="70vh" w="70vw" margin="auto" bgImage="img/background.png" backgroundSize="cover"
+                h="70vh" w="70vw" margin="auto" bgImage="img/background.png" bgPosition="center" backgroundSize="cover"
                 transition="transform 0.2s"
                 cursor="pointer"
                 _hover={{

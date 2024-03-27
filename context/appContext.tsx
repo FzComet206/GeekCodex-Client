@@ -24,6 +24,8 @@ interface AppContextType {
     setCurrSearchId: (id: number) => void;
     currQuery: string;
     setCurrQuery: (query: string) => void;
+    currSort: string;
+    setCurrSort: (sort: string) => void;
 }
 
 const AppContext = createContext<AppContextType>({
@@ -49,6 +51,8 @@ const AppContext = createContext<AppContextType>({
     setCurrSearchId: () => {},
     currQuery: "",
     setCurrQuery: () => {},
+    currSort: "",
+    setCurrSort: () => {},
 });
 
 
@@ -67,6 +71,7 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
     const [currTitle, setCurrTitle] = useState<string>("");
     const [currSearchId, setCurrSearchId] = useState<number>(0);
     const [currQuery, setCurrQuery] = useState<string>("");
+    const [currSort, setCurrSort] = useState<string>("");
 
     return (
         <AppContext.Provider value={
@@ -82,6 +87,7 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
                 currTitle, setCurrTitle,
                 currSearchId, setCurrSearchId,
                 currQuery, setCurrQuery,
+                currSort, setCurrSort
             }
         }
             >

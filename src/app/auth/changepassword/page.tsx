@@ -8,16 +8,14 @@ import axios, { AxiosResponse } from "axios";
 
 export default function RegisterPage() {
 
-    const { darkTheme, setUser, setIsLoggedIn} = useContext(AppContext) || {};
+    const { darkTheme } = useContext(AppContext) || {};
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [loading, setIsLoading] = useState(false);
     const [alert, setAlert] = useState(false);
     const [msg, setMsg] = useState("");
     const router = useRouter();
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value); }
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => { setPassword(e.target.value); }
 
     const handleSubmit = async () => {
 
@@ -27,22 +25,20 @@ export default function RegisterPage() {
 
         try {
             const response: AxiosResponse = await axios.post(
-                "../api/login",
-                { email, password }, 
+                "../api/changepassword",
+                { email }, 
                 { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
             );
             setIsLoading(false);
-            setIsLoggedIn?.(true);
-            setUser?.(response.data.username);
+            setAlert(true)
+            setMsg("Email Sent")
 
-        router.push("/homepage");
         } catch (error) {
             setIsLoading(false);
             if (axios.isAxiosError(error)) {
                 setAlert(true);
                 setMsg(error.response?.data || "Network Error. Please try again later.");
             }
-            console.log(error)
         }
     }
 
@@ -55,9 +51,9 @@ export default function RegisterPage() {
                 <Box className="body" bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"}>
 
                     <Center>
-                        <Box className="form" fontSize="60px" textColor="white" textAlign="center">
+                        <Box className="form" fontSize="40px" textColor="white" textAlign="center">
                             <Box padding="2vh" marginTop="10vh">
-                                Sign In
+                                Enter your email address
                             </Box>
 
                             <Box>
@@ -72,22 +68,12 @@ export default function RegisterPage() {
                             </Box>
 
                             <Box>
-                                <Input _placeholder={{color:"white"}} type="email" placeholder="Enter Email Address" size="lg" value={email} onChange={handleEmailChange}/>
-                            </Box>
-
-                            <Box>
-                                <Input _placeholder={{color:"white"}} pr="4.5rem" placeholder="Enter Password" size="lg" type="password" value={password} onChange={handlePasswordChange}/>
-                            </Box>
-
-                            <Box h="30px" fontSize="20px" paddingTop="20px">
-                                <Link position="relative" left="34%" href="./changepassword">
-                                    Reset Password
-                                </Link>
+                                <Input width="400px" _placeholder={{color:"white"}} type="email" placeholder="Enter Email Address" size="lg" value={email} onChange={handleEmailChange}/>
                             </Box>
 
 
                             <Button isLoading={loading} size="lg" marginTop="5vh" onClick={() => handleSubmit()}>
-                                Sumbit
+                                Send
                             </Button>
 
                         </Box>

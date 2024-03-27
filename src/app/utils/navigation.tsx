@@ -1,13 +1,14 @@
-import { Box, Button, Flex, Input, Switch, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Menu, MenuButton, MenuItem, MenuList, Switch, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../../context/appContext";
 import { UserNav } from "./userNav";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 
 export default function Navigation({ onOpen }: any) {
 
-    const {darkTheme, setTheme, isLoggedIn, currTitle, setFlip, setCurrQuery, currQuery} = useContext(AppContext) || {};
+    const {darkTheme, setTheme, isLoggedIn, currTitle, setFlip, setCurrQuery, setCurrSort} = useContext(AppContext) || {};
     const [changed, setChanged] = useState(false)
 
     const router = useRouter();
@@ -30,6 +31,16 @@ export default function Navigation({ onOpen }: any) {
     }
     const goToLogin = () => {
         router.push("/auth/login");
+    }
+
+    const handleSortLike = () => {
+        setCurrSort("like")
+        setFlip(true)
+    }
+
+    const handleSortTime = () => {
+        setCurrSort("")
+        setFlip(true)
     }
 
     const handleKeyPress = (event : React.KeyboardEvent<HTMLInputElement>) => {
@@ -74,7 +85,7 @@ export default function Navigation({ onOpen }: any) {
                     <Button colorScheme="pink" h="50px" w="80px" fontSize="30px" onClick={goToPost}>Post</Button>
                 </Box>
 
-                <Box marginTop="30px" textColor="white" position="relative" left="9%" width="800px" minWidth="300px">
+                <Box marginTop="30px" textColor="white" position="relative" left="9%" width="790px" minWidth="300px">
                     <Input placeholder='Search' size="lg" value={query} onChange={handleQueryChange} onKeyUp={handleKeyPress}/>
                 </Box>
 
@@ -89,7 +100,26 @@ export default function Navigation({ onOpen }: any) {
 
                 {
                     isLoggedIn?
-                    <UserNav/>
+                    <>
+                        <Flex position="absolute" left="73%">
+                            <Box w="150px" paddingTop="35px" fontSize="20px" textColor="black"> 
+                                <Menu>
+                                    <MenuButton colorScheme="pink" as={Button} fontSize="23px" rightIcon={<ChevronDownIcon />}>
+                                        Sort
+                                    </MenuButton>
+                                    <MenuList>
+                                        <MenuItem onClick={handleSortTime}>
+                                            Date of post
+                                        </MenuItem>
+                                        <MenuItem onClick={handleSortLike}>
+                                            Number of likes
+                                        </MenuItem>
+                                    </MenuList>
+                                </Menu>
+                            </Box>
+                        <UserNav/>
+                        </Flex>
+                    </>
                     :
                     <Flex position="relative" left="13%">
                             <Box marginTop="30px" textColor="white">
