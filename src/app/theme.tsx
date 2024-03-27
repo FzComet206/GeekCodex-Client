@@ -15,7 +15,6 @@ export const theme = extendTheme({
                 minW: "1800px",
             },
             ".nav": {
-                overflow: "hidden",
                 borderBottom: "1px solid",
                 h: "9vh",
                 w: "1800px",

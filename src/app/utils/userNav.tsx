@@ -11,7 +11,7 @@ export function UserNav() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <Box position="absolute" left="78%" w="150px" marginTop="23px" fontSize="35px" textColor="white"> 
+        <Box position="relative" left="23%" w="150px" marginTop="23px" fontSize="35px" textColor="white"> 
             <Avatar  
                 w="70px" 
                 h="70px" 

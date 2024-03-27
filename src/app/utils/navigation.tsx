@@ -97,12 +97,12 @@ export default function Navigation({ onOpen }: any) {
                     </Box>
                 </Box>
 
-                <Box position="absolute" left="70%" w="10px" paddingTop="35px" fontSize="20px" textColor="black"> 
+                <Box display="block" position="relative" left="12%" w="10px" paddingTop="35px" fontSize="20px" textColor="black"> 
                     <Menu>
                         <MenuButton colorScheme="pink" as={Button} fontSize="20px" rightIcon={<ChevronDownIcon />}>
                             Sort
                         </MenuButton>
-                        <MenuList>
+                        <MenuList display="block">
                             <MenuItem onClick={handleSortTime}>
                                 Date of post
                             </MenuItem>
@@ -119,7 +119,7 @@ export default function Navigation({ onOpen }: any) {
                         <UserNav/>
                     </>
                     :
-                    <Flex position="absolute" left="75%">
+                    <Flex position="relative" left="19%">
                             <Box marginTop="35px" textColor="white">
                                 <Button onClick={goToLogin}>Login</Button>
                             </Box>
