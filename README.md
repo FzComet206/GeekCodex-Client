@@ -28,23 +28,25 @@ Demo Page 5
 
 Website Functionalities:
 
-    - User login/logout/register
+    - User login/logout/register/reset
     - Create/delete posts
     - View posts
-    - View self posts
+    - View self-posts
     - View liked posts
     - Search for posts
     - Like posts
     - Follow users
-    - View dashboard
-
+    - View Dashboard
+    - View posts of followed users
+    - Sort feed by number of likes and date of creation
+    
 Tech stacks:
 
     - Language: Typescript, SQL
     - Frontend: NextJS 13, ChakraUI
     - Backend: NodeJS, Express, Express-session, Redis, Postgresql, Drizzle-orm
     - API: Restful
-    - Cloud: AWS EC2, AWS RDS, AWS S3
+    - Cloud: AWS EC2, AWS RDS, AWS S3, AWS Route53, AWS SES
 
 Architecture Diagram:
 ![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/9b80421a-cef8-43ef-a735-42012912cc12)
