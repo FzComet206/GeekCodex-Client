@@ -1,15 +1,22 @@
 import { Box, Button, Flex, Input, Switch, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../../../context/appContext";
 import { UserNav } from "./userNav";
 
 
 export default function Navigation({ onOpen }: any) {
 
-    const {darkTheme, setTheme, isLoggedIn, currTitle} = useContext(AppContext) || {};
+    const {darkTheme, setTheme, isLoggedIn, currTitle, setFlip, setCurrQuery, currQuery} = useContext(AppContext) || {};
+    const [changed, setChanged] = useState(false)
 
     const router = useRouter();
+
+    const [query, setQuery] = useState("")
+    const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => { 
+        setChanged(true)
+        setQuery(e.target.value);
+    }
 
     const goToPost = () => {
         if (!isLoggedIn) {
@@ -23,6 +30,20 @@ export default function Navigation({ onOpen }: any) {
     }
     const goToLogin = () => {
         router.push("/auth/login");
+    }
+
+    const handleKeyPress = (event : React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            handleSearch()
+        }
+    }
+
+    const handleSearch = () => {    
+        if (query.length < 50 && changed){
+            setCurrQuery(query)
+            setChanged(false)
+            setFlip(true)
+        }
     }
 
     let fs = "45px";
@@ -53,13 +74,10 @@ export default function Navigation({ onOpen }: any) {
                     <Button colorScheme="pink" h="50px" w="80px" fontSize="30px" onClick={goToPost}>Post</Button>
                 </Box>
 
-                <Box marginTop="30px" textColor="white" position="relative" left="8%" width="800px" minWidth="300px">
-                    <Input placeholder='Search' size="lg"/>
+                <Box marginTop="30px" textColor="white" position="relative" left="9%" width="800px" minWidth="300px">
+                    <Input placeholder='Search' size="lg" value={query} onChange={handleQueryChange} onKeyUp={handleKeyPress}/>
                 </Box>
 
-                <Box marginTop="33px" textColor="white" position="relative" left="8.2%">
-                    <Button>Search</Button>
-                </Box>
 
                 <Box padding="20px" position="relative" left="12%">
                     <Box textAlign="center" textColor="white">Dark Mode</Box>

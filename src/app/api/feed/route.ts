@@ -21,12 +21,16 @@ export async function GET(req: NextRequest) {
     const limit = req.nextUrl.searchParams.get('limit')
     const page = req.nextUrl.searchParams.get('page')
     const seed = req.nextUrl.searchParams.get('seed')
+    const search = req.nextUrl.searchParams.get('search') || ""
+    if (search?.length > 50) {
+        return new Response(JSON.stringify({error: "Search query too long"}), { status: 400 });
+    }
 
     try {
         // request/response prpagation
         const sessionCookie = req.headers.get('cookie')
         const _response = await axios.get(
-            process.env.API_URL + `/feed?page=${page}&limit=${limit}&seed=${seed}`, 
+            process.env.API_URL + `/feed?page=${page}&limit=${limit}&seed=${seed}&search=${search}`, 
             { 
                 headers: {
                     'Cookie': sessionCookie || ''

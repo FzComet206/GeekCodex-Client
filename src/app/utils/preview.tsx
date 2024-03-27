@@ -11,6 +11,8 @@ import { PostData } from "../api/feed/route";
 
 export const Preview = ( {id, title, body, link, image, created_at, likes, author, authorid, isLiked, authorFollowed} : PostData) => {
 
+    {/* src = {`https://picsum.photos/seed/${id}/1000/600`} */}
+    
     const {darkTheme, user, setFlip, followUpdate, setFollowUpdate, currFollowId} = useContext(AppContext) || {};
     const txtColor = darkTheme? "white" : "black";
     // this one is for delete confirmation
@@ -79,7 +81,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                 <Box h="240px" maxW="350px" minW="350px" overflow="hidden">
                                         <Image
                                         margin="auto"
-                                        src = {`https://picsum.photos/seed/${id}/1000/600`}
+                                        src = {image}
                                         borderRadius='lg'
                                         />
                                 </Box>
@@ -169,7 +171,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                             <Box margin="auto" maxW="1000px" paddingX="30px">
                                 <Image 
                                     margin="auto" 
-                                    src = {`https://picsum.photos/seed/${id}/1000/600`}>
+                                    src = {image}>
                                 </Image>
                             </Box>
                             <Box margin="auto" maxW="1000px" padding="30px">
