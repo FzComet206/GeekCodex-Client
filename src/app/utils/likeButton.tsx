@@ -1,11 +1,20 @@
 import { Button, Box } from "@chakra-ui/react";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../../../context/appContext";
+import { useRouter } from "next/navigation"
 
 export function LikeButton({liked, setLiked, likesCount, setLikesCount, id, p}:any){
 
+    const { isLoggedIn } = useContext(AppContext);
+    const router = useRouter();
+
     const handleLike = async (e: any) => {
         e.stopPropagation();
+        if (!isLoggedIn) {
+            router.push("/auth/login")
+            return
+        }
         console.log("client side like call")
         try
         {

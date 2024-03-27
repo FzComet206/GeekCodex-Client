@@ -2,13 +2,19 @@ import { Button, Box } from "@chakra-ui/react";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { AppContext } from "../../../context/appContext";
+import { useRouter } from "next/navigation"
 
 export function FollowButton({followed, id, p}:any){
 
-    const { setFollowUpdate, setCurrFollowId } = useContext(AppContext) || {};
+    const { setFollowUpdate, setCurrFollowId, isLoggedIn } = useContext(AppContext) || {};
+    const router = useRouter();
 
     const handleFollow = async (e: any) => {
         e.stopPropagation();
+        if (!isLoggedIn) {
+            router.push("/auth/login")
+            return
+        }
         console.log("client side follow call")
         try
         {

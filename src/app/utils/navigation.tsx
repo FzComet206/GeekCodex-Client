@@ -85,48 +85,46 @@ export default function Navigation({ onOpen }: any) {
                     <Button colorScheme="pink" h="50px" w="80px" fontSize="30px" onClick={goToPost}>Post</Button>
                 </Box>
 
-                <Box marginTop="30px" textColor="white" position="relative" left="9%" width="790px" minWidth="300px">
+                <Box marginTop="30px" textColor="white" position="relative" left="9%" width="750px" minWidth="300px">
                     <Input placeholder='Search' size="lg" value={query} onChange={handleQueryChange} onKeyUp={handleKeyPress}/>
                 </Box>
 
 
-                <Box padding="20px" position="relative" left="12%">
+                <Box padding="20px" position="relative" left="10%">
                     <Box textAlign="center" textColor="white">Dark Mode</Box>
                     <Box textAlign="center" padding="15px">
                         <Switch size="lg" isChecked={darkTheme} onChange={() => setTheme?.(!darkTheme)}></Switch>
                     </Box>
                 </Box>
 
+                <Box position="absolute" left="70%" w="10px" paddingTop="35px" fontSize="20px" textColor="black"> 
+                    <Menu>
+                        <MenuButton colorScheme="pink" as={Button} fontSize="20px" rightIcon={<ChevronDownIcon />}>
+                            Sort
+                        </MenuButton>
+                        <MenuList>
+                            <MenuItem onClick={handleSortTime}>
+                                Date of post
+                            </MenuItem>
+                            <MenuItem onClick={handleSortLike}>
+                                Number of likes
+                            </MenuItem>
+                        </MenuList>
+                    </Menu>
+                </Box>
 
                 {
                     isLoggedIn?
                     <>
-                        <Flex position="absolute" left="73%">
-                            <Box w="150px" paddingTop="35px" fontSize="20px" textColor="black"> 
-                                <Menu>
-                                    <MenuButton colorScheme="pink" as={Button} fontSize="23px" rightIcon={<ChevronDownIcon />}>
-                                        Sort
-                                    </MenuButton>
-                                    <MenuList>
-                                        <MenuItem onClick={handleSortTime}>
-                                            Date of post
-                                        </MenuItem>
-                                        <MenuItem onClick={handleSortLike}>
-                                            Number of likes
-                                        </MenuItem>
-                                    </MenuList>
-                                </Menu>
-                            </Box>
                         <UserNav/>
-                        </Flex>
                     </>
                     :
-                    <Flex position="relative" left="13%">
-                            <Box marginTop="30px" textColor="white">
+                    <Flex position="absolute" left="75%">
+                            <Box marginTop="35px" textColor="white">
                                 <Button onClick={goToLogin}>Login</Button>
                             </Box>
 
-                            <Box marginTop="30px" textColor="white" position="relative" left="10%">
+                            <Box marginTop="35px" textColor="white" position="relative" left="10%">
                                 <Button onClick={goToRegister}>Register</Button>
                             </Box>
                     </Flex>
