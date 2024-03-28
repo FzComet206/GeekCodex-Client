@@ -13,7 +13,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
 
     {/* src = {`https://picsum.photos/seed/${id}/1000/600`} */}
     
-    const {darkTheme, user, setFlip, followUpdate, setFollowUpdate, currFollowId} = useContext(AppContext) || {};
+    const {darkTheme, user, setFlip, followUpdate, setFollowUpdate, currFollowId, op} = useContext(AppContext) || {};
     const txtColor = darkTheme? "white" : "black";
     // this one is for delete confirmation
     const { isOpen: isOpen_0, onOpen: onOpen_0, onClose: onClose_0 } = useDisclosure()
@@ -114,7 +114,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                         </Box>
 
                                         {
-                                            user === author?
+                                            user === author || op?
                                             <Box>
                                                 <Button 
                                                     onClick={handleDelete}
@@ -196,7 +196,7 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                 </Box>
 
                                 {
-                                    user === author?
+                                    user === author || op?
                                     <Box>
                                         <Button 
                                             fontSize="20px"

@@ -9,6 +9,8 @@ interface AppContextType {
     user: string;
     setUser: (user: string) => void;
     pinged: boolean;
+    op: boolean;
+    setOp: (pinged: true | false) => void;
     setpinged: (pinged: true | false) => void;
     seed: number;
     setSeed: (seed: number) => void;
@@ -35,6 +37,8 @@ const AppContext = createContext<AppContextType>({
     setIsLoggedIn: () => {},
     user: "",
     setUser: () => {},
+    op: false,
+    setOp: () => {},
     pinged: false,
     setpinged: () => {},
     seed: 0,
@@ -62,6 +66,7 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
     const [darkTheme, setTheme] = useState<true | false>(true);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [user, setUser] = useState<string>("");
+    const [op, setOp] = useState<boolean>(false);
     const [pinged, setpinged] = useState<boolean>(false);
     const [seed, setSeed] = useState<number>(Math.random() * 2 - 1);
     // provide higher level function to change state
@@ -79,6 +84,7 @@ const AppProvider:FC<{children:React.ReactNode}> = ({children}) => {
                 darkTheme, setTheme, 
                 isLoggedIn, setIsLoggedIn,
                 user, setUser,
+                op, setOp,
                 pinged, setpinged,
                 seed, setSeed,
                 flip, setFlip,

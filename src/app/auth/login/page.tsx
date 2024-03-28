@@ -8,7 +8,7 @@ import axios, { AxiosResponse } from "axios";
 
 export default function RegisterPage() {
 
-    const { darkTheme, setUser, setIsLoggedIn} = useContext(AppContext) || {};
+    const { darkTheme, setUser, setIsLoggedIn, setOp} = useContext(AppContext) || {};
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setIsLoading] = useState(false);
@@ -33,7 +33,8 @@ export default function RegisterPage() {
             );
             setIsLoading(false);
             setIsLoggedIn?.(true);
-            setUser?.(response.data.username);
+            setUser(response.data.username);
+            setOp(response.data.is_op);
 
         router.push("/homepage");
         } catch (error) {

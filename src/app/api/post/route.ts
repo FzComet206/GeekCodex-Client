@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
     } catch (error) {
         if (axios.isAxiosError(error)) {
             // Handle Axios-specific errors
-            return new Response(error.response?.data, {
+            return new Response(error.response?.data.message, {
                 status: 500,
             })
         } else {

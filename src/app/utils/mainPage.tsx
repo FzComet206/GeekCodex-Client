@@ -9,7 +9,7 @@ import axios from "axios";
 
 export default function MainPage({ ContentBody } : any) {
 
-    const { setIsLoggedIn, setUser, pinged, setpinged} = useContext(AppContext) || {};
+    const { setIsLoggedIn, setUser, pinged, setpinged, setOp} = useContext(AppContext) || {};
     const toast = useToast();
 
     const showToast = () => {
@@ -31,6 +31,7 @@ export default function MainPage({ ContentBody } : any) {
                 if (res.data.username) {
                     setIsLoggedIn?.(true);
                     setUser?.(res.data.username);
+                    setOp(res.data.is_op);
                 };
             } catch (error) {
                 console.log("no user logged in");
