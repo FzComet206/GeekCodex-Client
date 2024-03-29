@@ -1,14 +1,14 @@
 "use client"
 import { Box, Button, Center, Input} from "@chakra-ui/react";
 import { useContext, useState } from "react";
-import { AppContext } from "../../../../context/appContext";
-import NavigationPlain from "../../utils/navigationPlain"
-import { useRouter } from "next/navigation";
+import { AppContext } from "../../../../../context/appContext";
+import NavigationPlain from "../../../utils/navigationPlain"
+import { usePathname, useRouter } from "next/navigation";
 import axios, { AxiosResponse } from "axios";
 
 export default function RegisterPage() {
 
-    const { darkTheme, setUser, setIsLoggedIn } = useContext(AppContext) || {};
+    const { darkTheme } = useContext(AppContext) || {};
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
     const [alert, setAlert] = useState(false);
@@ -18,6 +18,7 @@ export default function RegisterPage() {
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => { setPassword(e.target.value); }
     const handleConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => { setConfirm(e.target.value); }
 
+    const path = usePathname();
 
     const router = useRouter();
     const validate = () : string => {
@@ -39,17 +40,17 @@ export default function RegisterPage() {
         setAlert(false);
         setMsg("");
 
-        const token = ""
+
+        const token = path.split("/").pop();
 
         try {
             const response: AxiosResponse = await axios.post(
-                "../api/resetpassword",
+                "../../api/resetpassword",
                 { token, password }, 
                 { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
             );
             setIsLoading(false);
-
-        router.push("/login");
+            router.push("/auth/login");
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 setAlert(true);

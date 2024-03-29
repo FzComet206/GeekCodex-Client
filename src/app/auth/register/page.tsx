@@ -90,6 +90,10 @@ export default function RegisterPage() {
 
                             </Box>
 
+                            <Box fontSize="20px" textColor="cyan">
+                                Make sure to use a valid email address for password reset
+                            </Box>
+
                             <Box>
                                 <Input _placeholder={{color:"white"}} placeholder="Enter Nickname" size="lg" value={name} onChange={handleNameChange} />
                             </Box>
