@@ -15,9 +15,17 @@ export async function POST(req: NextRequest) {
         { headers: { 'Content-Type': 'application/json' }, withCredentials: true } 
         );
 
-        return new Response(_response.data, {
-            status: 200,
-        })
+        const cookie = _response.headers['set-cookie'];
+        if (cookie){
+            const data = {
+                username: _response.data.username,
+            }
+            const cookieHeader = Array.isArray(cookie) ? cookie.join('') : cookie;
+            return new Response(JSON.stringify(data), {
+                status: 200,
+                headers: { 'Set-Cookie': `${cookieHeader}` },
+            })
+        }
 
     } catch (error) {
         if (axios.isAxiosError(error)) {

@@ -13,7 +13,6 @@ export default function RegisterPage() {
     const [loading, setIsLoading] = useState(false);
     const [alert, setAlert] = useState(false);
     const [msg, setMsg] = useState("");
-    const router = useRouter();
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value); }
 

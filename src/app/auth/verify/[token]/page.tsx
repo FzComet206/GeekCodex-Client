@@ -1,5 +1,5 @@
 "use client"
-import { Box, Button, Center, Input} from "@chakra-ui/react";
+import { Box, Button, Center, Input, useRadioGroup} from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../../../context/appContext";
 import NavigationPlain from "../../../utils/navigationPlain"
@@ -8,21 +8,27 @@ import axios, { AxiosResponse } from "axios";
 
 export default function RegisterPage() {
 
-    const { darkTheme } = useContext(AppContext) || {};
+    const { darkTheme, setUser, setIsLoggedIn } = useContext(AppContext) || {};
     const [ success, setSuccess ] = useState(true);
 
     const path = usePathname();
+    const router = useRouter();
 
     useEffect(() => {
         const token = path.split("/").pop();
 
         const verify = async () => {
             try {
-                await axios.post(
+                const response = await axios.post(
                     "../../api/verify",
                     { token }, 
                     { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
                 );
+                setUser(response.data.username);
+                setIsLoggedIn(true);
+                setTimeout(() => {
+                    router.push("/homepage")
+                }, 2000);
             } catch (error) {
                 setSuccess(false)
             }
