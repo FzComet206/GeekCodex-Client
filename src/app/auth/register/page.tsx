@@ -8,12 +8,11 @@ import axios, { AxiosResponse } from "axios";
 
 export default function RegisterPage() {
 
-    const { darkTheme, setUser, setIsLoggedIn } = useContext(AppContext) || {};
+    const { darkTheme } = useContext(AppContext) || {};
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
-    const [alert, setAlert] = useState(false);
     const [msg, setMsg] = useState("");
     const [loading, setIsLoading] = useState(false);
 
@@ -23,7 +22,6 @@ export default function RegisterPage() {
     const handleConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => { setConfirm(e.target.value); }
 
 
-    const router = useRouter();
     const validate = () : string => {
         if (name.length < 3 || name.length > 12) return "name must be within 3 and 12 characters";
         if (email.length < 4 || email.length > 50 || email.indexOf('@') === -1 || email.indexOf('.') === -1) return "Invalid email address";
@@ -36,13 +34,11 @@ export default function RegisterPage() {
 
         const msg = validate();
         if (msg !== "valid") {
-            setAlert(true);
             setMsg(msg);
             return;
         }
 
         setIsLoading(true);
-        setAlert(false);
         setMsg("");
 
         try {
@@ -52,13 +48,9 @@ export default function RegisterPage() {
                 { headers: { 'Content-Type': 'application/json' }, withCredentials: true} 
             );
             setIsLoading(false);
-            setIsLoggedIn?.(true);
-            setUser?.(response.data.username);
-
-        router.push("/homepage");
+            setMsg("Verfication email sent")
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                setAlert(true);
                 setMsg(error.response?.data || "Network Error. Please try again later.");
             }
             setIsLoading(false);
@@ -81,17 +73,13 @@ export default function RegisterPage() {
 
                             <Box>
                                 {
-                                    alert && (
+                                    (
                                         <Box textColor="orange" fontSize="20px">
                                             {msg}
                                         </Box>
                                     )
                                 }
 
-                            </Box>
-
-                            <Box fontSize="20px" textColor="cyan">
-                                Make sure to use a valid email address for password reset
                             </Box>
 
                             <Box>

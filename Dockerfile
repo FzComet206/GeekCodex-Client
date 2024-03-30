@@ -1,17 +1,19 @@
 # Build
-FROM node:alpine AS builder
+FROM node
+
 WORKDIR /app
-COPY package*.json ./
+
+COPY package.json package-lock.json ./
 RUN npm install
+
+WORKDIR /app
+COPY /node_modules ./node_modules
 COPY . .
+
 RUN npm run build
 
-# Run
-FROM node:alpine
 WORKDIR /app
-COPY --from=builder /app/next.config.mjs ./
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
+COPY /public ./public
+
 EXPOSE 3000
 CMD ["npm", "start"]

@@ -1,5 +1,5 @@
 "use client"
-import { Box, Button, Center, Input, Link} from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Input, Link} from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { AppContext } from "../../../../context/appContext";
 import NavigationPlain from "../../utils/navigationPlain"
@@ -12,7 +12,6 @@ export default function RegisterPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setIsLoading] = useState(false);
-    const [alert, setAlert] = useState(false);
     const [msg, setMsg] = useState("");
     const router = useRouter();
 
@@ -22,7 +21,6 @@ export default function RegisterPage() {
     const handleSubmit = async () => {
 
         setIsLoading(true);
-        setAlert(false);
         setMsg("");
 
         try {
@@ -40,7 +38,6 @@ export default function RegisterPage() {
         } catch (error) {
             setIsLoading(false);
             if (axios.isAxiosError(error)) {
-                setAlert(true);
                 setMsg(error.response?.data || "Network Error. Please try again later.");
             }
             console.log(error)
@@ -63,7 +60,7 @@ export default function RegisterPage() {
 
                             <Box>
                                 {
-                                    alert && (
+                                    (
                                         <Box textColor="orange" fontSize="20px">
                                             {msg}
                                         </Box>
@@ -80,11 +77,18 @@ export default function RegisterPage() {
                                 <Input _placeholder={{color:"white"}} pr="4.5rem" placeholder="Enter Password" size="lg" type="password" value={password} onChange={handlePasswordChange}/>
                             </Box>
 
-                            <Box h="30px" fontSize="20px" paddingTop="20px">
-                                <Link position="relative" left="34%" href="./changepassword">
-                                    Reset Password
-                                </Link>
-                            </Box>
+                            <Flex>
+                                <Box position="relative" left="1%" h="30px" fontSize="20px" paddingTop="20px">
+                                    <Link position="relative" href="./register">
+                                        Register
+                                    </Link>
+                                </Box>
+                                <Box position="relative" left="51%" h="30px" fontSize="20px" paddingTop="20px">
+                                    <Link href="./changepassword">
+                                        Reset Password
+                                    </Link>
+                                </Box>
+                            </Flex>
 
 
                             <Button isLoading={loading} size="lg" marginTop="5vh" onClick={() => handleSubmit()}>
