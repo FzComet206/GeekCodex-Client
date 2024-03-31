@@ -4,25 +4,17 @@ Introducing a dynamic web application designed to showcase and discover creative
 
 Demo Page 1
 
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/8d2e7664-9153-4333-a868-d3f846964106)
-
-Demo Page 2
-
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/bc68a45a-b3c3-482c-af49-110dbe2b0547)
-
-Demp Page 3
-
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/7b846a56-fa0d-44fa-a365-9bb306b5f782)
-
-Demo Page 4
-
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/a8080f3f-22d0-4e36-8e11-b7318a1c721a)
-
-Demo Page 5
-
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/6767707c-9f93-46c8-a373-86af8330263d)
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/d2269e02-c921-4455-8593-a02acee4f355)
 
 
+Dem0 Page 2
+
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/188fa75e-787b-49db-b247-bc3600dcef84)
+
+
+Demo Page 3
+
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/83991363-3948-4370-8fb0-c990bbe6c1a5)
 
 
 
