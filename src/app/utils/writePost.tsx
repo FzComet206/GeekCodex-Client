@@ -143,7 +143,7 @@ export default function WritePost({isOpen, onClose, showToast} : any){
                     {error? <Box h="50px" color="orange" fontSize="20px" textAlign="center">{error}</Box> : null}
 
                     <ModalFooter margin="auto">
-                        <Button isLoading={loading} h="50px" w="100px" fontSize="25px" colorScheme="pink" onClick={onSubmit}>
+                        <Button bgColor="wheat" isLoading={loading} h="50px" w="100px" fontSize="25px" onClick={onSubmit}>
                             Submit
                         </Button>
                     </ModalFooter>

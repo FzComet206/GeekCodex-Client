@@ -5,7 +5,7 @@ import { AppContext } from '../../../../context/appContext';
 
 export const usePosts = (limit = 4) => {
 
-  const { seed } = useContext(AppContext) || {};
+  const { currSort, currQuery } = useContext(AppContext) || {};
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [ posts, setPosts ] = useState<PostData[]>([]);
@@ -14,8 +14,10 @@ export const usePosts = (limit = 4) => {
   useEffect(() => {
     setLoading(true);
     console.log("client side self request")
+    let s = currSort;
+    let q = currQuery;
 
-    axios.get(`/api/self?page=${page}&limit=${limit}}`)
+    axios.get(`/api/self?page=${page}&limit=${limit}&sort=${s}&query=${q}`)
          .then(res => {
           console.log(res.data)
 

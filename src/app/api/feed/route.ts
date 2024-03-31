@@ -20,7 +20,6 @@ export async function GET(req: NextRequest) {
     console.log("next server side feed");
     const limit = req.nextUrl.searchParams.get('limit')
     const page = req.nextUrl.searchParams.get('page')
-    const seed = req.nextUrl.searchParams.get('seed')
     const search = req.nextUrl.searchParams.get('search') || ""
     const sort = req.nextUrl.searchParams.get('sort') || ""
 
@@ -32,7 +31,7 @@ export async function GET(req: NextRequest) {
         // request/response prpagation
         const sessionCookie = req.headers.get('cookie')
         const _response = await axios.get(
-            process.env.API_URL + `/feed?page=${page}&limit=${limit}&seed=${seed}&search=${search}&sort=${sort}`, 
+            process.env.API_URL + `/feed?page=${page}&limit=${limit}&search=${search}&sort=${sort}`, 
             { 
                 headers: {
                     'Cookie': sessionCookie || ''

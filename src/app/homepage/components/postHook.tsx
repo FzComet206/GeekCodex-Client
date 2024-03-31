@@ -5,7 +5,7 @@ import { AppContext } from '../../../../context/appContext';
 
 export const usePosts = (limit = 4) => {
 
-  const { seed, currQuery, currSort} = useContext(AppContext) || {};
+  const { seed, currQuery, currSort } = useContext(AppContext) || {};
   // const { setPosts, page } = useContext(AppContext) || {};
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);

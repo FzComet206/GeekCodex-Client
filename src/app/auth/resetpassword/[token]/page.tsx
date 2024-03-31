@@ -94,7 +94,7 @@ export default function RegisterPage() {
 
                             </Box>
 
-                            <Button isLoading={loading} size="lg" marginTop="5vh" onClick={() => handleSubmit()}>
+                            <Button bgColor="wheat" fontSize="22px" isLoading={loading} size="lg" marginTop="5vh" onClick={() => handleSubmit()}>
                                 Sumbit
                             </Button>
 

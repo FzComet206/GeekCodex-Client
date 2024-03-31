@@ -91,7 +91,7 @@ export default function RegisterPage() {
                             </Flex>
 
 
-                            <Button isLoading={loading} size="lg" marginTop="5vh" onClick={() => handleSubmit()}>
+                            <Button bgColor="wheat" fontSize="22px" size="lg" marginTop="5vh" onClick={() => handleSubmit()}>
                                 Sumbit
                             </Button>
 

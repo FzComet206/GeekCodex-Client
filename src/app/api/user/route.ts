@@ -21,12 +21,14 @@ export async function GET(req: NextRequest) {
     const limit = req.nextUrl.searchParams.get('limit')
     const page = req.nextUrl.searchParams.get('page')
     const userid = req.nextUrl.searchParams.get('userid')
+    const sort = req.nextUrl.searchParams.get('sort') || ""
+    const query = req.nextUrl.searchParams.get('query') || ""
 
     try {
         // request/response prpagation
         const sessionCookie = req.headers.get('cookie')
         const _response = await axios.get(
-            process.env.API_URL + `/user?page=${page}&limit=${limit}&userid=${userid}`, 
+            process.env.API_URL + `/user?page=${page}&limit=${limit}&userid=${userid}&sort=${sort}&search=${query}`, 
             { 
                 headers: {
                     'Cookie': sessionCookie || ''

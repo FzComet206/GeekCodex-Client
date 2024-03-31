@@ -5,7 +5,7 @@ import { AppContext } from '../../../../context/appContext';
 
 export const usePosts = (limit = 4) => {
 
-  const { seed } = useContext(AppContext) || {};
+  const { currSort, currQuery } = useContext(AppContext) || {};
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [ posts, setPosts ] = useState<PostData[]>([]);
@@ -15,7 +15,10 @@ export const usePosts = (limit = 4) => {
     setLoading(true);
     console.log("client side liked content request")
 
-    axios.get(`/api/likedposts?page=${page}&limit=${limit}}`)
+    let s = currSort
+    let q = currQuery;
+
+    axios.get(`/api/likedposts?page=${page}&limit=${limit}&sort=${s}&query=${q}`)
          .then(res => {
           console.log(res.data)
 

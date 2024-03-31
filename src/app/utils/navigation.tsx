@@ -72,11 +72,11 @@ export default function Navigation({ onOpen }: any) {
                     </Text>
                 </Box>
 
-                <Box paddingTop="30px" textColor="white" position="relative" left="4%">
-                    <Button colorScheme="pink" h="50px" w="80px" fontSize="30px" onClick={goToPost}>Post</Button>
+                <Box paddingTop="32px" textColor="white" position="relative" left="5.5%">
+                    <Button bgColor="wheat" h="50px" w="80px" fontSize="30px" onClick={goToPost}>Post</Button>
                 </Box>
 
-                <Box paddingTop="32px" textColor="white" position="relative" left="8.2%" width="750px" minWidth="300px">
+                <Box paddingTop="32px" textColor="white" position="relative" left="10%" width="750px" minWidth="300px">
                     <Input placeholder='Search' size="lg" value={query} onChange={handleQueryChange} onKeyUp={handleKeyPress}/>
                 </Box>
 

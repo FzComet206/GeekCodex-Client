@@ -5,7 +5,7 @@ import { AppContext } from '../../../../../context/appContext';
 
 export const usePosts = (limit = 4) => {
 
-  const { seed, currSearchId } = useContext(AppContext) || {};
+  const { currSearchId, currSort, currQuery } = useContext(AppContext) || {};
   // const { setPosts, page } = useContext(AppContext) || {};
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -16,8 +16,10 @@ export const usePosts = (limit = 4) => {
 
     setLoading(true);
     console.log("client side feed request")
+    let s = currSort;
+    let q = currQuery; 
 
-    axios.get(`/api/user?page=${page}&limit=${limit}&seed=${seed}&userid=${currSearchId}`)
+    axios.get(`/api/user?page=${page}&limit=${limit}&sort=${s}&userid=${currSearchId}&query=${q}`)
          .then(res => {
           console.log(res.data)
 

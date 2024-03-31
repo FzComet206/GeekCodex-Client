@@ -6,12 +6,14 @@ export async function GET(req: NextRequest) {
     console.log("next server side liked posts");
     const limit = req.nextUrl.searchParams.get('limit')
     const page = req.nextUrl.searchParams.get('page')
+    const sort = req.nextUrl.searchParams.get('sort') || ""
+    const query = req.nextUrl.searchParams.get('query') || ""
 
     try {
         // request/response prpagation
         const sessionCookie = req.headers.get('cookie')
         const _response = await axios.get(
-            process.env.API_URL + `/likedposts?page=${page}&limit=${limit}`,
+            process.env.API_URL + `/likedposts?page=${page}&limit=${limit}&sort=${sort}&search=${query}`,
             { 
                 headers: {
                     'Cookie': sessionCookie || ''
