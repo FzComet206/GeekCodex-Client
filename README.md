@@ -4,15 +4,15 @@ Introducing a dynamic web application designed to showcase and discover creative
 
 Demo Page 1
 
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/8d2e7664-9153-4333-a868-d3f846964106)
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/d2269e02-c921-4455-8593-a02acee4f355)
 
 Demo Page 2
 
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/bc68a45a-b3c3-482c-af49-110dbe2b0547)
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/31e85972-b82b-47a8-90f3-480e7f7278e4)
 
-Demp Page 3
+Dem0 Page 3
 
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/7b846a56-fa0d-44fa-a365-9bb306b5f782)
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/188fa75e-787b-49db-b247-bc3600dcef84)
 
 Demo Page 4
 
@@ -20,7 +20,8 @@ Demo Page 4
 
 Demo Page 5
 
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/6767707c-9f93-46c8-a373-86af8330263d)
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/22a32dd4-f87d-40ce-95f6-f313d1dd99f5)
+
 
 
 
