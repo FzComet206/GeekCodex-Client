@@ -6,23 +6,15 @@ Demo Page 1
 
 ![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/d2269e02-c921-4455-8593-a02acee4f355)
 
-Demo Page 2
 
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/31e85972-b82b-47a8-90f3-480e7f7278e4)
-
-Dem0 Page 3
+Dem0 Page 2
 
 ![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/188fa75e-787b-49db-b247-bc3600dcef84)
 
-Demo Page 4
 
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/a8080f3f-22d0-4e36-8e11-b7318a1c721a)
-
-Demo Page 5
+Demo Page 3
 
 ![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/22a32dd4-f87d-40ce-95f6-f313d1dd99f5)
-
-
 
 
 
