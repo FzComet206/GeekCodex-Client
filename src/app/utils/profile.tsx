@@ -1,12 +1,13 @@
-import { Button, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Input, DrawerFooter, MenuItem, MenuList, Menu, Box } from "@chakra-ui/react"
+import { Button, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Input, DrawerFooter, MenuItem, MenuList, Menu, Box, MenuButton, MenuDivider, Switch, MenuItemOption, MenuOptionGroup } from "@chakra-ui/react"
 import axios from "axios";
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { AppContext } from "../../../context/appContext";
 import { useRouter } from "next/navigation";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 export function Profile({onClose, isOpen, onOpen} : any) {
 
-    const {darkTheme, user, setUser, setIsLoggedIn } = useContext(AppContext) || {};
+    const {darkTheme, setTheme, user, setUser, setIsLoggedIn, setCurrSort, setFlip, currSort, currTitle, setCurrTitle } = useContext(AppContext) || {};
     const router = useRouter();
 
     const logoutRedirect = async () => {
@@ -42,60 +43,113 @@ export function Profile({onClose, isOpen, onOpen} : any) {
         router.push("/dashboard")
     }
 
-    const txtColor = darkTheme? "white" : "black";
+    const handleSortLike = () => {
+        setCurrSort("like")
+        setFlip(true)
+    }
+
+    const handleSortTime = () => {
+        setCurrSort("time")
+        setFlip(true)
+    }
+
+    useEffect(() => {
+        console.log(currSort)
+        console.log(currTitle)
+    })
 
     return (
         <>
-        <Drawer
-            isOpen={isOpen}
-            placement='right'
-            onClose={onClose}
-            size="xs"
-            blockScrollOnMount={false}
-        >
-            <DrawerContent textColor={txtColor} bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"}>
-            <DrawerCloseButton />
-            <DrawerHeader>
-                <Box textAlign="center" fontSize="20px" marginTop="50px">
-                    Hello
-                </Box>
-                <Box textAlign="center" fontSize="35px">
-                    {user}
-                </Box>
+        <Box display="block" fontSize="20px" textColor="black"> 
+            <Menu closeOnSelect={false}>
+                <MenuButton 
+                    as={Button} rightIcon={<ChevronDownIcon />}
+                    fontSize="20px"
+                    h="45px"
+                    bgColor="wheat"
+                >
+                    Profile
+                </MenuButton>
+                <MenuList bgColor="wheat">
 
-            </DrawerHeader>
-                <DrawerBody>
-                    <Box borderColor="white" borderWidth="1px" borderRadius="20px" w="100%" p="20px" >
-                        <Button 
+                    <MenuOptionGroup title="View" value={currTitle} type="radio" fontSize="20px">
+                        <MenuItemOption
+                            _hover={{bgColor: "rgba(0,0,0,0.1)"}}
+                            value="Geek Codex"
                             onClick={handleClickFeed}
-                            width="100%" h="40px" marginTop="20px" fontSize="20px" bg="rgba(255,255,255,0.85)">
-                            View Feed
-                        </Button>
-                        <Button 
+                            fontSize="20px"
+                            bgColor="wheat"
+                        > 
+                            Feed
+                        </MenuItemOption>
+                        <MenuItemOption
+                            _hover={{bgColor: "rgba(0,0,0,0.1)"}}
+                            value="Your Posts"
                             onClick={handleClickSelf}
-                            width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
-                            Your Posts
-                        </Button>
-                        <Button
+                            fontSize="20px"
+                            bgColor="wheat"
+                        >
+                            View your posts
+                        </MenuItemOption>
+                        <MenuItemOption
+                            _hover={{bgColor: "rgba(0,0,0,0.1)"}}
+                            value="Liked Posts"
                             onClick={handleClickLike}
-                            width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
-                            Liked Posts
-                        </Button>
-                        <Button
+                            fontSize="20px"
+                            bgColor="wheat"
+                        >
+                            View liked posts
+                        </MenuItemOption>
+                        <MenuItemOption
+                            _hover={{bgColor: "rgba(0,0,0,0.1)"}}
+                            value="Dashboard"
                             onClick={handleClickDashboard}
-                            width="100%" h="40px" marginTop="40px" fontSize="20px" bg="rgba(255,255,255,0.85)">
+                            fontSize="20px"
+                            bgColor="wheat"
+                        >
                             Dashboard
-                        </Button>
-                        <Button 
-                            onClick={logoutRedirect}
-                            width="100%" h="40px" marginTop="40px" marginBottom="20px" fontSize="20px" bg="rgba(255,255,255,0.85)">
-                            Log out
-                        </Button>
-                    </Box>
+                        </MenuItemOption>
+                    </MenuOptionGroup>
 
-                </DrawerBody>
-            </DrawerContent>
-        </Drawer>
+                    <MenuDivider />
+                    
+                    <MenuOptionGroup title="Theme" fontSize="20px" type="checkbox" value={darkTheme? "dark" : ""}>
+                        <MenuItemOption 
+                            _hover={{bgColor: "rgba(0,0,0,0.1)"}}
+                            bgColor="wheat"
+                            value="dark" fontSize="20px" onClick={()=>{setTheme(!darkTheme)}}>
+                            Dark Mode
+                        </MenuItemOption>
+                    </MenuOptionGroup>
+
+                    <MenuDivider/>
+
+                    <MenuOptionGroup title="Sort by" fontSize="20px" defaultValue="time" type="radio">
+                        <MenuItemOption 
+                            _hover={{bgColor: "rgba(0,0,0,0.1)"}}
+                            bgColor="wheat"
+                            value="time" fontSize="20px" onClick={handleSortTime}>
+                            Sort by created date
+                        </MenuItemOption>
+                        <MenuItemOption 
+                            _hover={{bgColor: "rgba(0,0,0,0.1)"}}
+                            bgColor="wheat"
+                            value="like" fontSize="20px" onClick={handleSortLike}>
+                            Sort by number of likes
+                        </MenuItemOption>
+                    </MenuOptionGroup>
+
+                    <MenuDivider />
+
+                    <MenuItem 
+                        _hover={{bgColor: "rgba(0,0,0,0.1)"}}
+                        bgColor="wheat"
+                        onClick={logoutRedirect}>Log Out</MenuItem>
+
+                </MenuList>
+
+            </Menu>
+        </Box>
         </>
     )
 }

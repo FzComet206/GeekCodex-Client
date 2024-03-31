@@ -23,7 +23,7 @@ export default function RegisterPage() {
 
 
     const validate = () : string => {
-        if (name.length < 3 || name.length > 12) return "name must be within 3 and 12 characters";
+        if (name.length < 3 || name.length > 10) return "name must be within 3 and 10 characters";
         if (email.length < 4 || email.length > 50 || email.indexOf('@') === -1 || email.indexOf('.') === -1) return "Invalid email address";
         if (password.length < 8 || password.length > 20) return "Password must be within 8 and 20 characters"; 
         if (password !== confirm) return "Passwords do not match";

@@ -33,16 +33,6 @@ export default function Navigation({ onOpen }: any) {
         router.push("/auth/login");
     }
 
-    const handleSortLike = () => {
-        setCurrSort("like")
-        setFlip(true)
-    }
-
-    const handleSortTime = () => {
-        setCurrSort("")
-        setFlip(true)
-    }
-
     const handleKeyPress = (event : React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             handleSearch()
@@ -68,6 +58,7 @@ export default function Navigation({ onOpen }: any) {
             <Flex alignContent="center">
 
                 <Box 
+                    paddingTop="20px"
                     fontSize={fs}
                     textColor="white" 
                     position="relative" 
@@ -81,36 +72,12 @@ export default function Navigation({ onOpen }: any) {
                     </Text>
                 </Box>
 
-                <Box marginTop="30px" textColor="white" position="relative" left="4%">
+                <Box paddingTop="30px" textColor="white" position="relative" left="4%">
                     <Button colorScheme="pink" h="50px" w="80px" fontSize="30px" onClick={goToPost}>Post</Button>
                 </Box>
 
-                <Box marginTop="30px" textColor="white" position="relative" left="9%" width="750px" minWidth="300px">
+                <Box paddingTop="32px" textColor="white" position="relative" left="8.2%" width="750px" minWidth="300px">
                     <Input placeholder='Search' size="lg" value={query} onChange={handleQueryChange} onKeyUp={handleKeyPress}/>
-                </Box>
-
-
-                <Box padding="20px" position="relative" left="10%">
-                    <Box textAlign="center" textColor="white">Dark Mode</Box>
-                    <Box textAlign="center" padding="15px">
-                        <Switch size="lg" isChecked={darkTheme} onChange={() => setTheme?.(!darkTheme)}></Switch>
-                    </Box>
-                </Box>
-
-                <Box display="block" position="relative" left="12%" w="10px" paddingTop="35px" fontSize="20px" textColor="black"> 
-                    <Menu>
-                        <MenuButton colorScheme="pink" as={Button} fontSize="20px" rightIcon={<ChevronDownIcon />}>
-                            Sort
-                        </MenuButton>
-                        <MenuList display="block">
-                            <MenuItem onClick={handleSortTime}>
-                                Date of post
-                            </MenuItem>
-                            <MenuItem onClick={handleSortLike}>
-                                Number of likes
-                            </MenuItem>
-                        </MenuList>
-                    </Menu>
                 </Box>
 
                 {
@@ -119,13 +86,14 @@ export default function Navigation({ onOpen }: any) {
                         <UserNav/>
                     </>
                     :
-                    <Flex position="relative" left="19%">
-                            <Box marginTop="35px" textColor="white">
-                                <Button onClick={goToLogin}>Login</Button>
+                    <Flex position="relative" left="20%">
+
+                            <Box paddingTop="35px">
+                                <Button bgColor="wheat" h="40px" w="80px" fontSize="20px" onClick={goToLogin}>Login</Button>
                             </Box>
 
-                            <Box marginTop="35px" textColor="white" position="relative" left="10%">
-                                <Button onClick={goToRegister}>Register</Button>
+                            <Box paddingTop="35px" position="relative" left="15%">
+                                <Button bgColor="wheat" h="40px" w="95px" fontSize="20px" onClick={goToRegister}>Register</Button>
                             </Box>
                     </Flex>
                 }
