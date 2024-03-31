@@ -7,7 +7,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 
 export function Profile({onClose, isOpen, onOpen} : any) {
 
-    const {darkTheme, setTheme, user, setUser, setIsLoggedIn, setCurrSort, setFlip, currSort, currTitle, setCurrTitle } = useContext(AppContext) || {};
+    const {darkTheme, setTheme, user, setUser, setIsLoggedIn, setCurrSort, setFlip, currSort, currTitle, setCurrTitle, setCurrQuery } = useContext(AppContext) || {};
     const router = useRouter();
 
     const logoutRedirect = async () => {
@@ -28,18 +28,22 @@ export function Profile({onClose, isOpen, onOpen} : any) {
     }
 
     const handleClickFeed = async () => {
+        setCurrQuery("")
         router.push("/homepage")
     }
 
     const handleClickSelf = async () => {
+        setCurrQuery("")
         router.push("/selfpage")
     }
 
     const handleClickLike = async () => {
+        setCurrQuery("")
         router.push("/likedpage")
     }
 
     const handleClickDashboard = async () => {
+        setCurrQuery("")
         router.push("/dashboard")
     }
 
@@ -52,11 +56,6 @@ export function Profile({onClose, isOpen, onOpen} : any) {
         setCurrSort("time")
         setFlip(true)
     }
-
-    useEffect(() => {
-        console.log(currSort)
-        console.log(currTitle)
-    })
 
     return (
         <>
