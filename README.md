@@ -14,8 +14,7 @@ Dem0 Page 2
 
 Demo Page 3
 
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/22a32dd4-f87d-40ce-95f6-f313d1dd99f5)
-
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/83991363-3948-4370-8fb0-c990bbe6c1a5)
 
 
 
