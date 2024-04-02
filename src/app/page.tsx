@@ -8,12 +8,15 @@ export default function Page() {
     return (
         <Box h="100vh" w="100vw" bg="#070707">
             <Box>
-                <Text fontSize="90px" color="white" textAlign="center" paddingTop="5vh" paddingBottom="5vh">
+                <Text fontSize={[45, 90]} color="white" textAlign="center" paddingTop="5vh" paddingBottom="5vh">
                     Welcome to Geek Codex!
                 </Text>
             </Box>
             <Box 
-                h="70vh" w="70vw" margin="auto" bgImage="img/background.png" bgPosition="center" backgroundSize="cover"
+                overflow="auto"
+                w={["400px", "1800px"]}
+                h={["400px", "900px"]}
+                margin="auto" bgImage="img/background.png" bgPosition="center" backgroundSize="cover"
                 transition="transform 0.2s"
                 cursor="pointer"
                 _hover={{

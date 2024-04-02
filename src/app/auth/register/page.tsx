@@ -59,15 +59,11 @@ export default function RegisterPage() {
 
     return (
         <Box bg={darkTheme? "brand.pageDark" : "brand.pageLight"}>
-            <Center>
                 <NavigationPlain/>
-            </Center>
-            <Center>
-                <Box className="body" bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"}>
+                <Box margin="auto" w={["450px", "1800px"]} bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"}>
+                    <Box maxW={["300px", "400px"]} h="91vh" margin="auto" fontSize="60px" textColor="white" textAlign="center">
 
-                    <Center>
-                        <Box className="form" fontSize="60px" textColor="white" textAlign="center">
-                            <Box marginBottom="2vh" marginTop="10vh">
+                            <Box marginBottom="2vh" paddingTop="10vh">
                                 Register
                             </Box>
 
@@ -103,9 +99,7 @@ export default function RegisterPage() {
                             </Button>
 
                         </Box>
-                    </Center>
                 </Box>
-            </Center>
         </Box>
     );
 }

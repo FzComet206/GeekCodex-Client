@@ -10,22 +10,15 @@ export default function Navigation() {
     const router = useRouter();
     
     return (
-        <Box className="nav" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= {darkTheme ? "black" : "white"}
+        <Box margin="auto" className="nav" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= {darkTheme ? "black" : "white"}
 
-                minW={["500px", "1800px"]}
-                maxW={["500px", "1800px"]}
+                minW={["450px", "1800px"]}
+                maxW={["450px", "1800px"]}
         >
             <Flex alignContent="center">
 
-                <Box padding="20px" position="relative" left="2.5%">
-                    <Box textAlign="center" textColor="white">Dark Mode</Box>
-                    <Box textAlign="center" padding="15px">
-                        <Switch size="lg" isChecked={darkTheme} onChange={() => setTheme?.(!darkTheme)}></Switch>
-                    </Box>
-                </Box>
-
-                <Box padding="30px" position="relative" left="80%">
-                    <Button onClick={() => router.push("/homepage")}>
+                <Box paddingTop="40px" position="relative" left={["75%", "85%"]}>
+                    <Button fontSize="20px" onClick={() => router.push("/homepage")}>
                         Back
                     </Button>
                 </Box>

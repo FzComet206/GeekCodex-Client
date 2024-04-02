@@ -43,15 +43,11 @@ export default function RegisterPage() {
 
     return (
         <Box bg={darkTheme? "brand.pageDark" : "brand.pageLight"}>
-            <Center>
                 <NavigationPlain/>
-            </Center>
-            <Center>
-                <Box className="body" bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"}>
+            <Box margin="auto" w={["450px", "1800px"]} bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"}>
 
-                    <Center>
-                        <Box className="form" fontSize="40px" textColor="white" textAlign="center">
-                            <Box padding="2vh" marginTop="10vh">
+                    <Box maxW={["300px", "400px"]} h="91vh" margin="auto" fontSize="40px" textColor="white" textAlign="center">
+                            <Box padding="2vh" paddingTop="10vh">
                                 Enter your email address
                             </Box>
 
@@ -67,7 +63,7 @@ export default function RegisterPage() {
                             </Box>
 
                             <Box>
-                                <Input width="400px" _placeholder={{color:"white"}} type="email" placeholder="Enter Email Address" size="lg" value={email} onChange={handleEmailChange}/>
+                                <Input _placeholder={{color:"white"}} type="email" placeholder="Enter Email Address" size="lg" value={email} onChange={handleEmailChange}/>
                             </Box>
 
 
@@ -76,9 +72,7 @@ export default function RegisterPage() {
                             </Button>
 
                         </Box>
-                    </Center>
                 </Box>
-            </Center>
         </Box>
     );
 }

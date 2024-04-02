@@ -12,8 +12,8 @@ export function BlankPreview() {
                 shadow='md'
                 minW={["0px", "400px"]}
                 maxW={["0px", "400px"]}
-                minH={["0px", "400px"]}
-                maxH={["0px", "400px"]}
+                minH={["0px", "520px"]}
+                maxH={["0px", "520px"]}
                 overflow={["hidden", "hidden"]}
                 >
                     <Skeleton h="520px" w="400px" />

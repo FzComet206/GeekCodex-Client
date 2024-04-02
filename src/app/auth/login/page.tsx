@@ -46,60 +46,53 @@ export default function RegisterPage() {
 
     return (
         <Box bg={darkTheme? "brand.pageDark" : "brand.pageLight"}>
-            <Center>
                 <NavigationPlain/>
-            </Center>
-            <Center>
-                <Box 
-                    className="body" bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"}>
+            <Box margin="auto" w={["450px", "1800px"]} bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"}>
 
-                    <Center>
-                        <Box className="form" fontSize="60px" textColor="white" textAlign="center">
-                            <Box padding="2vh" marginTop="10vh">
-                                Sign In
-                            </Box>
+                    <Box maxW={["300px", "400px"]} h="91vh" margin="auto" fontSize="60px" textColor="white" textAlign="center">
+                        <Box padding="2vh" paddingTop="10vh">
+                            Sign In
+                        </Box>
 
-                            <Box>
-                                {
-                                    (
-                                        <Box textColor="orange" fontSize="20px">
-                                            {msg}
-                                        </Box>
-                                    )
-                                }
-
-                            </Box>
-
-                            <Box>
-                                <Input _placeholder={{color:"white"}} type="email" placeholder="Enter Email Address" size="lg" value={email} onChange={handleEmailChange}/>
-                            </Box>
-
-                            <Box>
-                                <Input _placeholder={{color:"white"}} pr="4.5rem" placeholder="Enter Password" size="lg" type="password" value={password} onChange={handlePasswordChange}/>
-                            </Box>
-
-                            <Flex>
-                                <Box position="relative" left="1%" h="30px" fontSize="20px" paddingTop="20px">
-                                    <Link position="relative" href="./register">
-                                        Register
-                                    </Link>
-                                </Box>
-                                <Box position="relative" left="51%" h="30px" fontSize="20px" paddingTop="20px">
-                                    <Link href="./changepassword">
-                                        Reset Password
-                                    </Link>
-                                </Box>
-                            </Flex>
-
-
-                            <Button bgColor="wheat" fontSize="22px" size="lg" marginTop="5vh" onClick={() => handleSubmit()}>
-                                Sumbit
-                            </Button>
+                        <Box>
+                            {
+                                (
+                                    <Box textColor="orange" fontSize="20px">
+                                        {msg}
+                                    </Box>
+                                )
+                            }
 
                         </Box>
-                    </Center>
-                </Box>
-            </Center>
+
+                        <Box>
+                            <Input _placeholder={{color:"white"}} type="email" placeholder="Enter Email Address" size="lg" value={email} onChange={handleEmailChange}/>
+                        </Box>
+
+                        <Box>
+                            <Input _placeholder={{color:"white"}} pr="4.5rem" placeholder="Enter Password" size="lg" type="password" value={password} onChange={handlePasswordChange}/>
+                        </Box>
+
+                        <Flex>
+                            <Box position="relative" left="1%" h="30px" fontSize="20px" paddingTop="20px">
+                                <Link position="relative" href="./register">
+                                    Register
+                                </Link>
+                            </Box>
+                            <Box position="relative" left={["35%", "51%"]} h="30px" fontSize="20px" paddingTop="20px">
+                                <Link href="./changepassword">
+                                    Reset Password
+                                </Link>
+                            </Box>
+                        </Flex>
+
+
+                        <Button bgColor="wheat" fontSize="22px" size="lg" marginTop="5vh" onClick={() => handleSubmit()}>
+                            Sumbit
+                        </Button>
+
+                    </Box>
+            </Box>
         </Box>
     );
 }
