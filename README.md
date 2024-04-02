@@ -52,7 +52,7 @@ Both the nextjs and nodejs servers are built with docker and deployed on Amazon 
 The domain name GeekCodex.org is purchased from AWS route 53, and Https requests from this domain is routed to AWS Applicaiton Load Balancer, which holds a Https certificate from AWS ACM and target the EC2 instance at port 80.
 
 Below is a self drawn application architecture diagram:
-
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/3eba6e43-dbdc-4774-85ee-647e048c710f)
 
 
 Entity Relationship Diagram for postgres:
