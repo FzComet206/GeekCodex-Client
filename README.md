@@ -49,7 +49,7 @@ Deployment:
 
 Both the nextjs and nodejs servers are built with docker and deployed on Amazon Web Services EC2. The applicaiton uses a postgresql database connection from AWS RDS, and a Redis cache connection from AWS ElasticCache. All of which uses the free tier.
 
-The domain name GeekCodex.org is purchased from AWS route 53, and Https requests from this domain is routed to AWS Applicaiton Load Balancer, which holds a Https certificate from AWS ACM and target the EC2 instance at port 80.
+The domain name GeekCodex.org is purchased from AWS Route 53, and Https requests from this domain is routed to AWS Applicaiton Load Balancer, which holds a Https certificate from AWS ACM and target the EC2 instance at port 80.
 
 Below is a self drawn application architecture diagram:
 
