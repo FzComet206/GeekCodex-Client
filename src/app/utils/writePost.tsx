@@ -67,22 +67,25 @@ export default function WritePost({isOpen, onClose, showToast} : any){
 
     return (
             <>
-            <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+            <Modal isCentered closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay
                 bg='none'
                 backdropFilter='auto'
                 backdropBlur='8px'
                 />
                 <ModalContent 
-                    minWidth={["400px", "1200px"]}
-                    minH="85vh" bg={darkTheme? "#171A21": "#344055"} textColor={darkTheme? "white" : "white"}> 
+                    minW={["80vw", "1200px"]}
+                    maxW={["80vw", "1200px"]}
+                    minH={["80vh", "85vh"]}
+                    maxH={["80vh", "85vh"]}
+                    bg={darkTheme? "#171A21": "#344055"} textColor={darkTheme? "white" : "white"}> 
                     <ModalHeader fontSize="40px" alignSelf="center">Create your Post</ModalHeader>
                     <ModalCloseButton size="lg"/>
 
                     <Box h="30px"/>
                     <ImgaeUploader setImage={setImage} setError={setError} imagePreview={imagePreview} setImagePreview={setImagePreview}/>
 
-                    <ModalBody pb={6}>
+                    <ModalBody pb={6} >
                         <Box margin="auto" maxW="1100px">
                             <Flex>
                                 <Text marginTop="10px" fontSize="30px">

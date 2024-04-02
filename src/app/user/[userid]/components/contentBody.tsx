@@ -52,7 +52,7 @@ export default function ContentBody(){
         const param = path.split("/").pop()?.replace(/%20/g, " ");
         
         // state change trigger reset re render
-        setCurrTitle(param || "")
+        setCurrTitle(param?.toString() || "")
 
         if (flip) {
             OnReset();

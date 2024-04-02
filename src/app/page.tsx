@@ -13,9 +13,9 @@ export default function Page() {
                 </Text>
             </Box>
             <Box 
-                overflow="auto"
                 w={["400px", "1800px"]}
-                h={["400px", "900px"]}
+                h={["300px", "900px"]}
+                overflow={['hidden', 'visible']}
                 margin="auto" bgImage="img/background.png" bgPosition="center" backgroundSize="cover"
                 transition="transform 0.2s"
                 cursor="pointer"

@@ -71,6 +71,7 @@ export default function Navigation({ onOpen }: any) {
                     left="2%" 
                     alignContent="center"
                     maxW={["0px", "250px"]}
+                    minW={["0px", "250px"]}
                     overflow={["hidden", "visible"]}
                     >
                     <Text textAlign="center">

@@ -49,13 +49,12 @@ export default function MainPage({ ContentBody } : any) {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
-            <Box bg={darkTheme ? "brand.pageDark" : "brand.pageLight"} className="fullsize">
+            <Box bg={darkTheme ? "brand.pageDark" : "brand.pageLight"} className="fullsize" w={["100vw", "100vw"]} h={["100vh", "100vh"]}>
 
                     {/* this box is rightpart of screen */}
                     <Navigation onOpen={onOpen} />
                     <ContentBody/>
                     <WritePost isOpen={isOpen} onClose={onClose} showToast={showToast}></WritePost>
-
             </Box>
   );
 }
