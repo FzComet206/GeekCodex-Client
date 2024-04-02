@@ -95,6 +95,9 @@ export default function ContentBody(){
                 bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"} 
                 className="content"
                 id="mainScroll"
+                margin="auto"
+                minW={["500px", "1800px"]}
+                maxW={["500px", "1800px"]}
                 >
 
                 <Wrap marginLeft="18px">

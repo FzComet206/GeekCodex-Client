@@ -10,7 +10,11 @@ export default function Navigation() {
     const router = useRouter();
     
     return (
-        <Box className="nav" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= {darkTheme ? "black" : "white"}>
+        <Box className="nav" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= {darkTheme ? "black" : "white"}
+
+                minW={["500px", "1800px"]}
+                maxW={["500px", "1800px"]}
+        >
             <Flex alignContent="center">
 
                 <Box padding="20px" position="relative" left="2.5%">

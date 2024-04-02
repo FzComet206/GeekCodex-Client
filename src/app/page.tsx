@@ -3,6 +3,7 @@ import { Box, Text } from "@chakra-ui/react";
 import { useRouter } from 'next/navigation';
 
 export default function Page() {
+    console.log(process.env.API_URL)
     const router = useRouter();
     return (
         <Box h="100vh" w="100vw" bg="#070707">

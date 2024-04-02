@@ -52,10 +52,8 @@ export default function MainPage({ ContentBody } : any) {
             <Box bg={darkTheme ? "brand.pageDark" : "brand.pageLight"} className="fullsize">
 
                     {/* this box is rightpart of screen */}
-                    <Box margin="auto" width="1800px">
-                        <Navigation onOpen={onOpen} />
-                        <ContentBody/>
-                    </Box>
+                    <Navigation onOpen={onOpen} />
+                    <ContentBody/>
                     <WritePost isOpen={isOpen} onClose={onClose} showToast={showToast}></WritePost>
 
             </Box>

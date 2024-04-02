@@ -73,7 +73,9 @@ export default function WritePost({isOpen, onClose, showToast} : any){
                 backdropFilter='auto'
                 backdropBlur='8px'
                 />
-                <ModalContent minW="1200px" minH="85vh" bg={darkTheme? "#171A21": "#344055"} textColor={darkTheme? "white" : "white"}> 
+                <ModalContent 
+                    minWidth={["400px", "1200px"]}
+                    minH="85vh" bg={darkTheme? "#171A21": "#344055"} textColor={darkTheme? "white" : "white"}> 
                     <ModalHeader fontSize="40px" alignSelf="center">Create your Post</ModalHeader>
                     <ModalCloseButton size="lg"/>
 

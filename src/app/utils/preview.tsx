@@ -58,16 +58,15 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
         return (
             <Box padding="15px">
                 <Box
-                className="preview"
                 p='5px'
                 color='white'
                 mt='4'
                 rounded='md'
                 shadow='md'
+                className="preview"
                 >
                     <Card 
                         onClick={handleOpen}
-                        className="card" 
                         bg={darkTheme? "brand.cardDark" : "brand.cardLight"}
                         transition="transform 0.2s"
                         cursor="pointer"
@@ -158,7 +157,9 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                 backdropFilter='auto'
                 backdropBlur='4px'
                 />
-                <ModalContent minW="1000px" minH="85vh" bg="#2C363F" textColor="white"> 
+                <ModalContent 
+                    minWidth={["400px", "1000px"]}
+                    minH="85vh" bg="#2C363F" textColor="white"> 
                     <Box h="30px"/>
                     <ModalHeader margin="auto" paddingX="60px" fontSize="40px" alignSelf="center">
                         <Text textAlign="center">

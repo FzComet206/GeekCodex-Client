@@ -14,7 +14,11 @@ export function UserNav() {
         
             <Flex>
 
-                <Box paddingTop="12px" position="relative" mr="auto" fontSize="35px" minW="280px" maxW="280px">
+                <Box
+                    maxW={["0px", "280px"]}
+                    minW={["0px", "280px"]}
+                    overflow={["hidden", "visible"]}
+                    paddingTop="12px" position="relative" mr="auto" fontSize="35px" >
                     <Text textAlign="center">
                         Hello: {user}
                     </Text>

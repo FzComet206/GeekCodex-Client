@@ -23,11 +23,13 @@ export async function GET(req: NextRequest) {
     const search = req.nextUrl.searchParams.get('search') || ""
     const sort = req.nextUrl.searchParams.get('sort') || ""
 
+    console.log(process.env.API_URL)
     if (search?.length > 50) {
         return new Response(JSON.stringify({error: "Search query too long"}), { status: 400 });
     }
 
     try {
+        console.log(process.env.API_URL)
         // request/response prpagation
         const sessionCookie = req.headers.get('cookie')
         const _response = await axios.get(
@@ -45,6 +47,8 @@ export async function GET(req: NextRequest) {
         });
 
     } catch (error) {
+
+        console.log(error)
         if (axios.isAxiosError(error)) {
         // Handle Axios-specific errors
             if (error.response?.status === 400) {

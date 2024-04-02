@@ -9,6 +9,7 @@ export async function POST(req: NextRequest) {
     console.log("next server side login")
 
     try {
+        console.log(process.env.API_URL+"/auth/login")
         const _response: AxiosResponse = await axios.post(
         process.env.API_URL + "/auth/login",
         { email, password }, 

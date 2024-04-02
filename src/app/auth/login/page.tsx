@@ -50,7 +50,8 @@ export default function RegisterPage() {
                 <NavigationPlain/>
             </Center>
             <Center>
-                <Box className="body" bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"}>
+                <Box 
+                    className="body" bg={darkTheme? "brand.bodyDark" : "brand.bodyLight"}>
 
                     <Center>
                         <Box className="form" fontSize="60px" textColor="white" textAlign="center">

@@ -54,7 +54,13 @@ export default function Navigation({ onOpen }: any) {
 
     // post forum
     return (
-        <Box className="nav" bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} borderColor= "white">
+        <Box 
+            className="nav" 
+            bg={darkTheme ? "brand.bodyDark" : "brand.bodyLight"} 
+            borderColor= "white" margin="auto"
+                minW={["500px", "1800px"]}
+                maxW={["500px", "1800px"]}
+            >
             <Flex alignContent="center">
 
                 <Box 
@@ -63,9 +69,9 @@ export default function Navigation({ onOpen }: any) {
                     textColor="white" 
                     position="relative" 
                     left="2%" 
-                    minWidth="250px"
-                    maxWidth="250px"
                     alignContent="center"
+                    maxW={["0px", "250px"]}
+                    overflow={["hidden", "visible"]}
                     >
                     <Text textAlign="center">
                         {currTitle}
@@ -76,7 +82,10 @@ export default function Navigation({ onOpen }: any) {
                     <Button bgColor="wheat" h="50px" w="80px" fontSize="30px" onClick={goToPost}>Post</Button>
                 </Box>
 
-                <Box paddingTop="32px" textColor="white" position="relative" left="10%" width="750px" minWidth="300px">
+                <Box 
+                    w={["150px", "750px"]}
+                    overflow={["hidden", "visible"]}
+                    paddingTop="32px" textColor="white" position="relative" left="10%">
                     <Input placeholder='Search' size="lg" value={query} onChange={handleQueryChange} onKeyUp={handleKeyPress}/>
                 </Box>
 
@@ -92,7 +101,9 @@ export default function Navigation({ onOpen }: any) {
                                 <Button bgColor="wheat" h="40px" w="80px" fontSize="20px" onClick={goToLogin}>Login</Button>
                             </Box>
 
-                            <Box paddingTop="35px" position="relative" left="15%">
+                            <Box 
+                                w={["0px", "95px"]} overflow={["hidden", "visible"]}
+                                paddingTop="35px" position="relative" left="15%">
                                 <Button bgColor="wheat" h="40px" w="95px" fontSize="20px" onClick={goToRegister}>Register</Button>
                             </Box>
                     </Flex>
