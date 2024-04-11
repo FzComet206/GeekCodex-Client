@@ -31,13 +31,13 @@ export const theme = extendTheme({
                 w: "400px",
             },
             ".activities": {
-                w: "1000px",
+                maxW: "1000px",
             }, 
             ".preview": {
                 minW: "350px",
                 maxW: "400px",
-                minH: "520px",
-                maxH: "520px",
+                minH: "530px",
+                maxH: "530px",
             },
             ".card": {
                 minW: "320px",
@@ -64,12 +64,10 @@ export const theme = extendTheme({
             pageLight: "#C7CCDB",
             cardLight: "#E5EAFA",
             cardLightT: "#FFFFFF",
-            navDark: "#171D1C",
-            cardDark: "#343434",
-            bodyDark: "#171A21",
-            bodyD: "#151718",
-            pageDark: "#1F1F1F",
-            cardDarkT: "#4D4D4D",
+            cardDark: "#445064",
+            bodyDark: "#10171F",
+            pageDark: "#353A47",
+            cardDarkT: "#647084",
         },
     },
 

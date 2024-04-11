@@ -17,9 +17,15 @@ export async function POST(req: NextRequest) {
     const image: any = formData.get('image');
     const buffer = Buffer.from(await image.arrayBuffer());
 
+    // const _image = await tf.node.decodeImage(buffer, 3);
+    // const predictions = await model.classify(_image as any);
+    // _image.dispose();
+    // console.log(predictions)
+
     // post to nodejs
     console.log("next server side post")
     const sessionCookie = req.headers.get('cookie')
+
 
     if (!sessionCookie) {
         return new Response("Unauthorized", {
@@ -27,19 +33,7 @@ export async function POST(req: NextRequest) {
         })
     }
 
-
-    // frontend api: send texts to backend
-    // backend api: upload texts to post table, let postid + timestam be image url
-    // backend api: return unique postid from post table to frontend
-    // frontend api: upload image to s3 with key being the unique postid
-
-
     try {
-        // s3 upload
-        // const s3Response = await s3.upload(params).promise();
-        // url = s3Response.Location;
-        // const res = await s3Client.send(new PutObjectCommand(params)); 
-        // console.log(res)
 
         // send texts to backend
         const type = image.type.split('/')[1];

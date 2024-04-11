@@ -66,12 +66,15 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                 className="preview"
                 >
                     <Card 
+                        borderRadius='lg'
+                        border='1px solid'
+                        borderColor="rgba(255,255,255,0.5)"
                         onClick={handleOpen}
                         bg={darkTheme? "brand.cardDark" : "brand.cardLight"}
                         transition="transform 0.2s"
                         cursor="pointer"
                         _hover={{
-                            transform: 'scale(1.05)', 
+                            transform: 'scale(1.03)', 
                             bg: darkTheme? "brand.cardDarkT" : "brand.cardLightT"
                         }}
                         >
@@ -81,7 +84,6 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                                         <Image
                                         margin="auto"
                                         src = {image}
-                                        borderRadius='lg'
                                         />
                                 </Box>
                             </Flex>
@@ -158,8 +160,11 @@ export const Preview = ( {id, title, body, link, image, created_at, likes, autho
                 backdropBlur='4px'
                 />
                 <ModalContent 
+                    borderRadius='lg'
+                    border='1px solid'
+                    borderColor="rgba(255,255,255,0.5)"
                     minWidth={["400px", "1000px"]}
-                    minH="85vh" bg="#2C363F" textColor="white"> 
+                    minH="85vh" bg="#353A47" textColor="white"> 
                     <Box h="30px"/>
                     <ModalHeader margin="auto" paddingX="60px" fontSize="40px" alignSelf="center">
                         <Text textAlign="center">

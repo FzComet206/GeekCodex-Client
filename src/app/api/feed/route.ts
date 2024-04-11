@@ -23,7 +23,6 @@ export async function GET(req: NextRequest) {
     const search = req.nextUrl.searchParams.get('search') || ""
     const sort = req.nextUrl.searchParams.get('sort') || ""
 
-    console.log(process.env.API_URL)
     if (search?.length > 50) {
         return new Response(JSON.stringify({error: "Search query too long"}), { status: 400 });
     }

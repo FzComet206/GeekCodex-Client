@@ -3,7 +3,6 @@ import { ImgaeUploader } from "./imageUploader";
 import { use, useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../context/appContext";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 export default function WritePost({isOpen, onClose, showToast} : any){
 
@@ -26,12 +25,15 @@ export default function WritePost({isOpen, onClose, showToast} : any){
     const [title, setTitle] = useState('')
     const [summary, setSummary] = useState('')
     const [link, setLink] = useState('')
+    const [nsfwCheck, setNsfwCheck] = useState(false);
+
     const onSubmit = async () => {
         // submit post to backend with data
         if (!image) {setError('Please upload an image'); return;}
         if (title.length < 1 || title.length > 80) {setError('Title should be between 1 and 80 characters'); return;}
         if (summary.length < 1 || summary.length > 5000) {setError('Summary should be between 1 and 5000 characters'); return;}
         if (link.length > 200) {setError('Link should be less than 200 characters'); return;}
+        if (!nsfwCheck) {setError('Image did not pass moderation check'); return;}
 
         // await send request to backend
         setLoading(true)
@@ -78,12 +80,22 @@ export default function WritePost({isOpen, onClose, showToast} : any){
                     maxW={["80vw", "1200px"]}
                     minH={["80vh", "85vh"]}
                     maxH={["80vh", "85vh"]}
+                    overflow="auto"
                     bg={darkTheme? "#171A21": "#344055"} textColor={darkTheme? "white" : "white"}> 
                     <ModalHeader fontSize="40px" alignSelf="center">Create your Post</ModalHeader>
                     <ModalCloseButton size="lg"/>
 
                     <Box h="30px"/>
-                    <ImgaeUploader setImage={setImage} setError={setError} imagePreview={imagePreview} setImagePreview={setImagePreview}/>
+                    <ImgaeUploader 
+                        setImage={setImage} 
+                        setError={setError} 
+                        imagePreview={imagePreview} 
+                        setImagePreview={setImagePreview}
+                        setNsfwCheck={setNsfwCheck}
+                        />
+
+
+                    {error? <Box h="50px" mt="20px" color="orange" fontSize="20px" textAlign="center">{error}</Box> : null}
 
                     <ModalBody pb={6} >
                         <Box margin="auto" maxW="1100px">
@@ -145,7 +157,6 @@ export default function WritePost({isOpen, onClose, showToast} : any){
                         </Box>
                     </ModalBody>
 
-                    {error? <Box h="50px" color="orange" fontSize="20px" textAlign="center">{error}</Box> : null}
 
                     <ModalFooter margin="auto">
                         <Button bgColor="wheat" isLoading={loading} h="50px" w="100px" fontSize="25px" onClick={onSubmit}>

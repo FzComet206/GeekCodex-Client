@@ -1,4 +1,3 @@
-import { PostData } from "@/app/api/feed/route";
 import React, {FC, createContext, use, useState} from "react";
 
 interface AppContextType {

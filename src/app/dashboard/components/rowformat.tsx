@@ -10,7 +10,7 @@ export function User({name, userid, handle}: any){
                     <>
                     <Box borderColor="rgba(255,255,255,0.3)" borderWidth="1px" borderRadius="10px" w="100%" paddingX="10px">
                         <Flex>
-                            <Box w="210px" h="60px" mr="auto" paddingTop="5px" overflow="hidden">
+                            <Box minW="210px" maxW="210px" h="60px" mr="auto" paddingTop="5px" overflow="hidden">
                                 <Text fontSize="30px" textColor="white">
                                     {name}
                                 </Text>
@@ -53,7 +53,7 @@ export function Activity({name, userid, title, timestamp, handle} : any){
         {
             userid?
                 <Box paddingY="10px" paddingX="20px" className="activities">
-                    <Box borderColor="rgba(255,255,255,0.3)" borderWidth="1px" borderRadius="10px" w="100%" paddingX="10px" minW="300px" h="60px">
+                    <Box borderColor="rgba(255,255,255,0.3)" borderWidth="1px" borderRadius="10px" paddingX="10px" minW="300px" h="60px">
                         <Flex>
                             <Text fontSize="25px" textColor="white" minW="180px" maxW="180px" 
                                 padding="10px"
