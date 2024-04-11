@@ -8,7 +8,8 @@ Introducing a dynamic web application designed to showcase and discover creative
 
 Demo Page 1
 
-![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/d2269e02-c921-4455-8593-a02acee4f355)
+![image](https://github.com/FzComet206/GeekCodex-Client/assets/24278214/022adaf6-81be-4536-be80-27ec5ecc1f78)
+
 
 
 Website Functionalities:
